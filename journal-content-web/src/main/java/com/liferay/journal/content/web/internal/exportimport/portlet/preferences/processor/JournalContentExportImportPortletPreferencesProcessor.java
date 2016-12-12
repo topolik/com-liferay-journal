@@ -129,7 +129,7 @@ public class JournalContentExportImportPortletPreferencesProcessor
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Web Content is not staged in the site " + group.getName());
+					"Web content is not staged in the site " + group.getName());
 			}
 
 			return portletPreferences;
