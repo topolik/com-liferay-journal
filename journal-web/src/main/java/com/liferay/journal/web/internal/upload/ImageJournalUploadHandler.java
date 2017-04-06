@@ -14,7 +14,7 @@
 
 package com.liferay.journal.web.internal.upload;
 
-import com.liferay.document.library.kernel.exception.FileSizeException;
+import com.liferay.document.library.kernel.util.DLValidator;
 import com.liferay.journal.service.permission.JournalPermission;
 import com.liferay.portal.kernel.exception.ImageTypeException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -46,16 +46,15 @@ import javax.portlet.PortletResponse;
  */
 public class ImageJournalUploadHandler extends BaseUploadHandler {
 
+	public ImageJournalUploadHandler(DLValidator dlValidator) {
+		_dlValidator = dlValidator;
+	}
+
 	@Override
 	public void validateFile(String fileName, String contentType, long size)
 		throws PortalException {
 
-		long maxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE);
-
-		if ((maxSize > 0) && (size > maxSize)) {
-			throw new FileSizeException(
-				size + " exceeds its maximum permitted size of " + maxSize);
-		}
+		_dlValidator.validateFileSize(fileName, size);
 
 		String extension = FileUtil.getExtension(fileName);
 
@@ -159,5 +158,7 @@ public class ImageJournalUploadHandler extends BaseUploadHandler {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ImageJournalUploadHandler.class);
+
+	private final DLValidator _dlValidator;
 
 }

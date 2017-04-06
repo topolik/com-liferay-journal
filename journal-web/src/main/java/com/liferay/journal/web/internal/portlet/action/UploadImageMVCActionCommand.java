@@ -14,6 +14,7 @@
 
 package com.liferay.journal.web.internal.portlet.action;
 
+import com.liferay.document.library.kernel.util.DLValidator;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.web.internal.upload.ImageJournalUploadHandler;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -23,7 +24,10 @@ import com.liferay.portal.kernel.upload.UploadHandler;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Eduardo Garcia
@@ -38,6 +42,12 @@ import org.osgi.service.component.annotations.Component;
 )
 public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 
+	@Activate
+	@Modified
+	protected void activate() {
+		_uploadHandler = new ImageJournalUploadHandler(_dlValidator);
+	}
+
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -46,7 +56,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 		_uploadHandler.upload(actionRequest, actionResponse);
 	}
 
-	private final UploadHandler _uploadHandler =
-		new ImageJournalUploadHandler();
+	@Reference
+	private DLValidator _dlValidator;
+
+	private volatile UploadHandler _uploadHandler;
 
 }
