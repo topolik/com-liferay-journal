@@ -929,6 +929,27 @@ public class JournalContentDisplayContext {
 		return _showSelectArticleIcon;
 	}
 
+	public boolean isShowSelectArticleLink() throws PortalException {
+		if (_showSelectArticleLink != null) {
+			return _showSelectArticleLink;
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)_portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group scopeGroup = themeDisplay.getScopeGroup();
+
+		if (!scopeGroup.isStaged() || scopeGroup.isStagingGroup()) {
+			_showSelectArticleLink = true;
+
+			return _showSelectArticleLink;
+		}
+
+		_showSelectArticleLink = false;
+
+		return _showSelectArticleLink;
+	}
+
 	private JournalContentDisplayContext(
 			PortletRequest portletRequest, PortletResponse portletResponse,
 			JournalContentPortletInstanceConfiguration
@@ -1029,6 +1050,7 @@ public class JournalContentDisplayContext {
 	private Boolean _showEditArticleIcon;
 	private Boolean _showEditTemplateIcon;
 	private Boolean _showSelectArticleIcon;
+	private Boolean _showSelectArticleLink;
 	private List<UserToolAssetAddonEntry> _userToolAssetAddonEntries;
 
 }
