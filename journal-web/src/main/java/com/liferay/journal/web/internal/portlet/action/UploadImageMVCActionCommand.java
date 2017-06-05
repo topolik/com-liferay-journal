@@ -14,19 +14,17 @@
 
 package com.liferay.journal.web.internal.portlet.action;
 
-import com.liferay.document.library.kernel.util.DLValidator;
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.web.internal.upload.ImageJournalUploadHandler;
+import com.liferay.journal.web.internal.upload.ImageJournalUploadFileEntryHandler;
+import com.liferay.journal.web.internal.upload.ImageJournalUploadResponseHandler;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
-import com.liferay.portal.kernel.upload.UploadHandler;
+import com.liferay.upload.UploadHandler;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -42,23 +40,25 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 
-	@Activate
-	@Modified
-	protected void activate() {
-		_uploadHandler = new ImageJournalUploadHandler(_dlValidator);
-	}
-
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		_uploadHandler.upload(actionRequest, actionResponse);
+		_uploadHandler.upload(
+			_imageJournalUploadFileEntryHandler,
+			_imageJournalUploadResponseHandler, actionRequest, actionResponse);
 	}
 
 	@Reference
-	private DLValidator _dlValidator;
+	private ImageJournalUploadFileEntryHandler
+		_imageJournalUploadFileEntryHandler;
 
-	private volatile UploadHandler _uploadHandler;
+	@Reference
+	private ImageJournalUploadResponseHandler
+		_imageJournalUploadResponseHandler;
+
+	@Reference
+	private UploadHandler _uploadHandler;
 
 }
