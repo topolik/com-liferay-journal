@@ -213,10 +213,6 @@ public class UpgradeJournal extends UpgradeProcess {
 						long templateId = rs.getLong("templateId");
 						long id = rs.getLong("id_");
 
-						long journalArticleClassNameId =
-							PortalUtil.getClassNameId(
-								JournalArticle.class.getName());
-
 						_ddmTemplateLinkLocalService.addTemplateLink(
 							journalArticleClassNameId, id, templateId);
 					}
