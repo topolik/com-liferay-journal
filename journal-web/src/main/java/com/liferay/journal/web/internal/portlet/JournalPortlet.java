@@ -807,6 +807,8 @@ public class JournalPortlet extends MVCPortlet {
 				updateContentSearch(
 					actionRequest, portletResource, article.getArticleId());
 			}
+
+			hideDefaultSuccessMessage(actionRequest);
 		}
 
 		sendEditArticleRedirect(
