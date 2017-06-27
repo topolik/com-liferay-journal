@@ -34,7 +34,7 @@ String refererPortletName = ParamUtil.getString(request, "refererPortletName");
 	<aui:script use="aui-io-request,aui-parse-content,liferay-alert">
 		var templatePreview = A.one('.template-preview-content');
 		var form = A.one('#<%= refererPortletName %>fm');
-		var templateKeyInput = A.one('#<%= refererPortletName + "preferences--ddmTemplateKey--" %>');
+		var templateKeyInput = A.one('#<%= refererPortletName + "ddmTemplateKey" %>');
 
 		var templateId = <%= ddmTemplate.getTemplateId() %>;
 
