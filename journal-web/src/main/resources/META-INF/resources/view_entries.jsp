@@ -313,11 +313,6 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 						</c:if>
 
 						<liferay-ui:search-container-column-text
-							name="id"
-							value="<%= String.valueOf(curFolder.getFolderId()) %>"
-						/>
-
-						<liferay-ui:search-container-column-text
 							cssClass="table-cell-content"
 							href="<%= rowURL.toString() %>"
 							name="title"
