@@ -345,6 +345,7 @@
 				JournalFolder
 			LEFT JOIN
 				AssetEntry ON
+					(AssetEntry.classNameId = ?) AND
 					(AssetEntry.classPK = JournalFolder.folderId)
 			WHERE
 				(AssetEntry.classPK IS NULL)
