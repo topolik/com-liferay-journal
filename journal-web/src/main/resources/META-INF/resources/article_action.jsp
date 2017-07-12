@@ -31,12 +31,10 @@ if (row != null) {
 else {
 	article = (JournalArticle)request.getAttribute("info_panel.jsp-entry");
 }
-
-boolean latestVersion = JournalArticleLocalServiceUtil.isLatestVersion(article.getGroupId(), article.getArticleId(), article.getVersion());
 %>
 
 <liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
-	<c:if test="<%= latestVersion && JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+	<c:if test="<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_article.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -53,7 +51,7 @@ boolean latestVersion = JournalArticleLocalServiceUtil.isLatestVersion(article.g
 		/>
 	</c:if>
 
-	<c:if test="<%= latestVersion && JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+	<c:if test="<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="moveURL">
 			<portlet:param name="mvcPath" value="/move_entries.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -67,7 +65,7 @@ boolean latestVersion = JournalArticleLocalServiceUtil.isLatestVersion(article.g
 		/>
 	</c:if>
 
-	<c:if test="<%= latestVersion && JournalArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= JournalArticle.class.getName() %>"
 			modelResourceDescription="<%= HtmlUtil.escape(article.getTitle(locale)) %>"
@@ -102,7 +100,7 @@ boolean latestVersion = JournalArticleLocalServiceUtil.isLatestVersion(article.g
 			url="javascript:;"
 		/>
 
-		<c:if test="<%= latestVersion && JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+		<c:if test="<%= JournalArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 			<portlet:renderURL var="viewHistoryURL">
 				<portlet:param name="mvcPath" value="/view_article_history.jsp" />
 				<portlet:param name="redirect" value="<%= redirect %>" />
