@@ -24,13 +24,13 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 @ExtendedObjectClassDefinition(category = "web-experience")
 @Meta.OCD(
 	id = "com.liferay.journal.web.configuration.JournalWebConfiguration",
-	localization = "content/Language", name = "journal.web.configuration.name"
+	localization = "content/Language", name = "journal-web-configuration-name"
 )
 public interface JournalWebConfiguration {
 
 	@Meta.AD(
 		deflt = "false",
-		description = "changeable.default.language.description",
+		description = "changeable-default-language-description",
 		name = "changeable.default.language", required = false
 	)
 	public boolean changeableDefaultLanguage();
