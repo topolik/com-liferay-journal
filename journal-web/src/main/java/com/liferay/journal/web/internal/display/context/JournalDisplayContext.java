@@ -139,8 +139,13 @@ public class JournalDisplayContext {
 
 		int page = ParamUtil.getInteger(_liferayPortletRequest, "page");
 
+		double version = ParamUtil.getDouble(_liferayPortletRequest, "version");
+
+		JournalArticle article = getArticle();
+
 		_articleDisplay = JournalArticleLocalServiceUtil.getArticleDisplay(
-			getArticle(), null, null, themeDisplay.getLanguageId(), page,
+			article.getGroupId(), article.getArticleId(), version, null, null,
+			themeDisplay.getLanguageId(), page,
 			new PortletRequestModel(
 				_liferayPortletRequest, _liferayPortletResponse),
 			themeDisplay);
