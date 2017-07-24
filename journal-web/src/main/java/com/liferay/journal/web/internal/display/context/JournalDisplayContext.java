@@ -137,14 +137,13 @@ public class JournalDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		int page = ParamUtil.getInteger(_liferayPortletRequest, "page");
-
-		double version = ParamUtil.getDouble(_liferayPortletRequest, "version");
-
-		JournalArticle article = getArticle();
+		long groupId = ParamUtil.getLong(_request, "groupId");
+		String articleId = ParamUtil.getString(_request, "articleId");
+		double version = ParamUtil.getDouble(_request, "version");
+		int page = ParamUtil.getInteger(_request, "page");
 
 		_articleDisplay = JournalArticleLocalServiceUtil.getArticleDisplay(
-			article.getGroupId(), article.getArticleId(), version, null, null,
+			groupId, articleId, version, null, null,
 			themeDisplay.getLanguageId(), page,
 			new PortletRequestModel(
 				_liferayPortletRequest, _liferayPortletResponse),
