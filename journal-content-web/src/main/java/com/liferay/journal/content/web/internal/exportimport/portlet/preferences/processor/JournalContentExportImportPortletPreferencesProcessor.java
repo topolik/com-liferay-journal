@@ -126,17 +126,22 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.setScopeGroupId(articleGroupId);
 		}
 
+		JournalArticle article = null;
+
 		JournalArticleResource journalArticleResource =
 			_journalArticleResourceLocalService.fetchArticleResource(
 				articleGroupId, articleId);
 
-		int[] statuses = new int[] {
-			WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_EXPIRED,
-			WorkflowConstants.STATUS_SCHEDULED
-		};
+		if (journalArticleResource != null) {
+			int[] statuses = new int[] {
+				WorkflowConstants.STATUS_APPROVED,
+				WorkflowConstants.STATUS_EXPIRED,
+				WorkflowConstants.STATUS_SCHEDULED
+			};
 
-		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
-			journalArticleResource.getResourcePrimKey(), statuses);
+			article = _journalArticleLocalService.fetchLatestArticle(
+				journalArticleResource.getResourcePrimKey(), statuses);
+		}
 
 		if (article == null) {
 			if (_log.isWarnEnabled()) {
