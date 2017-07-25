@@ -911,8 +911,16 @@ public class JournalArticleStagedModelDataHandler
 				return null;
 			}
 
-			return _journalArticleLocalService.fetchArticle(
+			existingArticle = _journalArticleLocalService.fetchArticle(
 				groupId, journalArticleResource.getArticleId());
+
+			if (existingArticle == null) {
+				existingArticle =
+					_journalArticleLocalService.fetchLatestArticle(
+						journalArticleResource.getResourcePrimKey());
+			}
+
+			return existingArticle;
 		}
 
 		if (Validator.isNotNull(newArticleId)) {
