@@ -27,7 +27,9 @@ import com.liferay.exportimport.portlet.preferences.processor.ExportImportPortle
 import com.liferay.exportimport.portlet.preferences.processor.capability.ReferencedStagedModelImporterCapability;
 import com.liferay.journal.content.web.constants.JournalContentPortletKeys;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.journal.model.JournalArticleResource;
 import com.liferay.journal.service.JournalArticleLocalService;
+import com.liferay.journal.service.JournalArticleResourceLocalService;
 import com.liferay.journal.service.JournalContentSearchLocalService;
 import com.liferay.journal.service.permission.JournalPermission;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -36,7 +38,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.LayoutLocalService;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -125,26 +126,17 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.setScopeGroupId(articleGroupId);
 		}
 
-		JournalArticle article = null;
+		JournalArticleResource journalArticleResource =
+			_journalArticleResourceLocalService.fetchArticleResource(
+				articleGroupId, articleId);
 
-		article = _journalArticleLocalService.fetchLatestArticle(
-			articleGroupId, articleId, WorkflowConstants.STATUS_APPROVED);
+		int[] statuses = new int[] {
+			WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_EXPIRED,
+			WorkflowConstants.STATUS_SCHEDULED
+		};
 
-		if (article == null) {
-			article = _journalArticleLocalService.fetchLatestArticle(
-				articleGroupId, articleId, WorkflowConstants.STATUS_ANY);
-		}
-
-		if ((article != null) &&
-			!ArrayUtil.contains(
-				new int[] {
-					WorkflowConstants.STATUS_EXPIRED,
-				WorkflowConstants.STATUS_SCHEDULED
-					},
-				article.getStatus())) {
-
-			article = null;
-		}
+		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
+			journalArticleResource.getResourcePrimKey(), statuses);
 
 		if (article == null) {
 			if (_log.isWarnEnabled()) {
@@ -352,6 +344,11 @@ public class JournalContentExportImportPortletPreferencesProcessor
 
 	private DDMTemplateLocalService _ddmTemplateLocalService;
 	private JournalArticleLocalService _journalArticleLocalService;
+
+	@Reference
+	private JournalArticleResourceLocalService
+		_journalArticleResourceLocalService;
+
 	private JournalContentSearchLocalService _journalContentSearchLocalService;
 	private LayoutLocalService _layoutLocalService;
 
