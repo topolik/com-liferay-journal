@@ -3130,6 +3130,13 @@ public class JournalArticleLocalServiceWrapper
 		return _journalArticleLocalService.getNoPermissionArticles();
 	}
 
+	@Override
+	public java.util.List<?extends com.liferay.portal.kernel.model.PersistedModel> getPersistedModel(
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _journalArticleLocalService.getPersistedModel(resourcePrimKey);
+	}
+
 	/**
 	* Returns the web content articles matching the DDM structure keys.
 	*

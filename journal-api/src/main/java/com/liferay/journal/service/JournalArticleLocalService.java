@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.PersistedResourcedModelLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -71,7 +72,7 @@ import java.util.Map;
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface JournalArticleLocalService extends BaseLocalService,
-	PersistedModelLocalService {
+	PersistedModelLocalService, PersistedResourcedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -2640,6 +2641,11 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getNoPermissionArticles();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<?extends PersistedModel> getPersistedModel(long resourcePrimKey)
+		throws PortalException;
 
 	/**
 	* Returns the web content articles matching the DDM structure keys.
