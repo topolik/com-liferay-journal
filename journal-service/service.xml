@@ -62,9 +62,6 @@
 
 		<!-- Finder methods -->
 
-		<finder name="ResourcePrimKey" return-type="Collection">
-			<finder-column name="resourcePrimKey" />
-		</finder>
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
