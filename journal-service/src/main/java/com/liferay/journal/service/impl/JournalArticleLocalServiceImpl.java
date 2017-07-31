@@ -6626,6 +6626,9 @@ public class JournalArticleLocalServiceImpl
 
 		dynamicContentElement.clearContent();
 
+		dynamicContentElement.addAttribute(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+
 		dynamicContentElement.addCDATA(previewURL);
 	}
 
@@ -6640,6 +6643,8 @@ public class JournalArticleLocalServiceImpl
 		for (Element dynamicContent : imageContents) {
 			String elType = dynamicContent.attributeValue(
 				"type", StringPool.BLANK);
+
+			dynamicContent.addAttribute("fileEntryId", StringPool.BLANK);
 
 			if (elType.equals("document")) {
 				if (ExportImportThreadLocal.isImportInProcess()) {
