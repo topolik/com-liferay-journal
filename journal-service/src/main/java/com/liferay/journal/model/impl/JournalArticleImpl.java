@@ -212,7 +212,7 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 		return DDMTemplateLocalServiceUtil.fetchTemplate(
 			PortalUtil.getSiteGroupId(getGroupId()),
 			ClassNameLocalServiceUtil.getClassNameId(JournalArticle.class),
-			getDDMStructureKey(), true);
+			getDDMTemplateKey(), true);
 	}
 
 	@Override
