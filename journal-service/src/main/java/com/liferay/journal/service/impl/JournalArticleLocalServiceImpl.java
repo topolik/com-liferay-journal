@@ -6387,9 +6387,9 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	/**
-	* @deprecated As of 3.5.0, replaced by {@link #createFieldsValuesMap(
-	*  Element, Locale)}
-	*/
+	 * @deprecated As of 3.5.0, replaced by {@link
+	 *             #createFieldsValuesMap(Element, Locale)}
+	 */
 	@Deprecated
 	protected Map<String, LocalizedValue> createFieldsValuesMap(
 		Element parentElement) {
