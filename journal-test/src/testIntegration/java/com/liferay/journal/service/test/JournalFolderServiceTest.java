@@ -108,7 +108,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure1 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure1.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure1.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -267,7 +267,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure2.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure2.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -330,7 +330,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure2.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure2.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -401,7 +401,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure2.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure2.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -467,7 +467,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure2.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure2.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -547,7 +547,7 @@ public class JournalFolderServiceTest {
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
-		long[] ddmStructureIds = new long[] {ddmStructure2.getStructureId()};
+		long[] ddmStructureIds = {ddmStructure2.getStructureId()};
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());

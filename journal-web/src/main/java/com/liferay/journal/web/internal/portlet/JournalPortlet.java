@@ -636,8 +636,7 @@ public class JournalPortlet extends MVCPortlet {
 		Map<String, byte[]> structureImages = ActionUtil.getImages(
 			structureContent, fields);
 
-		Object[] contentAndImages =
-			new Object[] {structureContent, structureImages};
+		Object[] contentAndImages = {structureContent, structureImages};
 
 		String content = (String)contentAndImages[0];
 		Map<String, byte[]> images =
