@@ -80,40 +80,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	 */
 
 	/**
-	* Adds a web content article.
-	*
-	* @param userId the primary key of the web content article's creator/owner
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article folder
-	* @param titleMap the web content article's locales and localized titles
-	* @param descriptionMap the web content article's locales and localized
-	descriptions
-	* @param content the HTML content wrapped in XML. For more information,
-	see the content example in the {@link #addArticle(long, long,
-	long, long, long, String, boolean, double, Map, Map, String,
-	String, String, String, int, int, int, int, int, int, int, int,
-	int, int, boolean, int, int, int, int, int, boolean, boolean,
-	boolean, String, File, Map, String, ServiceContext)} description.
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure, if the article is related to a DDM structure, or
-	<code>null</code> otherwise
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
-	* @param serviceContext the service context to be applied. Can set the
-	UUID, creation date, modification date, expando bridge
-	attributes, guest permissions, group permissions, asset category
-	IDs, asset tag names, asset link entry IDs, asset priority, URL
-	title, and workflow actions for the web content article. Can also
-	set whether to add the default guest and group permissions.
-	* @return the web content article
-	*/
-	public JournalArticle addArticle(long userId, long groupId, long folderId,
-		Map<Locale, java.lang.String> titleMap,
-		Map<Locale, java.lang.String> descriptionMap, java.lang.String content,
-		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
-		ServiceContext serviceContext) throws PortalException;
-
-	/**
 	* Adds a web content article with additional parameters.
 	*
 	* <p>
@@ -224,6 +190,40 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		File smallImageFile, Map<java.lang.String, byte[]> images,
 		java.lang.String articleURL, ServiceContext serviceContext)
 		throws PortalException;
+
+	/**
+	* Adds a web content article.
+	*
+	* @param userId the primary key of the web content article's creator/owner
+	* @param groupId the primary key of the web content article's group
+	* @param folderId the primary key of the web content article folder
+	* @param titleMap the web content article's locales and localized titles
+	* @param descriptionMap the web content article's locales and localized
+	descriptions
+	* @param content the HTML content wrapped in XML. For more information,
+	see the content example in the {@link #addArticle(long, long,
+	long, long, long, String, boolean, double, Map, Map, String,
+	String, String, String, int, int, int, int, int, int, int, int,
+	int, int, boolean, int, int, int, int, int, boolean, boolean,
+	boolean, String, File, Map, String, ServiceContext)} description.
+	* @param ddmStructureKey the primary key of the web content article's DDM
+	structure, if the article is related to a DDM structure, or
+	<code>null</code> otherwise
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
+	* @param serviceContext the service context to be applied. Can set the
+	UUID, creation date, modification date, expando bridge
+	attributes, guest permissions, group permissions, asset category
+	IDs, asset tag names, asset link entry IDs, asset priority, URL
+	title, and workflow actions for the web content article. Can also
+	set whether to add the default guest and group permissions.
+	* @return the web content article
+	*/
+	public JournalArticle addArticle(long userId, long groupId, long folderId,
+		Map<Locale, java.lang.String> titleMap,
+		Map<Locale, java.lang.String> descriptionMap, java.lang.String content,
+		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds the resources to the web content article.
@@ -380,20 +380,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* Deletes all web content articles and their resources matching the group
-	* and article ID, optionally sending email notifying denial of article if
-	* it had not yet been approved.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param articleId the primary key of the web content article
-	* @param serviceContext the service context to be applied. Can set the
-	portlet preferences that include email information to notify
-	recipients of the unapproved web content article's denial.
-	*/
-	public void deleteArticle(long groupId, java.lang.String articleId,
-		ServiceContext serviceContext) throws PortalException;
-
-	/**
 	* Deletes the web content article and its resources matching the group,
 	* article ID, and version, optionally sending email notifying denial of the
 	* web content article if it had not yet been approved.
@@ -413,29 +399,25 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
+	* Deletes all web content articles and their resources matching the group
+	* and article ID, optionally sending email notifying denial of article if
+	* it had not yet been approved.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param articleId the primary key of the web content article
+	* @param serviceContext the service context to be applied. Can set the
+	portlet preferences that include email information to notify
+	recipients of the unapproved web content article's denial.
+	*/
+	public void deleteArticle(long groupId, java.lang.String articleId,
+		ServiceContext serviceContext) throws PortalException;
+
+	/**
 	* Deletes all the group's web content articles and resources.
 	*
 	* @param groupId the primary key of the web content article's group
 	*/
 	public void deleteArticles(long groupId) throws PortalException;
-
-	/**
-	* Deletes all the group's web content articles and resources matching the
-	* class name and class primary key.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param className the DDMStructure class name if the web content article
-	is related to a DDM structure, the primary key of the class name
-	associated with the article, or
-	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
-	module otherwise
-	* @param classPK the primary key of the DDM structure, if the DDMStructure
-	class name is given as the <code>className</code> parameter, the
-	primary key of the class associated with the web content article,
-	or <code>0</code> otherwise
-	*/
-	public void deleteArticles(long groupId, java.lang.String className,
-		long classPK) throws PortalException;
 
 	/**
 	* Deletes all the group's web content articles and resources in the folder,
@@ -458,6 +440,24 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	public void deleteArticles(long groupId, long folderId,
 		boolean includeTrashedEntries) throws PortalException;
+
+	/**
+	* Deletes all the group's web content articles and resources matching the
+	* class name and class primary key.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param className the DDMStructure class name if the web content article
+	is related to a DDM structure, the primary key of the class name
+	associated with the article, or
+	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	module otherwise
+	* @param classPK the primary key of the DDM structure, if the DDMStructure
+	class name is given as the <code>className</code> parameter, the
+	primary key of the class associated with the web content article,
+	or <code>0</code> otherwise
+	*/
+	public void deleteArticles(long groupId, java.lang.String className,
+		long classPK) throws PortalException;
 
 	/**
 	* Deletes the journal article from the database. Also notifies the appropriate model listeners.
@@ -648,10 +648,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	public JournalArticle fetchLatestArticle(long resourcePrimKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JournalArticle fetchLatestArticle(long resourcePrimKey,
-		int[] statuses);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticle fetchLatestArticle(long resourcePrimKey, int status);
 
 	/**
@@ -675,6 +671,10 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticle fetchLatestArticle(long resourcePrimKey, int status,
 		boolean preferApproved);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalArticle fetchLatestArticle(long resourcePrimKey,
+		int[] statuses);
 
 	/**
 	* Returns the latest web content article matching the group, article ID,
@@ -823,28 +823,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns the web content from the web content article matching the group,
-	* article ID, and version.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param articleId the primary key of the web content article
-	* @param version the web content article's version
-	* @param viewMode the mode in which the web content is being viewed
-	* @param languageId the primary key of the language translation to get
-	* @param themeDisplay the theme display
-	* @return the web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, double, String, String, String, PortletRequestModel,
-	ThemeDisplay)}
-	*/
-	@java.lang.Deprecated
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String getArticleContent(long groupId,
-		java.lang.String articleId, double version, java.lang.String viewMode,
-		java.lang.String languageId, ThemeDisplay themeDisplay)
-		throws PortalException;
-
-	/**
-	* Returns the web content from the web content article matching the group,
 	* article ID, and version, and associated with the portlet request model
 	* and the DDM template.
 	*
@@ -893,23 +871,24 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	/**
-	* Returns the latest web content from the web content article matching the
-	* group and article ID.
+	* Returns the web content from the web content article matching the group,
+	* article ID, and version.
 	*
 	* @param groupId the primary key of the web content article's group
 	* @param articleId the primary key of the web content article
+	* @param version the web content article's version
 	* @param viewMode the mode in which the web content is being viewed
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
-	* @return the latest web content from the matching web content article
+	* @return the web content from the matching web content article
 	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, String, String, String, PortletRequestModel,
+	String, double, String, String, String, PortletRequestModel,
 	ThemeDisplay)}
 	*/
 	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getArticleContent(long groupId,
-		java.lang.String articleId, java.lang.String viewMode,
+		java.lang.String articleId, double version, java.lang.String viewMode,
 		java.lang.String languageId, ThemeDisplay themeDisplay)
 		throws PortalException;
 
@@ -959,6 +938,27 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	/**
+	* Returns the latest web content from the web content article matching the
+	* group and article ID.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param articleId the primary key of the web content article
+	* @param viewMode the mode in which the web content is being viewed
+	* @param languageId the primary key of the language translation to get
+	* @param themeDisplay the theme display
+	* @return the latest web content from the matching web content article
+	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
+	String, String, String, String, PortletRequestModel,
+	ThemeDisplay)}
+	*/
+	@java.lang.Deprecated
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getArticleContent(long groupId,
+		java.lang.String articleId, java.lang.String viewMode,
+		java.lang.String languageId, ThemeDisplay themeDisplay)
+		throws PortalException;
+
+	/**
 	* Returns a web content article display for the specified page of the
 	* latest version of the web content article, based on the DDM template. Web
 	* content transformation tokens are added using the portlet request model
@@ -978,6 +978,34 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticleDisplay getArticleDisplay(JournalArticle article,
+		java.lang.String ddmTemplateKey, java.lang.String viewMode,
+		java.lang.String languageId, int page,
+		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
+		throws PortalException;
+
+	/**
+	* Returns a web content article display for the specified page of the
+	* specified version of the web content article matching the group, article
+	* ID, and DDM template. Web content transformation tokens are added using
+	* the portlet request model and theme display.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param articleId the primary key of the web content article
+	* @param version the web content article's version
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
+	* @param viewMode the mode in which the web content is being viewed
+	* @param languageId the primary key of the language translation to get
+	* @param page the web content article page to display
+	* @param portletRequestModel the portlet request model
+	* @param themeDisplay the theme display
+	* @return the web content article display, or <code>null</code> if the
+	article has expired or if article's display date/time is after
+	the current date/time
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalArticleDisplay getArticleDisplay(long groupId,
+		java.lang.String articleId, double version,
 		java.lang.String ddmTemplateKey, java.lang.String viewMode,
 		java.lang.String languageId, int page,
 		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
@@ -1010,55 +1038,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns a web content article display for the specified page of the
-	* specified version of the web content article matching the group, article
-	* ID, and DDM template. Web content transformation tokens are added using
-	* the portlet request model and theme display.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param articleId the primary key of the web content article
-	* @param version the web content article's version
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
-	* @param viewMode the mode in which the web content is being viewed
-	* @param languageId the primary key of the language translation to get
-	* @param page the web content article page to display
-	* @param portletRequestModel the portlet request model
-	* @param themeDisplay the theme display
-	* @return the web content article display, or <code>null</code> if the
-	article has expired or if article's display date/time is after
-	the current date/time
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JournalArticleDisplay getArticleDisplay(long groupId,
-		java.lang.String articleId, double version,
-		java.lang.String ddmTemplateKey, java.lang.String viewMode,
-		java.lang.String languageId, int page,
-		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
-		throws PortalException;
-
-	/**
-	* Returns a web content article display for the first page of the latest
-	* version of the web content article matching the group and article ID. Web
-	* content transformation tokens are added from the theme display (if not
-	* <code>null</code>).
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param articleId the primary key of the web content article
-	* @param viewMode the mode in which the web content is being viewed
-	* @param languageId the primary key of the language translation to get
-	* @param themeDisplay the theme display
-	* @return the web content article display, or <code>null</code> if the
-	article has expired or if article's display date/time is after
-	the current date/time
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JournalArticleDisplay getArticleDisplay(long groupId,
-		java.lang.String articleId, java.lang.String viewMode,
-		java.lang.String languageId, ThemeDisplay themeDisplay)
-		throws PortalException;
-
-	/**
-	* Returns a web content article display for the specified page of the
 	* latest version of the web content article matching the group and article
 	* ID. Web content transformation tokens are added from the theme display
 	* (if not <code>null</code>).
@@ -1078,6 +1057,32 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	public JournalArticleDisplay getArticleDisplay(long groupId,
 		java.lang.String articleId, java.lang.String viewMode,
 		java.lang.String languageId, int page,
+		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
+		throws PortalException;
+
+	/**
+	* Returns a web content article display for the specified page of the
+	* latest version of the web content article matching the group, article ID,
+	* and DDM template. Web content transformation tokens are added using the
+	* portlet request model and theme display.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param articleId the primary key of the web content article
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
+	* @param viewMode the mode in which the web content is being viewed
+	* @param languageId the primary key of the language translation to get
+	* @param page the web content article page to display
+	* @param portletRequestModel the portlet request model
+	* @param themeDisplay the theme display
+	* @return the web content article display, or <code>null</code> if the
+	article has expired or if article's display date/time is after
+	the current date/time
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalArticleDisplay getArticleDisplay(long groupId,
+		java.lang.String articleId, java.lang.String ddmTemplateKey,
+		java.lang.String viewMode, java.lang.String languageId, int page,
 		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
 		throws PortalException;
 
@@ -1105,19 +1110,15 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	/**
-	* Returns a web content article display for the specified page of the
-	* latest version of the web content article matching the group, article ID,
-	* and DDM template. Web content transformation tokens are added using the
-	* portlet request model and theme display.
+	* Returns a web content article display for the first page of the latest
+	* version of the web content article matching the group and article ID. Web
+	* content transformation tokens are added from the theme display (if not
+	* <code>null</code>).
 	*
 	* @param groupId the primary key of the web content article's group
 	* @param articleId the primary key of the web content article
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
 	* @param viewMode the mode in which the web content is being viewed
 	* @param languageId the primary key of the language translation to get
-	* @param page the web content article page to display
-	* @param portletRequestModel the portlet request model
 	* @param themeDisplay the theme display
 	* @return the web content article display, or <code>null</code> if the
 	article has expired or if article's display date/time is after
@@ -1125,9 +1126,8 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticleDisplay getArticleDisplay(long groupId,
-		java.lang.String articleId, java.lang.String ddmTemplateKey,
-		java.lang.String viewMode, java.lang.String languageId, int page,
-		PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
+		java.lang.String articleId, java.lang.String viewMode,
+		java.lang.String languageId, ThemeDisplay themeDisplay)
 		throws PortalException;
 
 	/**
@@ -1196,22 +1196,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		OrderByComparator<JournalArticle> obc);
 
 	/**
-	* Returns all the web content articles matching the group and article ID.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param articleId the primary key of the web content article
-	* @return the matching web content articles
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalArticle> getArticles(long groupId,
-		java.lang.String articleId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalArticle> getArticles(long groupId,
-		java.lang.String articleId, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator);
-
-	/**
 	* Returns all the web content articles matching the group and folder.
 	*
 	* @param groupId the primary key of the web content article's group
@@ -1247,34 +1231,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		int start, int end);
 
 	/**
-	* Returns an ordered range of all the web content articles matching the
-	* group and folder.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end -
-	* start</code> instances. <code>start</code> and <code>end</code> are not
-	* primary keys, they are indexes in the result set. Thus, <code>0</code>
-	* refers to the first result in the set. Setting both <code>start</code>
-	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
-	* result set.
-	* </p>
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article's folder
-	* @param start the lower bound of the range of web content articles to
-	return
-	* @param end the upper bound of the range of web content articles to
-	return (not inclusive)
-	* @param orderByComparator the comparator to order the web content
-	articles
-	* @return the range of matching web content articles ordered by the
-	comparator
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalArticle> getArticles(long groupId, long folderId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator);
-
-	/**
 	* Returns a range of all the web content articles matching the group,
 	* folder, and status.
 	*
@@ -1303,6 +1259,50 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		int status, int start, int end);
 
 	/**
+	* Returns an ordered range of all the web content articles matching the
+	* group and folder.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param folderId the primary key of the web content article's folder
+	* @param start the lower bound of the range of web content articles to
+	return
+	* @param end the upper bound of the range of web content articles to
+	return (not inclusive)
+	* @param orderByComparator the comparator to order the web content
+	articles
+	* @return the range of matching web content articles ordered by the
+	comparator
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<JournalArticle> getArticles(long groupId, long folderId,
+		int start, int end, OrderByComparator<JournalArticle> orderByComparator);
+
+	/**
+	* Returns all the web content articles matching the group and article ID.
+	*
+	* @param groupId the primary key of the web content article's group
+	* @param articleId the primary key of the web content article
+	* @return the matching web content articles
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<JournalArticle> getArticles(long groupId,
+		java.lang.String articleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<JournalArticle> getArticles(long groupId,
+		java.lang.String articleId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator);
+
+	/**
 	* Returns all the web content articles matching the resource primary key.
 	*
 	* @param resourcePrimKey the primary key of the resource instance
@@ -1324,8 +1324,8 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(long groupId,
-		java.lang.String ddmStructureKey, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		long classNameId, java.lang.String ddmStructureKey, int status,
+		int start, int end, OrderByComparator<JournalArticle> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(long groupId,
@@ -1334,8 +1334,8 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(long groupId,
-		long classNameId, java.lang.String ddmStructureKey, int status,
-		int start, int end, OrderByComparator<JournalArticle> obc);
+		java.lang.String ddmStructureKey, int start, int end,
+		OrderByComparator<JournalArticle> obc);
 
 	/**
 	* Returns the number of web content articles belonging to the group.
@@ -1345,9 +1345,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCount(long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getArticlesCount(long groupId, java.lang.String articleId);
 
 	/**
 	* Returns the number of web content articles matching the group and folder.
@@ -1372,6 +1369,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCount(long groupId, long folderId, int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getArticlesCount(long groupId, java.lang.String articleId);
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -1743,13 +1743,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	public int getNotInTrashArticlesCount(long groupId, long folderId);
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	/**
 	* Returns the oldest web content article with the group and article ID.
 	*
 	* @param groupId the primary key of the web content article's group
@@ -1775,14 +1768,21 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	public JournalArticle getOldestArticle(long groupId,
 		java.lang.String articleId, int status) throws PortalException;
 
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<?extends PersistedModel> getPersistedModel(long resourcePrimKey)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -1797,17 +1797,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticle getPreviousApprovedArticle(JournalArticle article);
-
-	/**
-	* Returns the web content articles matching the DDM structure keys.
-	*
-	* @param ddmStructureKeys the primary keys of the web content article's
-	DDM structures
-	* @return the web content articles matching the DDM structure keys
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalArticle> getStructureArticles(
-		java.lang.String[] ddmStructureKeys);
 
 	/**
 	* Returns the web content articles matching the group and DDM structure
@@ -1850,6 +1839,17 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	public List<JournalArticle> getStructureArticles(long groupId,
 		java.lang.String ddmStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> obc);
+
+	/**
+	* Returns the web content articles matching the DDM structure keys.
+	*
+	* @param ddmStructureKeys the primary keys of the web content article's
+	DDM structures
+	* @return the web content articles matching the DDM structure keys
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<JournalArticle> getStructureArticles(
+		java.lang.String[] ddmStructureKeys);
 
 	/**
 	* Returns the number of web content articles matching the group and DDM
@@ -2183,6 +2183,72 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
+	* parameters without using the indexer, including a keywords parameter for
+	* matching with the article's ID, title, description, and content, a DDM
+	* structure key parameter, and a DDM template key parameter. It is
+	* preferable to use the indexed version {@link #search(long, long, List,
+	* long, String, String, String, LinkedHashMap, int, int, Sort)} instead of
+	* this method wherever possible for performance reasons.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param companyId the primary key of the web content article's company
+	* @param groupId the primary key of the group (optionally <code>0</code>)
+	* @param folderIds the primary keys of the web content article folders
+	(optionally {@link Collections#EMPTY_LIST})
+	* @param classNameId the primary key of the DDMStructure class if the web
+	content article is related to a DDM structure, the primary key of
+	the class name associated with the article, or
+	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	module otherwise
+	* @param keywords the keywords (space separated), which may occur in the
+	web content article ID, title, description, or content
+	(optionally <code>null</code>). If the keywords value is not
+	<code>null</code>, the search uses the OR operator in connecting
+	query criteria; otherwise it uses the AND operator.
+	* @param version the web content article's version (optionally
+	<code>null</code>)
+	* @param ddmStructureKey the primary key of the web content article's DDM
+	structure, if the article is related to a DDM structure, or
+	<code>null</code> otherwise
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
+	* @param displayDateGT the date after which a matching web content
+	article's display date must be after (optionally
+	<code>null</code>)
+	* @param displayDateLT the date before which a matching web content
+	article's display date must be before (optionally
+	<code>null</code>)
+	* @param status the web content article's workflow status. For more
+	information see {@link WorkflowConstants} for constants starting
+	with the "STATUS_" prefix.
+	* @param reviewDate the web content article's scheduled review date
+	(optionally <code>null</code>)
+	* @param start the lower bound of the range of web content articles to
+	return
+	* @param end the upper bound of the range of web content articles to
+	return (not inclusive)
+	* @param obc the comparator to order the web content articles
+	* @return the range of matching web content articles ordered by the
+	comparator
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<JournalArticle> search(long companyId, long groupId,
+		List<java.lang.Long> folderIds, long classNameId,
+		java.lang.String keywords, java.lang.Double version,
+		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
+		Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
+		int start, int end, OrderByComparator<JournalArticle> obc);
+
+	/**
+	* Returns an ordered range of all the web content articles matching the
 	* parameters without using the indexer, including keyword parameters for
 	* article ID, title, description, and content, a DDM structure key
 	* parameter, a DDM template key parameter, and an AND operator switch. It
@@ -2332,12 +2398,11 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
-	* parameters without using the indexer, including a keywords parameter for
-	* matching with the article's ID, title, description, and content, a DDM
-	* structure key parameter, and a DDM template key parameter. It is
-	* preferable to use the indexed version {@link #search(long, long, List,
-	* long, String, String, String, LinkedHashMap, int, int, Sort)} instead of
-	* this method wherever possible for performance reasons.
+	* parameters using the indexer, including a keywords parameter for matching
+	* an article's ID, title, description, or content, a DDM structure key
+	* parameter, a DDM template key parameter, and a finder hash map parameter.
+	* It is preferable to use this method instead of the non-indexed version
+	* whenever possible for performance reasons.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end -
@@ -2357,44 +2422,32 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	the class name associated with the article, or
 	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
 	module otherwise
-	* @param keywords the keywords (space separated), which may occur in the
-	web content article ID, title, description, or content
-	(optionally <code>null</code>). If the keywords value is not
-	<code>null</code>, the search uses the OR operator in connecting
-	query criteria; otherwise it uses the AND operator.
-	* @param version the web content article's version (optionally
-	<code>null</code>)
 	* @param ddmStructureKey the primary key of the web content article's DDM
 	structure, if the article is related to a DDM structure, or
 	<code>null</code> otherwise
 	* @param ddmTemplateKey the primary key of the web content article's DDM
 	template
-	* @param displayDateGT the date after which a matching web content
-	article's display date must be after (optionally
-	<code>null</code>)
-	* @param displayDateLT the date before which a matching web content
-	article's display date must be before (optionally
-	<code>null</code>)
-	* @param status the web content article's workflow status. For more
-	information see {@link WorkflowConstants} for constants starting
-	with the "STATUS_" prefix.
-	* @param reviewDate the web content article's scheduled review date
-	(optionally <code>null</code>)
+	* @param keywords the keywords (space separated), which may occur in the
+	web content article ID, title, description, or content
+	(optionally <code>null</code>). If the keywords value is not
+	<code>null</code>, the search uses the OR operator in connecting
+	query criteria; otherwise it uses the AND operator.
+	* @param params the finder parameters (optionally <code>null</code>)
 	* @param start the lower bound of the range of web content articles to
 	return
 	* @param end the upper bound of the range of web content articles to
 	return (not inclusive)
-	* @param obc the comparator to order the web content articles
-	* @return the range of matching web content articles ordered by the
-	comparator
+	* @param sort the field, type, and direction by which to sort (optionally
+	<code>null</code>)
+	* @return the matching web content articles ordered by <code>sort</code>
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalArticle> search(long companyId, long groupId,
+	public Hits search(long companyId, long groupId,
 		List<java.lang.Long> folderIds, long classNameId,
-		java.lang.String keywords, java.lang.Double version,
 		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
-		Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
-		int start, int end, OrderByComparator<JournalArticle> obc);
+		java.lang.String keywords,
+		LinkedHashMap<java.lang.String, java.lang.Object> params, int start,
+		int end, Sort sort);
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -2479,59 +2532,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		boolean andSearch, int start, int end, Sort sort);
 
 	/**
-	* Returns an ordered range of all the web content articles matching the
-	* parameters using the indexer, including a keywords parameter for matching
-	* an article's ID, title, description, or content, a DDM structure key
-	* parameter, a DDM template key parameter, and a finder hash map parameter.
-	* It is preferable to use this method instead of the non-indexed version
-	* whenever possible for performance reasons.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end -
-	* start</code> instances. <code>start</code> and <code>end</code> are not
-	* primary keys, they are indexes in the result set. Thus, <code>0</code>
-	* refers to the first result in the set. Setting both <code>start</code>
-	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
-	* result set.
-	* </p>
-	*
-	* @param companyId the primary key of the web content article's company
-	* @param groupId the primary key of the group (optionally <code>0</code>)
-	* @param folderIds the primary keys of the web content article folders
-	(optionally {@link Collections#EMPTY_LIST})
-	* @param classNameId the primary key of the DDMStructure class if the web
-	content article is related to a DDM structure, the primary key of
-	the class name associated with the article, or
-	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
-	module otherwise
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure, if the article is related to a DDM structure, or
-	<code>null</code> otherwise
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
-	* @param keywords the keywords (space separated), which may occur in the
-	web content article ID, title, description, or content
-	(optionally <code>null</code>). If the keywords value is not
-	<code>null</code>, the search uses the OR operator in connecting
-	query criteria; otherwise it uses the AND operator.
-	* @param params the finder parameters (optionally <code>null</code>)
-	* @param start the lower bound of the range of web content articles to
-	return
-	* @param end the upper bound of the range of web content articles to
-	return (not inclusive)
-	* @param sort the field, type, and direction by which to sort (optionally
-	<code>null</code>)
-	* @return the matching web content articles ordered by <code>sort</code>
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Hits search(long companyId, long groupId,
-		List<java.lang.Long> folderIds, long classNameId,
-		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
-		java.lang.String keywords,
-		LinkedHashMap<java.lang.String, java.lang.Object> params, int start,
-		int end, Sort sort);
-
-	/**
 	* Returns a range of all the web content articles matching the group,
 	* creator, and status using the indexer. It is preferable to use this
 	* method instead of the non-indexed version whenever possible for
@@ -2596,9 +2596,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns the number of web content articles matching the parameters,
-	* including keyword parameters for article ID, title, description, and
-	* content, a DDM structure keys (plural) parameter, a DDM template keys
-	* (plural) parameter, and an AND operator switch.
+	* including a keywords parameter for matching with the article's ID, title,
+	* description, and content, a DDM structure key parameter, and a DDM
+	* template key parameter.
 	*
 	* @param companyId the primary key of the web content article's company
 	* @param groupId the primary key of the group (optionally <code>0</code>)
@@ -2609,23 +2609,18 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	the class name associated with the article, or
 	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
 	module otherwise
-	* @param articleId the article ID keywords (space separated, optionally
-	<code>null</code>)
+	* @param keywords the keywords (space separated), which may occur in the
+	web content article ID, title, description, or content
+	(optionally <code>null</code>). If the keywords value is not
+	<code>null</code>, the search uses the OR operator in connecting
+	query criteria; otherwise it uses the AND operator.
 	* @param version the web content article's version (optionally
 	<code>null</code>)
-	* @param title the title keywords (space separated, optionally
-	<code>null</code>)
-	* @param description the description keywords (space separated, optionally
-	<code>null</code>)
-	* @param content the content keywords (space separated, optionally
-	<code>null</code>)
-	* @param ddmStructureKeys the primary keys of the web content article's
-	DDM structures, if the article is related to a DDM structure, or
+	* @param ddmStructureKey the primary key of the web content article's DDM
+	structure, if the article is related to a DDM structure, or
 	<code>null</code> otherwise
-	* @param ddmTemplateKeys the primary keys of the web content article's DDM
-	templates (originally <code>null</code>). If the articles are
-	related to a DDM structure, the template's structure must match
-	it.
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
 	* @param displayDateGT the date after which a matching web content
 	article's display date must be after (optionally
 	<code>null</code>)
@@ -2637,19 +2632,14 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	with the "STATUS_" prefix.
 	* @param reviewDate the web content article's scheduled review date
 	(optionally <code>null</code>)
-	* @param andOperator whether every field must match its value or keywords,
-	or just one field must match.  Group, folder IDs, class name ID,
-	and status must all match their values.
 	* @return the number of matching web content articles
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, long groupId,
 		List<java.lang.Long> folderIds, long classNameId,
-		java.lang.String articleId, java.lang.Double version,
-		java.lang.String title, java.lang.String description,
-		java.lang.String content, java.lang.String[] ddmStructureKeys,
-		java.lang.String[] ddmTemplateKeys, Date displayDateGT,
-		Date displayDateLT, int status, Date reviewDate, boolean andOperator);
+		java.lang.String keywords, java.lang.Double version,
+		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
+		Date displayDateGT, Date displayDateLT, int status, Date reviewDate);
 
 	/**
 	* Returns the number of web content articles matching the parameters,
@@ -2708,9 +2698,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 
 	/**
 	* Returns the number of web content articles matching the parameters,
-	* including a keywords parameter for matching with the article's ID, title,
-	* description, and content, a DDM structure key parameter, and a DDM
-	* template key parameter.
+	* including keyword parameters for article ID, title, description, and
+	* content, a DDM structure keys (plural) parameter, a DDM template keys
+	* (plural) parameter, and an AND operator switch.
 	*
 	* @param companyId the primary key of the web content article's company
 	* @param groupId the primary key of the group (optionally <code>0</code>)
@@ -2721,18 +2711,23 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	the class name associated with the article, or
 	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
 	module otherwise
-	* @param keywords the keywords (space separated), which may occur in the
-	web content article ID, title, description, or content
-	(optionally <code>null</code>). If the keywords value is not
-	<code>null</code>, the search uses the OR operator in connecting
-	query criteria; otherwise it uses the AND operator.
+	* @param articleId the article ID keywords (space separated, optionally
+	<code>null</code>)
 	* @param version the web content article's version (optionally
 	<code>null</code>)
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure, if the article is related to a DDM structure, or
+	* @param title the title keywords (space separated, optionally
+	<code>null</code>)
+	* @param description the description keywords (space separated, optionally
+	<code>null</code>)
+	* @param content the content keywords (space separated, optionally
+	<code>null</code>)
+	* @param ddmStructureKeys the primary keys of the web content article's
+	DDM structures, if the article is related to a DDM structure, or
 	<code>null</code> otherwise
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
+	* @param ddmTemplateKeys the primary keys of the web content article's DDM
+	templates (originally <code>null</code>). If the articles are
+	related to a DDM structure, the template's structure must match
+	it.
 	* @param displayDateGT the date after which a matching web content
 	article's display date must be after (optionally
 	<code>null</code>)
@@ -2744,14 +2739,79 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	with the "STATUS_" prefix.
 	* @param reviewDate the web content article's scheduled review date
 	(optionally <code>null</code>)
+	* @param andOperator whether every field must match its value or keywords,
+	or just one field must match.  Group, folder IDs, class name ID,
+	and status must all match their values.
 	* @return the number of matching web content articles
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, long groupId,
 		List<java.lang.Long> folderIds, long classNameId,
-		java.lang.String keywords, java.lang.Double version,
-		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
-		Date displayDateGT, Date displayDateLT, int status, Date reviewDate);
+		java.lang.String articleId, java.lang.Double version,
+		java.lang.String title, java.lang.String description,
+		java.lang.String content, java.lang.String[] ddmStructureKeys,
+		java.lang.String[] ddmTemplateKeys, Date displayDateGT,
+		Date displayDateLT, int status, Date reviewDate, boolean andOperator);
+
+	/**
+	* Returns a {@link BaseModelSearchResult} containing the total number of
+	* hits and an ordered range of all the web content articles matching the
+	* parameters using the indexer, including a keywords parameter for matching
+	* an article's ID, title, description, or content, a DDM structure key
+	* parameter, a DDM template key parameter, and a finder hash map parameter.
+	* It is preferable to use this method instead of the non-indexed version
+	* whenever possible for performance reasons.
+	*
+	* <p>
+	* The <code>start</code> and <code>end</code> parameters only affect the
+	* amount of web content articles returned as results, not the total number
+	* of hits.
+	* </p>
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param companyId the primary key of the web content article's company
+	* @param groupId the primary key of the group (optionally <code>0</code>)
+	* @param folderIds the primary keys of the web content article folders
+	(optionally {@link Collections#EMPTY_LIST})
+	* @param classNameId the primary key of the DDMStructure class, the
+	primary key of the class name associated with the article, or
+	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	module otherwise
+	* @param ddmStructureKey the primary key of the web content article's DDM
+	structure
+	* @param ddmTemplateKey the primary key of the web content article's DDM
+	template
+	* @param keywords the keywords (space separated), which may occur in the
+	web content article ID, title, description, or content
+	(optionally <code>null</code>). If the keywords value is not
+	<code>null</code>, the search uses the OR operator in connecting
+	query criteria; otherwise it uses the AND operator.
+	* @param params the finder parameters (optionally <code>null</code>)
+	* @param start the lower bound of the range of web content articles to
+	return
+	* @param end the upper bound of the range of web content articles to
+	return (not inclusive)
+	* @param sort the field, type, and direction by which to sort (optionally
+	<code>null</code>)
+	* @return a {@link BaseModelSearchResult} containing the total number of
+	hits and an ordered range of all the matching web content
+	articles ordered by <code>sort</code>
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public BaseModelSearchResult<JournalArticle> searchJournalArticles(
+		long companyId, long groupId, List<java.lang.Long> folderIds,
+		long classNameId, java.lang.String ddmStructureKey,
+		java.lang.String ddmTemplateKey, java.lang.String keywords,
+		LinkedHashMap<java.lang.String, java.lang.Object> params, int start,
+		int end, Sort sort) throws PortalException;
 
 	/**
 	* Returns a {@link BaseModelSearchResult} containing the total number of
@@ -2830,66 +2890,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	/**
 	* Returns a {@link BaseModelSearchResult} containing the total number of
 	* hits and an ordered range of all the web content articles matching the
-	* parameters using the indexer, including a keywords parameter for matching
-	* an article's ID, title, description, or content, a DDM structure key
-	* parameter, a DDM template key parameter, and a finder hash map parameter.
-	* It is preferable to use this method instead of the non-indexed version
-	* whenever possible for performance reasons.
-	*
-	* <p>
-	* The <code>start</code> and <code>end</code> parameters only affect the
-	* amount of web content articles returned as results, not the total number
-	* of hits.
-	* </p>
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end -
-	* start</code> instances. <code>start</code> and <code>end</code> are not
-	* primary keys, they are indexes in the result set. Thus, <code>0</code>
-	* refers to the first result in the set. Setting both <code>start</code>
-	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
-	* result set.
-	* </p>
-	*
-	* @param companyId the primary key of the web content article's company
-	* @param groupId the primary key of the group (optionally <code>0</code>)
-	* @param folderIds the primary keys of the web content article folders
-	(optionally {@link Collections#EMPTY_LIST})
-	* @param classNameId the primary key of the DDMStructure class, the
-	primary key of the class name associated with the article, or
-	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
-	module otherwise
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
-	* @param keywords the keywords (space separated), which may occur in the
-	web content article ID, title, description, or content
-	(optionally <code>null</code>). If the keywords value is not
-	<code>null</code>, the search uses the OR operator in connecting
-	query criteria; otherwise it uses the AND operator.
-	* @param params the finder parameters (optionally <code>null</code>)
-	* @param start the lower bound of the range of web content articles to
-	return
-	* @param end the upper bound of the range of web content articles to
-	return (not inclusive)
-	* @param sort the field, type, and direction by which to sort (optionally
-	<code>null</code>)
-	* @return a {@link BaseModelSearchResult} containing the total number of
-	hits and an ordered range of all the matching web content
-	articles ordered by <code>sort</code>
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public BaseModelSearchResult<JournalArticle> searchJournalArticles(
-		long companyId, long groupId, List<java.lang.Long> folderIds,
-		long classNameId, java.lang.String ddmStructureKey,
-		java.lang.String ddmTemplateKey, java.lang.String keywords,
-		LinkedHashMap<java.lang.String, java.lang.Object> params, int start,
-		int end, Sort sort) throws PortalException;
-
-	/**
-	* Returns a {@link BaseModelSearchResult} containing the total number of
-	* hits and an ordered range of all the web content articles matching the
 	* parameters using the indexer, including the web content article's creator
 	* ID and status. It is preferable to use this method instead of the
 	* non-indexed version whenever possible for performance reasons.
@@ -2954,38 +2954,6 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*/
 	public void unsubscribeStructure(long groupId, long userId,
 		long ddmStructureId) throws PortalException;
-
-	/**
-	* Updates the web content article matching the version, replacing its
-	* folder and content.
-	*
-	* @param userId the primary key of the user updating the web content
-	article
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article folder
-	* @param articleId the primary key of the web content article
-	* @param version the web content article's version
-	* @param content the HTML content wrapped in XML. For more information,
-	see the content example in the {@link #addArticle(long, long,
-	long, long, long, String, boolean, double, Map, Map, String,
-	String, String, String, int, int, int, int, int, int, int, int,
-	int, int, boolean, int, int, int, int, int, boolean, boolean,
-	boolean, String, File, Map, String, ServiceContext)} description.
-	* @param serviceContext the service context to be applied. Can set the
-	modification date, expando bridge attributes, asset category IDs,
-	asset tag names, asset link entry IDs, asset priority, workflow
-	actions, URL title, and can set whether to add the default
-	command update for the web content article. With respect to
-	social activities, by setting the service context's command to
-	{@link Constants#UPDATE}, the invocation is considered a web
-	content update activity; otherwise it is considered a web content
-	add activity.
-	* @return the updated web content article
-	*/
-	public JournalArticle updateArticle(long userId, long groupId,
-		long folderId, java.lang.String articleId, double version,
-		java.lang.String content, ServiceContext serviceContext)
-		throws PortalException;
 
 	/**
 	* Updates the web content article matching the version, replacing its
@@ -3121,6 +3089,38 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		boolean indexable, boolean smallImage, java.lang.String smallImageURL,
 		File smallImageFile, Map<java.lang.String, byte[]> images,
 		java.lang.String articleURL, ServiceContext serviceContext)
+		throws PortalException;
+
+	/**
+	* Updates the web content article matching the version, replacing its
+	* folder and content.
+	*
+	* @param userId the primary key of the user updating the web content
+	article
+	* @param groupId the primary key of the web content article's group
+	* @param folderId the primary key of the web content article folder
+	* @param articleId the primary key of the web content article
+	* @param version the web content article's version
+	* @param content the HTML content wrapped in XML. For more information,
+	see the content example in the {@link #addArticle(long, long,
+	long, long, long, String, boolean, double, Map, Map, String,
+	String, String, String, int, int, int, int, int, int, int, int,
+	int, int, boolean, int, int, int, int, int, boolean, boolean,
+	boolean, String, File, Map, String, ServiceContext)} description.
+	* @param serviceContext the service context to be applied. Can set the
+	modification date, expando bridge attributes, asset category IDs,
+	asset tag names, asset link entry IDs, asset priority, workflow
+	actions, URL title, and can set whether to add the default
+	command update for the web content article. With respect to
+	social activities, by setting the service context's command to
+	{@link Constants#UPDATE}, the invocation is considered a web
+	content update activity; otherwise it is considered a web content
+	add activity.
+	* @return the updated web content article
+	*/
+	public JournalArticle updateArticle(long userId, long groupId,
+		long folderId, java.lang.String articleId, double version,
+		java.lang.String content, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**

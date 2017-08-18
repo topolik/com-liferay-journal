@@ -101,11 +101,11 @@ public interface JournalFolderService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.Object> getFoldersAndArticles(long groupId,
-		long folderId, int start, int end, OrderByComparator<?> obc);
+		long folderId, int status, int start, int end, OrderByComparator<?> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.Object> getFoldersAndArticles(long groupId,
-		long folderId, int status, int start, int end, OrderByComparator<?> obc);
+		long folderId, int start, int end, OrderByComparator<?> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.Object> getFoldersAndArticles(long groupId,

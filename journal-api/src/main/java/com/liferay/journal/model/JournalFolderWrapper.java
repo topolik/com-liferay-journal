@@ -566,6 +566,26 @@ public class JournalFolderWrapper implements JournalFolder,
 	}
 
 	/**
+	* Returns <code>true</code> if this journal folder is inactive.
+	*
+	* @return <code>true</code> if this journal folder is inactive; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isInactive() {
+		return _journalFolder.isInactive();
+	}
+
+	/**
+	* Returns <code>true</code> if this journal folder is incomplete.
+	*
+	* @return <code>true</code> if this journal folder is incomplete; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isIncomplete() {
+		return _journalFolder.isIncomplete();
+	}
+
+	/**
 	* Returns <code>true</code> if this journal folder is in the Recycle Bin.
 	*
 	* @return <code>true</code> if this journal folder is in the Recycle Bin; <code>false</code> otherwise
@@ -593,26 +613,6 @@ public class JournalFolderWrapper implements JournalFolder,
 	@Override
 	public boolean isInTrashImplicitly() {
 		return _journalFolder.isInTrashImplicitly();
-	}
-
-	/**
-	* Returns <code>true</code> if this journal folder is inactive.
-	*
-	* @return <code>true</code> if this journal folder is inactive; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isInactive() {
-		return _journalFolder.isInactive();
-	}
-
-	/**
-	* Returns <code>true</code> if this journal folder is incomplete.
-	*
-	* @return <code>true</code> if this journal folder is incomplete; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isIncomplete() {
-		return _journalFolder.isIncomplete();
 	}
 
 	@Override
@@ -696,14 +696,14 @@ public class JournalFolderWrapper implements JournalFolder,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_journalFolder.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_journalFolder.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_journalFolder.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

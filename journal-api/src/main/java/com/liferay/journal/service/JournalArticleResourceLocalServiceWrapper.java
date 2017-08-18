@@ -189,16 +189,16 @@ public class JournalArticleResourceLocalServiceWrapper
 
 	@Override
 	public com.liferay.journal.model.JournalArticleResource fetchArticleResource(
-		java.lang.String uuid, long groupId) {
-		return _journalArticleResourceLocalService.fetchArticleResource(uuid,
-			groupId);
+		long groupId, java.lang.String articleId) {
+		return _journalArticleResourceLocalService.fetchArticleResource(groupId,
+			articleId);
 	}
 
 	@Override
 	public com.liferay.journal.model.JournalArticleResource fetchArticleResource(
-		long groupId, java.lang.String articleId) {
-		return _journalArticleResourceLocalService.fetchArticleResource(groupId,
-			articleId);
+		java.lang.String uuid, long groupId) {
+		return _journalArticleResourceLocalService.fetchArticleResource(uuid,
+			groupId);
 	}
 
 	@Override
@@ -234,17 +234,17 @@ public class JournalArticleResourceLocalServiceWrapper
 	}
 
 	@Override
-	public long getArticleResourcePrimKey(java.lang.String uuid, long groupId,
-		java.lang.String articleId) {
-		return _journalArticleResourceLocalService.getArticleResourcePrimKey(uuid,
-			groupId, articleId);
-	}
-
-	@Override
 	public long getArticleResourcePrimKey(long groupId,
 		java.lang.String articleId) {
 		return _journalArticleResourceLocalService.getArticleResourcePrimKey(groupId,
 			articleId);
+	}
+
+	@Override
+	public long getArticleResourcePrimKey(java.lang.String uuid, long groupId,
+		java.lang.String articleId) {
+		return _journalArticleResourceLocalService.getArticleResourcePrimKey(uuid,
+			groupId, articleId);
 	}
 
 	@Override

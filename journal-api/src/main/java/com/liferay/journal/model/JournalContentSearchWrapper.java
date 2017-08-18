@@ -285,14 +285,14 @@ public class JournalContentSearchWrapper implements JournalContentSearch,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_journalContentSearch.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_journalContentSearch.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_journalContentSearch.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

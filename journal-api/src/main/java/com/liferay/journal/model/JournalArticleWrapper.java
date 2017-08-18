@@ -476,30 +476,6 @@ public class JournalArticleWrapper implements JournalArticle,
 	/**
 	* Returns the localized description of this journal article in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the ID of the language
-	* @return the localized description of this journal article
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
-		return _journalArticle.getDescription(languageId);
-	}
-
-	/**
-	* Returns the localized description of this journal article in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized description of this journal article
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
-		return _journalArticle.getDescription(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized description of this journal article in the language. Uses the default language if no localization exists for the requested language.
-	*
 	* @param locale the locale of the language
 	* @return the localized description of this journal article
 	*/
@@ -519,6 +495,30 @@ public class JournalArticleWrapper implements JournalArticle,
 	public java.lang.String getDescription(java.util.Locale locale,
 		boolean useDefault) {
 		return _journalArticle.getDescription(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized description of this journal article in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @return the localized description of this journal article
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId) {
+		return _journalArticle.getDescription(languageId);
+	}
+
+	/**
+	* Returns the localized description of this journal article in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this journal article
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId,
+		boolean useDefault) {
+		return _journalArticle.getDescription(languageId, useDefault);
 	}
 
 	@Override
@@ -804,6 +804,29 @@ public class JournalArticleWrapper implements JournalArticle,
 	/**
 	* Returns the localized title of this journal article in the language. Uses the default language if no localization exists for the requested language.
 	*
+	* @param locale the locale of the language
+	* @return the localized title of this journal article
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale) {
+		return _journalArticle.getTitle(locale);
+	}
+
+	/**
+	* Returns the localized title of this journal article in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized title of this journal article. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
+		return _journalArticle.getTitle(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized title of this journal article in the language. Uses the default language if no localization exists for the requested language.
+	*
 	* @param languageId the ID of the language
 	* @return the localized title of this journal article
 	*/
@@ -823,29 +846,6 @@ public class JournalArticleWrapper implements JournalArticle,
 	public java.lang.String getTitle(java.lang.String languageId,
 		boolean useDefault) {
 		return _journalArticle.getTitle(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized title of this journal article in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized title of this journal article
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale) {
-		return _journalArticle.getTitle(locale);
-	}
-
-	/**
-	* Returns the localized title of this journal article in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized title of this journal article. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
-		return _journalArticle.getTitle(locale, useDefault);
 	}
 
 	@Override
@@ -1032,36 +1032,6 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	/**
-	* Returns <code>true</code> if this journal article is in the Recycle Bin.
-	*
-	* @return <code>true</code> if this journal article is in the Recycle Bin; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isInTrash() {
-		return _journalArticle.isInTrash();
-	}
-
-	/**
-	* Returns <code>true</code> if the parent of this journal article is in the Recycle Bin.
-	*
-	* @return <code>true</code> if the parent of this journal article is in the Recycle Bin; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isInTrashContainer() {
-		return _journalArticle.isInTrashContainer();
-	}
-
-	@Override
-	public boolean isInTrashExplicitly() {
-		return _journalArticle.isInTrashExplicitly();
-	}
-
-	@Override
-	public boolean isInTrashImplicitly() {
-		return _journalArticle.isInTrashImplicitly();
-	}
-
-	/**
 	* Returns <code>true</code> if this journal article is inactive.
 	*
 	* @return <code>true</code> if this journal article is inactive; <code>false</code> otherwise
@@ -1089,6 +1059,36 @@ public class JournalArticleWrapper implements JournalArticle,
 	@Override
 	public boolean isIndexable() {
 		return _journalArticle.isIndexable();
+	}
+
+	/**
+	* Returns <code>true</code> if this journal article is in the Recycle Bin.
+	*
+	* @return <code>true</code> if this journal article is in the Recycle Bin; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isInTrash() {
+		return _journalArticle.isInTrash();
+	}
+
+	/**
+	* Returns <code>true</code> if the parent of this journal article is in the Recycle Bin.
+	*
+	* @return <code>true</code> if the parent of this journal article is in the Recycle Bin; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isInTrashContainer() {
+		return _journalArticle.isInTrashContainer();
+	}
+
+	@Override
+	public boolean isInTrashExplicitly() {
+		return _journalArticle.isInTrashExplicitly();
+	}
+
+	@Override
+	public boolean isInTrashImplicitly() {
+		return _journalArticle.isInTrashImplicitly();
 	}
 
 	@Override
@@ -1333,14 +1333,14 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_journalArticle.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_journalArticle.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_journalArticle.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

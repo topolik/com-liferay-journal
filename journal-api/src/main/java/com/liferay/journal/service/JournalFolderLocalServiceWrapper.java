@@ -232,15 +232,15 @@ public class JournalFolderLocalServiceWrapper
 
 	@Override
 	public com.liferay.journal.model.JournalFolder fetchFolder(long groupId,
-		java.lang.String name) {
-		return _journalFolderLocalService.fetchFolder(groupId, name);
+		long parentFolderId, java.lang.String name) {
+		return _journalFolderLocalService.fetchFolder(groupId, parentFolderId,
+			name);
 	}
 
 	@Override
 	public com.liferay.journal.model.JournalFolder fetchFolder(long groupId,
-		long parentFolderId, java.lang.String name) {
-		return _journalFolderLocalService.fetchFolder(groupId, parentFolderId,
-			name);
+		java.lang.String name) {
+		return _journalFolderLocalService.fetchFolder(groupId, name);
 	}
 
 	@Override
@@ -349,18 +349,18 @@ public class JournalFolderLocalServiceWrapper
 
 	@Override
 	public java.util.List<java.lang.Object> getFoldersAndArticles(
-		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
-		return _journalFolderLocalService.getFoldersAndArticles(groupId,
-			folderId, start, end, obc);
-	}
-
-	@Override
-	public java.util.List<java.lang.Object> getFoldersAndArticles(
 		long groupId, long folderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
 		return _journalFolderLocalService.getFoldersAndArticles(groupId,
 			folderId, status, start, end, obc);
+	}
+
+	@Override
+	public java.util.List<java.lang.Object> getFoldersAndArticles(
+		long groupId, long folderId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		return _journalFolderLocalService.getFoldersAndArticles(groupId,
+			folderId, start, end, obc);
 	}
 
 	@Override

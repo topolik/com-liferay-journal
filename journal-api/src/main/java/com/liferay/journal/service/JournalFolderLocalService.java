@@ -200,11 +200,11 @@ public interface JournalFolderLocalService extends BaseLocalService,
 	public JournalFolder fetchFolder(long folderId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JournalFolder fetchFolder(long groupId, java.lang.String name);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalFolder fetchFolder(long groupId, long parentFolderId,
 		java.lang.String name);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalFolder fetchFolder(long groupId, java.lang.String name);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalFolder fetchJournalFolder(long folderId);
@@ -269,11 +269,11 @@ public interface JournalFolderLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.Object> getFoldersAndArticles(long groupId,
-		long folderId, int start, int end, OrderByComparator<?> obc);
+		long folderId, int status, int start, int end, OrderByComparator<?> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.Object> getFoldersAndArticles(long groupId,
-		long folderId, int status, int start, int end, OrderByComparator<?> obc);
+		long folderId, int start, int end, OrderByComparator<?> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoldersAndArticlesCount(long groupId,

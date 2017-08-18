@@ -192,11 +192,11 @@ public interface JournalContentSearchLocalService extends BaseLocalService,
 	public List<JournalContentSearch> getArticleContentSearches();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalContentSearch> getArticleContentSearches(
+	public List<JournalContentSearch> getArticleContentSearches(long groupId,
 		java.lang.String articleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalContentSearch> getArticleContentSearches(long groupId,
+	public List<JournalContentSearch> getArticleContentSearches(
 		java.lang.String articleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -241,11 +241,11 @@ public interface JournalContentSearchLocalService extends BaseLocalService,
 		boolean privateLayout, java.lang.String articleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getLayoutIdsCount(java.lang.String articleId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getLayoutIdsCount(long groupId, boolean privateLayout,
 		java.lang.String articleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getLayoutIdsCount(java.lang.String articleId);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -263,10 +263,6 @@ public interface JournalContentSearchLocalService extends BaseLocalService,
 	public List<JournalContentSearch> getPortletContentSearches(
 		java.lang.String portletId);
 
-	public List<JournalContentSearch> updateContentSearch(long groupId,
-		boolean privateLayout, long layoutId, java.lang.String portletId,
-		java.lang.String[] articleIds) throws PortalException;
-
 	public JournalContentSearch updateContentSearch(long groupId,
 		boolean privateLayout, long layoutId, java.lang.String portletId,
 		java.lang.String articleId) throws PortalException;
@@ -274,6 +270,10 @@ public interface JournalContentSearchLocalService extends BaseLocalService,
 	public JournalContentSearch updateContentSearch(long groupId,
 		boolean privateLayout, long layoutId, java.lang.String portletId,
 		java.lang.String articleId, boolean purge) throws PortalException;
+
+	public List<JournalContentSearch> updateContentSearch(long groupId,
+		boolean privateLayout, long layoutId, java.lang.String portletId,
+		java.lang.String[] articleIds) throws PortalException;
 
 	/**
 	* Updates the journal content search in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

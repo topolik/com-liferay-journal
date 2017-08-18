@@ -182,13 +182,13 @@ public class JournalArticleResourceLocalServiceUtil {
 	}
 
 	public static com.liferay.journal.model.JournalArticleResource fetchArticleResource(
-		java.lang.String uuid, long groupId) {
-		return getService().fetchArticleResource(uuid, groupId);
+		long groupId, java.lang.String articleId) {
+		return getService().fetchArticleResource(groupId, articleId);
 	}
 
 	public static com.liferay.journal.model.JournalArticleResource fetchArticleResource(
-		long groupId, java.lang.String articleId) {
-		return getService().fetchArticleResource(groupId, articleId);
+		java.lang.String uuid, long groupId) {
+		return getService().fetchArticleResource(uuid, groupId);
 	}
 
 	public static com.liferay.journal.model.JournalArticleResource fetchJournalArticleResource(
@@ -219,14 +219,14 @@ public class JournalArticleResourceLocalServiceUtil {
 		return getService().getArticleResource(articleResourcePrimKey);
 	}
 
-	public static long getArticleResourcePrimKey(java.lang.String uuid,
-		long groupId, java.lang.String articleId) {
-		return getService().getArticleResourcePrimKey(uuid, groupId, articleId);
-	}
-
 	public static long getArticleResourcePrimKey(long groupId,
 		java.lang.String articleId) {
 		return getService().getArticleResourcePrimKey(groupId, articleId);
+	}
+
+	public static long getArticleResourcePrimKey(java.lang.String uuid,
+		long groupId, java.lang.String articleId) {
+		return getService().getArticleResourcePrimKey(uuid, groupId, articleId);
 	}
 
 	public static java.util.List<com.liferay.journal.model.JournalArticleResource> getArticleResources(

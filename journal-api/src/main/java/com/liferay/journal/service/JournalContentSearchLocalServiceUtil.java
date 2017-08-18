@@ -225,13 +225,13 @@ public class JournalContentSearchLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.journal.model.JournalContentSearch> getArticleContentSearches(
-		java.lang.String articleId) {
-		return getService().getArticleContentSearches(articleId);
+		long groupId, java.lang.String articleId) {
+		return getService().getArticleContentSearches(groupId, articleId);
 	}
 
 	public static java.util.List<com.liferay.journal.model.JournalContentSearch> getArticleContentSearches(
-		long groupId, java.lang.String articleId) {
-		return getService().getArticleContentSearches(groupId, articleId);
+		java.lang.String articleId) {
+		return getService().getArticleContentSearches(articleId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
@@ -281,13 +281,13 @@ public class JournalContentSearchLocalServiceUtil {
 		return getService().getLayoutIds(groupId, privateLayout, articleId);
 	}
 
-	public static int getLayoutIdsCount(java.lang.String articleId) {
-		return getService().getLayoutIdsCount(articleId);
-	}
-
 	public static int getLayoutIdsCount(long groupId, boolean privateLayout,
 		java.lang.String articleId) {
 		return getService().getLayoutIdsCount(groupId, privateLayout, articleId);
+	}
+
+	public static int getLayoutIdsCount(java.lang.String articleId) {
+		return getService().getLayoutIdsCount(articleId);
 	}
 
 	/**
@@ -310,15 +310,6 @@ public class JournalContentSearchLocalServiceUtil {
 		return getService().getPortletContentSearches(portletId);
 	}
 
-	public static java.util.List<com.liferay.journal.model.JournalContentSearch> updateContentSearch(
-		long groupId, boolean privateLayout, long layoutId,
-		java.lang.String portletId, java.lang.String[] articleIds)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateContentSearch(groupId, privateLayout, layoutId,
-			portletId, articleIds);
-	}
-
 	public static com.liferay.journal.model.JournalContentSearch updateContentSearch(
 		long groupId, boolean privateLayout, long layoutId,
 		java.lang.String portletId, java.lang.String articleId)
@@ -335,6 +326,15 @@ public class JournalContentSearchLocalServiceUtil {
 		return getService()
 				   .updateContentSearch(groupId, privateLayout, layoutId,
 			portletId, articleId, purge);
+	}
+
+	public static java.util.List<com.liferay.journal.model.JournalContentSearch> updateContentSearch(
+		long groupId, boolean privateLayout, long layoutId,
+		java.lang.String portletId, java.lang.String[] articleIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateContentSearch(groupId, privateLayout, layoutId,
+			portletId, articleIds);
 	}
 
 	/**

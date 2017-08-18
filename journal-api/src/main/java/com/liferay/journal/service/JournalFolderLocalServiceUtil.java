@@ -220,13 +220,13 @@ public class JournalFolderLocalServiceUtil {
 	}
 
 	public static com.liferay.journal.model.JournalFolder fetchFolder(
-		long groupId, java.lang.String name) {
-		return getService().fetchFolder(groupId, name);
+		long groupId, long parentFolderId, java.lang.String name) {
+		return getService().fetchFolder(groupId, parentFolderId, name);
 	}
 
 	public static com.liferay.journal.model.JournalFolder fetchFolder(
-		long groupId, long parentFolderId, java.lang.String name) {
-		return getService().fetchFolder(groupId, parentFolderId, name);
+		long groupId, java.lang.String name) {
+		return getService().fetchFolder(groupId, name);
 	}
 
 	public static com.liferay.journal.model.JournalFolder fetchJournalFolder(
@@ -313,18 +313,18 @@ public class JournalFolderLocalServiceUtil {
 	}
 
 	public static java.util.List<java.lang.Object> getFoldersAndArticles(
-		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
-		return getService()
-				   .getFoldersAndArticles(groupId, folderId, start, end, obc);
-	}
-
-	public static java.util.List<java.lang.Object> getFoldersAndArticles(
 		long groupId, long folderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
 		return getService()
 				   .getFoldersAndArticles(groupId, folderId, status, start,
 			end, obc);
+	}
+
+	public static java.util.List<java.lang.Object> getFoldersAndArticles(
+		long groupId, long folderId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		return getService()
+				   .getFoldersAndArticles(groupId, folderId, start, end, obc);
 	}
 
 	public static int getFoldersAndArticlesCount(long groupId,

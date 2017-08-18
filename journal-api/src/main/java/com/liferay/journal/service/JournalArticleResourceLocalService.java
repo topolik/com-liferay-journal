@@ -171,12 +171,12 @@ public interface JournalArticleResourceLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JournalArticleResource fetchArticleResource(java.lang.String uuid,
-		long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticleResource fetchArticleResource(long groupId,
 		java.lang.String articleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JournalArticleResource fetchArticleResource(java.lang.String uuid,
+		long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JournalArticleResource fetchJournalArticleResource(
@@ -201,11 +201,11 @@ public interface JournalArticleResourceLocalService extends BaseLocalService,
 		long articleResourcePrimKey) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getArticleResourcePrimKey(java.lang.String uuid, long groupId,
+	public long getArticleResourcePrimKey(long groupId,
 		java.lang.String articleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getArticleResourcePrimKey(long groupId,
+	public long getArticleResourcePrimKey(java.lang.String uuid, long groupId,
 		java.lang.String articleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
