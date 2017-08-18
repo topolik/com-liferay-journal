@@ -74,7 +74,7 @@ request.setAttribute("search.jsp-returnToFullPageURL", portletDisplay.getURLBack
 				colspan="<%= 2 %>"
 			>
 				<h5>
-					<%= summary.getHighlightedTitle() %>
+					<%= summary.getTitle() %>
 				</h5>
 
 				<%

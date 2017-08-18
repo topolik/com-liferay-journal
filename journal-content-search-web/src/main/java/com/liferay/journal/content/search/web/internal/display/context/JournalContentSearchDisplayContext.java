@@ -15,6 +15,7 @@
 package com.liferay.journal.content.search.web.internal.display.context;
 
 import com.liferay.journal.content.search.web.configuration.JournalContentSearchPortletInstanceConfiguration;
+import com.liferay.journal.content.search.web.internal.constants.JournalContentSearchWebKeys;
 import com.liferay.journal.content.search.web.internal.util.ContentHits;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchContextFactory;
-import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -36,6 +36,9 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.search.summary.Summary;
+import com.liferay.portal.search.summary.SummaryBuilder;
+import com.liferay.portal.search.summary.SummaryBuilderFactory;
 
 import java.util.List;
 
@@ -60,6 +63,9 @@ public class JournalContentSearchDisplayContext {
 		_liferayPortletResponse = liferayPortletResponse;
 		_journalContentSearchPortletInstanceConfiguration =
 			journalContentSearchPortletInstanceConfiguration;
+
+		_summaryBuilderFactory = (SummaryBuilderFactory)request.getAttribute(
+			JournalContentSearchWebKeys.SUMMARY_BUILDER_FACTORY);
 	}
 
 	public Hits getHits() throws Exception {
@@ -141,15 +147,29 @@ public class JournalContentSearchDisplayContext {
 			return _summary;
 		}
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
 			JournalArticle.class);
 
-		_summary = indexer.getSummary(
-			document, StringPool.BLANK, _liferayPortletRequest,
-			_liferayPortletResponse);
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		SummaryBuilder summaryBuilder = _summaryBuilderFactory.newInstance();
+
+		summaryBuilder.setHighlight(
+			_journalContentSearchPortletInstanceConfiguration.
+				enableHighlighting());
+
+		com.liferay.portal.kernel.search.Summary oldSummary =
+			indexer.getSummary(
+				document, StringPool.BLANK, _liferayPortletRequest,
+				_liferayPortletResponse);
+
+		summaryBuilder.setLocale(themeDisplay.getLocale());
+		summaryBuilder.setContent(oldSummary.getContent());
+		summaryBuilder.setTitle(oldSummary.getTitle());
+		summaryBuilder.setMaxContentLength(oldSummary.getMaxContentLength());
+
+		_summary = summaryBuilder.build();
 
 		return _summary;
 	}
@@ -163,5 +183,6 @@ public class JournalContentSearchDisplayContext {
 	private final HttpServletRequest _request;
 	private SearchContainer _searchContainer;
 	private Summary _summary;
+	private final SummaryBuilderFactory _summaryBuilderFactory;
 
 }
