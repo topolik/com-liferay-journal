@@ -1154,7 +1154,6 @@ public class JournalDisplayContext {
 		attributes.put("ddmStructureKey", ddmStructureKey);
 		attributes.put("ddmTemplateKey", ddmTemplateKey);
 		attributes.put("params", params);
-
 		searchContext.setAttributes(attributes);
 
 		searchContext.setCompanyId(companyId);
