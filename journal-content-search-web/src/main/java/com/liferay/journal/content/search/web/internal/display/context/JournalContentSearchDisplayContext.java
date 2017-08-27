@@ -49,16 +49,15 @@ import javax.servlet.http.HttpServletRequest;
 public class JournalContentSearchDisplayContext {
 
 	public JournalContentSearchDisplayContext(
+		HttpServletRequest request,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		HttpServletRequest request,
 		JournalContentSearchPortletInstanceConfiguration
 			journalContentSearchPortletInstanceConfiguration) {
 
+		_request = request;
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
-		_request = request;
-
 		_journalContentSearchPortletInstanceConfiguration =
 			journalContentSearchPortletInstanceConfiguration;
 	}
@@ -106,8 +105,6 @@ public class JournalContentSearchDisplayContext {
 
 		Layout layout = themeDisplay.getLayout();
 
-		Hits hits = getHits();
-
 		PortletURL renderURL = _liferayPortletResponse.createRenderURL();
 
 		renderURL.setParameter("mvcPath", "/search.jsp");
@@ -122,6 +119,8 @@ public class JournalContentSearchDisplayContext {
 				"<strong>" + HtmlUtil.escape(getKeywords()) + "</strong>",
 				false));
 
+		Hits hits = getHits();
+
 		ContentHits contentHits = new ContentHits();
 
 		contentHits.setShowListed(
@@ -132,10 +131,7 @@ public class JournalContentSearchDisplayContext {
 			_searchContainer.getStart(), _searchContainer.getEnd());
 
 		_searchContainer.setTotal(hits.getLength());
-
-		List documents = ListUtil.toList(hits.getDocs());
-
-		_searchContainer.setResults(documents);
+		_searchContainer.setResults(ListUtil.toList(hits.getDocs()));
 
 		return _searchContainer;
 	}

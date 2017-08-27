@@ -61,7 +61,7 @@ page import="javax.portlet.WindowState" %>
 <%
 JournalContentSearchPortletInstanceConfiguration journalContentSearchPortletInstanceConfiguration = portletDisplay.getPortletInstanceConfiguration(JournalContentSearchPortletInstanceConfiguration.class);
 
-JournalContentSearchDisplayContext journalContentSearchDisplayContext = new JournalContentSearchDisplayContext(liferayPortletRequest, liferayPortletResponse, request, journalContentSearchPortletInstanceConfiguration);
+JournalContentSearchDisplayContext journalContentSearchDisplayContext = new JournalContentSearchDisplayContext(request, liferayPortletRequest, liferayPortletResponse, journalContentSearchPortletInstanceConfiguration);
 %>
 
 <%@ include file="/init-ext.jsp" %>
