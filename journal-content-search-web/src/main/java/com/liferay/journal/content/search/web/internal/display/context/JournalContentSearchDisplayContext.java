@@ -80,14 +80,14 @@ public class JournalContentSearchDisplayContext {
 		SearchContext searchContext = SearchContextFactory.getInstance(
 			_request);
 
+		searchContext.setGroupIds(null);
+		searchContext.setKeywords(getKeywords());
+
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
 		queryConfig.setHighlightEnabled(
 			_journalContentSearchPortletInstanceConfiguration.
 				enableHighlighting());
-
-		searchContext.setGroupIds(null);
-		searchContext.setKeywords(getKeywords());
 
 		_hits = indexer.search(searchContext);
 
