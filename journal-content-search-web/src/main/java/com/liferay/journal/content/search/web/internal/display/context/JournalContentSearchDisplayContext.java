@@ -154,27 +154,26 @@ public class JournalContentSearchDisplayContext {
 			return _summary;
 		}
 
-		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
-			JournalArticle.class);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		SummaryBuilder summaryBuilder = _summaryBuilderFactory.newInstance();
+		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
+			JournalArticle.class);
 
-		summaryBuilder.setHighlight(
-			_journalContentSearchPortletInstanceConfiguration.
-				enableHighlighting());
-
-		com.liferay.portal.kernel.search.Summary oldSummary =
+		com.liferay.portal.kernel.search.Summary summary =
 			indexer.getSummary(
 				document, StringPool.BLANK, _liferayPortletRequest,
 				_liferayPortletResponse);
 
+		SummaryBuilder summaryBuilder = _summaryBuilderFactory.newInstance();
+
+		summaryBuilder.setContent(summary.getContent());
+		summaryBuilder.setHighlight(
+			_journalContentSearchPortletInstanceConfiguration.
+				enableHighlighting());
 		summaryBuilder.setLocale(themeDisplay.getLocale());
-		summaryBuilder.setContent(oldSummary.getContent());
-		summaryBuilder.setTitle(oldSummary.getTitle());
-		summaryBuilder.setMaxContentLength(oldSummary.getMaxContentLength());
+		summaryBuilder.setMaxContentLength(summary.getMaxContentLength());
+		summaryBuilder.setTitle(summary.getTitle());
 
 		_summary = summaryBuilder.build();
 
