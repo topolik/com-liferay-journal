@@ -31,13 +31,13 @@ public class UpgradeJournalDDMTemplateLinks extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			StringBundler sb = new StringBundler(6);
 
-			sb.append("update DDMTemplateLink inner join JournalArticle on ");
-			sb.append("DDMTemplateLink.classPK = JournalArticle.id_ and ");
-			sb.append("DDMTemplateLink.classNameId = ");
-			sb.append(PortalUtil.getClassNameId(DDMStructure.class.getName()));
-			sb.append(" set DDMTemplateLink.classNameId = ");
+			sb.append("update DDMTemplateLink set classNameId = ");
 			sb.append(
 				PortalUtil.getClassNameId(JournalArticle.class.getName()));
+			sb.append(" where DDMTemplateLink.classNameId = ");
+			sb.append(PortalUtil.getClassNameId(DDMStructure.class.getName()));
+			sb.append(" and exists (select id_ from JournalArticle where ");
+			sb.append("DDMTemplateLink.classPK = JournalArticle.id_)");
 
 			runSQL(sb.toString());
 		}
