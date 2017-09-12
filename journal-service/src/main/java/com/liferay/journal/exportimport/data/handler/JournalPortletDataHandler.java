@@ -109,6 +109,11 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 	public static final String SCHEMA_VERSION = "1.1.0";
 
 	@Override
+	public String getNamespace() {
+		return NAMESPACE;
+	}
+
+	@Override
 	public String getSchemaVersion() {
 		return SCHEMA_VERSION;
 	}
