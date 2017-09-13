@@ -743,8 +743,8 @@ public class JournalConverterUtilTest {
 		List<Serializable> enValues = new ArrayList<>();
 
 		for (Layout layout : layoutsMap.values()) {
-			enValues.add(getLinkToLayoutFieldValue(layout, false));
-			enValues.add(getLinkToLayoutFieldValue(layout, true));
+			enValues.add(getLinkToLayoutFieldValue(layout, _enLocale, false));
+			enValues.add(getLinkToLayoutFieldValue(layout, _enLocale, true));
 		}
 
 		field.addValues(_enLocale, enValues);
@@ -753,7 +753,7 @@ public class JournalConverterUtilTest {
 	}
 
 	protected String getLinkToLayoutFieldValue(
-		Layout layout, boolean includeGroupId) {
+		Layout layout, Locale locale, boolean includeGroupId) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -761,6 +761,7 @@ public class JournalConverterUtilTest {
 			jsonObject.put("groupId", layout.getGroupId());
 		}
 
+		jsonObject.put("label", layout.getName(locale));
 		jsonObject.put("layoutId", layout.getLayoutId());
 		jsonObject.put("privateLayout", layout.isPrivateLayout());
 
