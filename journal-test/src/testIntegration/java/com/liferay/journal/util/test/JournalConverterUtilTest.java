@@ -83,7 +83,6 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -104,17 +103,14 @@ public class JournalConverterUtilTest {
 			new LiferayIntegrationTestRule(),
 			SynchronousDestinationTestRule.INSTANCE);
 
-	@BeforeClass
-	public static void setUpClass() {
-		_enLocale = LocaleUtil.fromLanguageId("en_US");
-		_ptLocale = LocaleUtil.fromLanguageId("pt_BR");
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		setUpDDMFormJSONDeserializer();
 		setUpDDMFormXSDDeserializer();
 		setUpDDMXML();
+
+		_enLocale = LocaleUtil.fromLanguageId("en_US");
+		_ptLocale = LocaleUtil.fromLanguageId("pt_BR");
 
 		_group = GroupTestUtil.addGroup();
 
@@ -738,6 +734,7 @@ public class JournalConverterUtilTest {
 		Field field = new Field();
 
 		field.setDDMStructureId(ddmStructureId);
+		field.setDefaultLocale(_enLocale);
 		field.setName("link_to_layout");
 
 		List<Serializable> enValues = new ArrayList<>();
@@ -759,9 +756,9 @@ public class JournalConverterUtilTest {
 
 		if (includeGroupId) {
 			jsonObject.put("groupId", layout.getGroupId());
+			jsonObject.put("label", layout.getName(locale));
 		}
 
-		jsonObject.put("label", layout.getName(locale));
 		jsonObject.put("layoutId", layout.getLayoutId());
 		jsonObject.put("privateLayout", layout.isPrivateLayout());
 
