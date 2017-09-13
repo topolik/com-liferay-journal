@@ -612,7 +612,7 @@ public class JournalConverterImpl implements JournalConverter {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			long layoutId = GetterUtil.getLong(values[0]);
-			boolean privateLayout = !values[1].equals("public");
+			boolean privateLayout = !Objects.equals(values[1], "public");
 
 			if (values.length > 2) {
 				long groupId = GetterUtil.getLong(values[2]);
