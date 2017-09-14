@@ -573,6 +573,18 @@ public class JournalConverterImpl implements JournalConverter {
 		return null;
 	}
 
+	/**
+	 * @deprecated As of 3.0.0, replaced by {@link #getFieldValue(String,
+	 *             String, Element, Locale)}
+	 */
+	@Deprecated
+	protected Serializable getFieldValue(
+		String dataType, String type, Element dynamicContentElement) {
+
+		return getFieldValue(
+			dataType, type, dynamicContentElement, LocaleUtil.getDefault());
+	}
+
 	protected Serializable getFieldValue(
 		String dataType, String type, Element dynamicContentElement,
 		Locale defaultLocale) {
