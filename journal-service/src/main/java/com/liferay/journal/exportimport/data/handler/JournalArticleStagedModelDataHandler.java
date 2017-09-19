@@ -18,6 +18,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
+import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -75,6 +76,7 @@ import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Daniel Kocsis
@@ -1009,18 +1011,32 @@ public class JournalArticleStagedModelDataHandler
 		_ddmTemplateLocalService = ddmTemplateLocalService;
 	}
 
+	@Reference(
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(model.class.name=com.liferay.journal.model.JournalArticle)",
+		unbind = "-"
+	)
+	protected void setExportImportContentProcessor(
+		ExportImportContentProcessor<String> exportImportContentProcessor) {
+
+		_journalArticleExportImportContentProcessor =
+			exportImportContentProcessor;
+	}
+
 	@Reference(unbind = "-")
 	protected void setImageLocalService(ImageLocalService imageLocalService) {
 		_imageLocalService = imageLocalService;
 	}
 
+	/**
+	 * @deprecated As of 3.24.0, replaced by {@link
+	 *       #setExportImportContentProcessor(ExportImportContentProcessor)}
+	 */
+	@Deprecated
 	@Reference(unbind = "-")
 	protected void setJournalArticleExportImportContentProcessor(
 		JournalArticleExportImportContentProcessor
 			journalArticleExportImportContentProcessor) {
-
-		_journalArticleExportImportContentProcessor =
-			journalArticleExportImportContentProcessor;
 	}
 
 	@Reference(unbind = "-")
@@ -1100,7 +1116,7 @@ public class JournalArticleStagedModelDataHandler
 	private DDMStructureLocalService _ddmStructureLocalService;
 	private DDMTemplateLocalService _ddmTemplateLocalService;
 	private ImageLocalService _imageLocalService;
-	private JournalArticleExportImportContentProcessor
+	private ExportImportContentProcessor<String>
 		_journalArticleExportImportContentProcessor;
 	private JournalArticleImageLocalService _journalArticleImageLocalService;
 	private JournalArticleLocalService _journalArticleLocalService;
