@@ -6464,22 +6464,19 @@ public class JournalArticleLocalServiceImpl
 			_previousCheckDate);
 
 		for (JournalArticle article : articles) {
-			long groupId = article.getGroupId();
-
-			int status = article.getStatus();
-
-			if (article.getStatus() != WorkflowConstants.STATUS_IN_TRASH) {
-				status = WorkflowConstants.STATUS_ANY;
+			if (article.isInTrash()) {
+				continue;
 			}
 
+			long groupId = article.getGroupId();
 			String articleId = article.getArticleId();
 			double version = article.getVersion();
 
 			if (!journalArticleLocalService.isLatestVersion(
-					groupId, articleId, version, status)) {
+					groupId, articleId, version)) {
 
 				article = journalArticleLocalService.getLatestArticle(
-					groupId, articleId, status);
+					groupId, articleId);
 			}
 
 			if (!latestArticles.contains(article)) {
