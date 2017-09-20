@@ -186,31 +186,19 @@ renderResponse.setTitle((feed == null) ? LanguageUtil.get(request, "new-feed") :
 					<aui:input name="ddmTemplateKey" type="hidden" value="<%= ddmTemplateKey %>" />
 				</c:when>
 				<c:otherwise>
-					<aui:field-wrapper label="template">
-						<liferay-ui:table-iterator
-							list="<%= ddmTemplates %>"
-							listType="com.liferay.dynamic.data.mapping.model.DDMTemplate"
-							rowLength="3"
-							rowPadding="30"
-						>
+					<aui:select label="template" name="ddmTemplateKey" showEmptyOption="<%= true %>">
 
-							<%
-							boolean templateChecked = false;
+						<%
+						for (DDMTemplate ddTemplate : ddmTemplates) {
+						%>
 
-							if (ddmTemplateKey.equals(tableIteratorObj.getTemplateKey())) {
-								templateChecked = true;
-							}
-							%>
+							<aui:option label="<%= HtmlUtil.escape(ddTemplate.getName(locale)) %>" selected="<%= Objects.equals(ddmTemplateKey, ddTemplate.getTemplateKey()) %>" value="<%= ddTemplate.getTemplateKey() %>" />
 
-							<aui:input checked="<%= templateChecked %>" label="<%= HtmlUtil.escape(tableIteratorObj.getName(locale)) %>" name="ddmTemplateKey" type="radio" value="<%= tableIteratorObj.getTemplateKey() %>" />
+						<%
+						}
+						%>
 
-							<c:if test="<%= tableIteratorObj.isSmallImage() %>">
-								<br />
-
-								<img alt="" hspace="0" src="<%= HtmlUtil.escapeAttribute(tableIteratorObj.getTemplateImageURL(themeDisplay)) %>" vspace="0" />
-							</c:if>
-						</liferay-ui:table-iterator>
-					</aui:field-wrapper>
+					</aui:select>
 				</c:otherwise>
 			</c:choose>
 		</aui:fieldset>
