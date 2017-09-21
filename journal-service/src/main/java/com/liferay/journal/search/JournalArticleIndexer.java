@@ -799,10 +799,11 @@ public class JournalArticleIndexer
 				Field.DESCRIPTION);
 
 			if (Validator.isNull(description)) {
-				description = articleDisplay.getDescription();
+				content = HtmlUtil.stripHtml(articleDisplay.getDescription());
 			}
-
-			content = _stripAndHighlight(description);
+			else {
+				content = _stripAndHighlight(description);
+			}
 
 			content = HtmlUtil.replaceNewLine(content);
 
