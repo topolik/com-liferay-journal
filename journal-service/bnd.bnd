@@ -1,6 +1,6 @@
 Bundle-Name: Liferay Journal Service
 Bundle-SymbolicName: com.liferay.journal.service
-Bundle-Version: 3.20.4
+Bundle-Version: 3.21.0
 Export-Package:\
 	com.liferay.journal.atom,\
 	com.liferay.journal.configuration,\
