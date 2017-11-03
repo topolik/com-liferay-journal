@@ -1845,9 +1845,10 @@ public class JournalArticleLocalServiceImpl
 
 		if (articles.isEmpty()) {
 			throw new NoSuchArticleException(
-				"No approved JournalArticle exists with the key {groupId=" +
-					groupId + ", className=" + className + ", classPK=" +
-						classPK + "}");
+				StringBundler.concat(
+					"No approved JournalArticle exists with the key {groupId=",
+					String.valueOf(groupId), ", className=", className,
+					", classPK=", String.valueOf(classPK), "}"));
 		}
 
 		return articles.get(0);
@@ -2801,8 +2802,9 @@ public class JournalArticleLocalServiceImpl
 
 		if (article == null) {
 			throw new NoSuchArticleException(
-				"No approved JournalArticle exists with the key {groupId=" +
-					groupId + ", articleId=" + articleId + "}");
+				StringBundler.concat(
+					"No approved JournalArticle exists with the key {groupId=",
+					String.valueOf(groupId), ", articleId=", articleId, "}"));
 		}
 
 		return article;
@@ -2834,8 +2836,9 @@ public class JournalArticleLocalServiceImpl
 
 		if (articles.isEmpty()) {
 			throw new NoSuchArticleException(
-				"No JournalArticle exists with the key {groupId=" + groupId +
-					", urlTitle=" + urlTitle + "}");
+				StringBundler.concat(
+					"No JournalArticle exists with the key {groupId=",
+					String.valueOf(groupId), ", urlTitle=", urlTitle, "}"));
 		}
 
 		Date now = new Date();
@@ -3052,8 +3055,10 @@ public class JournalArticleLocalServiceImpl
 
 		if (articles.isEmpty()) {
 			throw new NoSuchArticleException(
-				"No JournalArticle exists with the key {groupId=" + groupId +
-					", className=" + className + ", classPK =" + classPK + "}");
+				StringBundler.concat(
+					"No JournalArticle exists with the key {groupId=",
+					String.valueOf(groupId), ", className=", className,
+					", classPK =", String.valueOf(classPK), "}"));
 		}
 
 		return articles.get(0);
@@ -3080,8 +3085,10 @@ public class JournalArticleLocalServiceImpl
 
 		if (article == null) {
 			throw new NoSuchArticleException(
-				"No JournalArticle exists with the key {groupId=" + groupId +
-					", urlTitle=" + urlTitle + ", status=" + status + "}");
+				StringBundler.concat(
+					"No JournalArticle exists with the key {groupId=",
+					String.valueOf(groupId), ", urlTitle=", urlTitle,
+					", status=", String.valueOf(status), "}"));
 		}
 
 		return article;
@@ -6149,9 +6156,11 @@ public class JournalArticleLocalServiceImpl
 				}
 				catch (Exception e) {
 					_log.error(
-						"Unable to send email to notify the change of status " +
-							"to " + msg + " for article " + article.getId() +
-								": " + e.getMessage());
+						StringBundler.concat(
+							"Unable to send email to notify the change of ",
+							"status to ", msg, " for article ",
+							String.valueOf(article.getId()), ": ",
+							e.getMessage()));
 				}
 			}
 
@@ -6622,9 +6631,9 @@ public class JournalArticleLocalServiceImpl
 
 				imageLocalService.updateImage(imageId, oldImage.getTextObj());
 
-				String elContent =
-					"/image/journal/article?img_id=" + imageId + "&t=" +
-						WebServerServletTokenUtil.getToken(imageId);
+				String elContent = StringBundler.concat(
+					"/image/journal/article?img_id=", String.valueOf(imageId),
+					"&t=", WebServerServletTokenUtil.getToken(imageId));
 
 				dynamicContentEl.setText(elContent);
 
@@ -6941,14 +6950,16 @@ public class JournalArticleLocalServiceImpl
 				continue;
 			}
 
-			String elContent =
-				"/image/journal/article?img_id=" + imageId + "&t=" +
-					WebServerServletTokenUtil.getToken(imageId);
+			String elContent = StringBundler.concat(
+				"/image/journal/article?img_id=", String.valueOf(imageId),
+				"&t=", WebServerServletTokenUtil.getToken(imageId));
 
 			byte[] bytes = null;
 
 			if (images != null) {
-				bytes = images.get(elInstanceId + "_" + elName + elLanguage);
+				bytes = images.get(
+					StringBundler.concat(
+						elInstanceId, "_", elName, elLanguage));
 			}
 
 			if (ArrayUtil.isNotEmpty(bytes)) {
@@ -7210,8 +7221,9 @@ public class JournalArticleLocalServiceImpl
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Transforming " + article.getArticleId() + " " +
-						article.getVersion() + " " + languageId);
+					StringBundler.concat(
+						"Transforming ", article.getArticleId(), " ",
+						String.valueOf(article.getVersion()), " ", languageId));
 			}
 
 			// Try with specified template first (in the current group and the
@@ -8069,8 +8081,10 @@ public class JournalArticleLocalServiceImpl
 
 				LocaleException le = new LocaleException(
 					LocaleException.TYPE_CONTENT,
-					"The locale " + articleDefaultLocale +
-						" is not available in site with groupId" + groupId);
+					StringBundler.concat(
+						"The locale ", String.valueOf(articleDefaultLocale),
+						" is not available in site with groupId",
+						String.valueOf(groupId)));
 
 				le.setSourceAvailableLocales(
 					Collections.singleton(articleDefaultLocale));
@@ -8288,8 +8302,10 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		throw new InvalidDDMStructureException(
-			"Invalid structure " + ddmStructure.getStructureId() +
-				" for folder " + folderId);
+			StringBundler.concat(
+				"Invalid structure ",
+				String.valueOf(ddmStructure.getStructureId()), " for folder ",
+				String.valueOf(folderId)));
 	}
 
 	protected void validateReferences(

@@ -249,9 +249,11 @@ public class JournalContentImpl
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"getDisplay for {" + groupId + ", " + articleId + ", " +
-					ddmTemplateKey + ", " + viewMode + ", " + languageId +
-						", " + page + "} takes " + stopWatch.getTime() + " ms");
+				StringBundler.concat(
+					"getDisplay for {", String.valueOf(groupId), ", ",
+					articleId, ", ", ddmTemplateKey, ", ", viewMode, ", ",
+					languageId, ", ", String.valueOf(page), "} takes ",
+					String.valueOf(stopWatch.getTime()), " ms"));
 		}
 
 		return articleDisplay;
@@ -274,8 +276,9 @@ public class JournalContentImpl
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get display for " + groupId + " " + articleId +
-						" " + languageId,
+					StringBundler.concat(
+						"Unable to get display for ", String.valueOf(groupId),
+						" ", articleId, " ", languageId),
 					pe);
 			}
 
@@ -379,7 +382,9 @@ public class JournalContentImpl
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get display for " + article + " " + languageId,
+					StringBundler.concat(
+						"Unable to get display for ", String.valueOf(article),
+						" ", languageId),
 					e);
 			}
 
@@ -395,8 +400,9 @@ public class JournalContentImpl
 		try {
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Get article display {" + groupId + ", " + articleId +
-						", " + ddmTemplateKey + "}");
+					StringBundler.concat(
+						"Get article display {", String.valueOf(groupId), ", ",
+						articleId, ", ", ddmTemplateKey, "}"));
 			}
 
 			return _journalArticleLocalService.getArticleDisplay(
@@ -406,8 +412,9 @@ public class JournalContentImpl
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get display for " + groupId + " " + articleId +
-						" " + languageId);
+					StringBundler.concat(
+						"Unable to get display for ", String.valueOf(groupId),
+						" ", articleId, " ", languageId));
 			}
 
 			return null;

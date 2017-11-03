@@ -77,6 +77,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -670,8 +671,9 @@ public class JournalDisplayContext {
 
 		entriesChecker.setCssClass("entry-selector");
 		entriesChecker.setRememberCheckBoxStateURLRegex(
-			"^(?!.*" + _liferayPortletResponse.getNamespace() +
-				"redirect).*(folderId=" + getFolderId() + ")");
+			StringBundler.concat(
+				"^(?!.*", _liferayPortletResponse.getNamespace(),
+				"redirect).*(folderId=", String.valueOf(getFolderId()), ")"));
 
 		articleSearchContainer.setRowChecker(entriesChecker);
 
