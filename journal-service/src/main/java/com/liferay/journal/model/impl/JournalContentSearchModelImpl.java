@@ -22,6 +22,8 @@ import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.journal.model.JournalContentSearch;
 import com.liferay.journal.model.JournalContentSearchModel;
 
+import com.liferay.petra.string.StringPool;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
