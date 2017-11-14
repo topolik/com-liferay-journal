@@ -1695,10 +1695,6 @@ public class JournalUtil {
 
 	private static class FiniteUniqueStack<E> extends Stack<E> {
 
-		public FiniteUniqueStack(int maxSize) {
-			_maxSize = maxSize;
-		}
-
 		@Override
 		public E push(E item) {
 			if (contains(item)) {
@@ -1712,6 +1708,10 @@ public class JournalUtil {
 			}
 
 			return item;
+		}
+
+		private FiniteUniqueStack(int maxSize) {
+			_maxSize = maxSize;
 		}
 
 		private final int _maxSize;
