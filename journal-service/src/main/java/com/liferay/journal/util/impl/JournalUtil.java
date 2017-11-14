@@ -31,7 +31,6 @@ import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.service.JournalFolderLocalServiceUtil;
 import com.liferay.journal.transformer.JournalTransformer;
 import com.liferay.journal.util.comparator.ArticleVersionComparator;
-import com.liferay.petra.collection.stack.FiniteUniqueStack;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.xml.XMLUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -1693,5 +1692,30 @@ public class JournalUtil {
 	private static Map<String, String> _customTokens;
 	private static final JournalTransformer _journalTransformer =
 		new JournalTransformer(true);
+
+	private static class FiniteUniqueStack<E> extends Stack<E> {
+
+		public FiniteUniqueStack(int maxSize) {
+			_maxSize = maxSize;
+		}
+
+		@Override
+		public E push(E item) {
+			if (contains(item)) {
+				if (!item.equals(peek())) {
+					remove(item);
+					super.push(item);
+				}
+			}
+			else if (size() < _maxSize) {
+				super.push(item);
+			}
+
+			return item;
+		}
+
+		private final int _maxSize;
+
+	}
 
 }
