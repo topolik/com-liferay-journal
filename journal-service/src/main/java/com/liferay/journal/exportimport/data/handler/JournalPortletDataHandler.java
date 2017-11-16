@@ -134,6 +134,22 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 		return false;
 	}
 
+	public boolean isVersionHistoryByDefault() {
+		try {
+			JournalServiceConfiguration journalServiceConfiguration =
+				ConfigurationProviderUtil.getCompanyConfiguration(
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
+
+			return journalServiceConfiguration.versionHistoryByDefaultEnabled();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return true;
+	}
+
 	@Activate
 	protected void activate() {
 		setDataLocalized(true);
@@ -152,7 +168,7 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 						NAMESPACE, "referenced-content"),
 					new PortletDataHandlerBoolean(
 						NAMESPACE, "version-history",
-						isPublishToLiveByDefault())
+						isVersionHistoryByDefault())
 				},
 				JournalArticle.class.getName()),
 			new PortletDataHandlerBoolean(
