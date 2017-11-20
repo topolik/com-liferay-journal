@@ -388,10 +388,10 @@
 					GROUP BY
 						JournalArticle.resourcePrimKey, JournalArticle.folderId, JournalArticle.articleId
 				) TEMP_TABLE
-				INNER JOIN
-					JournalArticle ON
-						(TEMP_TABLE.resourcePrimKey = JournalArticle.resourcePrimKey) AND
-						(TEMP_TABLE.version = JournalArticle.version)
+			INNER JOIN
+				JournalArticle ON
+					(TEMP_TABLE.resourcePrimKey = JournalArticle.resourcePrimKey) AND
+					(TEMP_TABLE.version = JournalArticle.version)
 		]]>
 	</sql>
 	<sql id="com.liferay.journal.service.persistence.JournalFolderFinder.findA_ByG_U_F_L">
@@ -412,14 +412,14 @@
 					GROUP BY
 						JournalArticle.resourcePrimKey, JournalArticle.folderId, JournalArticle.articleId
 				) TEMP_TABLE
-				INNER JOIN
-					JournalArticle ON
-						(TEMP_TABLE.resourcePrimKey = JournalArticle.resourcePrimKey) AND
-						(TEMP_TABLE.version = JournalArticle.version)
-				LEFT JOIN
-					JournalArticleLocalization ON
-						(JournalArticle.id_ = JournalArticleLocalization.articlePK) AND
-						(JournalArticleLocalization.languageId = ?)
+			INNER JOIN
+				JournalArticle ON
+					(TEMP_TABLE.resourcePrimKey = JournalArticle.resourcePrimKey) AND
+					(TEMP_TABLE.version = JournalArticle.version)
+			LEFT JOIN
+				JournalArticleLocalization ON
+					(JournalArticle.id_ = JournalArticleLocalization.articlePK) AND
+					(JournalArticleLocalization.languageId = ?)
 		]]>
 	</sql>
 	<sql id="com.liferay.journal.service.persistence.JournalFolderFinder.findF_ByNoAssets">
