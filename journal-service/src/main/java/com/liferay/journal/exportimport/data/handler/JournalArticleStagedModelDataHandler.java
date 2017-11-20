@@ -28,6 +28,7 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.exportimport.lar.BaseStagedModelDataHandler;
+import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.internal.exportimport.creation.strategy.JournalCreationStrategy;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
@@ -46,6 +47,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -836,6 +838,16 @@ public class JournalArticleStagedModelDataHandler
 					serviceContext);
 			}
 
+			boolean exportVersionHistory =
+				portletDataContext.getBooleanParameter(
+					"journal", "version-history");
+
+			if (!exportVersionHistory &&
+				isExpireAllArticleVersions(importedArticle.getCompanyId())) {
+
+				setArticlesExpirationDate(importedArticle);
+			}
+
 			portletDataContext.importClassedModel(article, importedArticle);
 
 			if (Validator.isNull(newArticleId)) {
@@ -953,6 +965,16 @@ public class JournalArticleStagedModelDataHandler
 			groupId, articleId, version);
 	}
 
+	protected boolean isExpireAllArticleVersions(long companyId)
+		throws PortalException {
+
+		JournalServiceConfiguration journalServiceConfiguration =
+			_configurationProvider.getCompanyConfiguration(
+				JournalServiceConfiguration.class, companyId);
+
+		return journalServiceConfiguration.expireAllArticleVersionsEnabled();
+	}
+
 	protected boolean isPreloadedArticle(
 		long defaultUserId, JournalArticle article) {
 
@@ -971,6 +993,30 @@ public class JournalArticleStagedModelDataHandler
 		}
 
 		return false;
+	}
+
+	protected void setArticlesExpirationDate(JournalArticle article) {
+		if (!article.isApproved() || (article.getExpirationDate() == null)) {
+			return;
+		}
+
+		List<JournalArticle> articles = _journalArticleLocalService.getArticles(
+			article.getGroupId(), article.getArticleId());
+
+		Date expirationDate = article.getExpirationDate();
+
+		for (JournalArticle curArticle : articles) {
+			curArticle.setExpirationDate(expirationDate);
+
+			_journalArticleLocalService.updateJournalArticle(curArticle);
+		}
+	}
+
+	@Reference(unbind = "-")
+	protected void setConfigurationProvider(
+		ConfigurationProvider configurationProvider) {
+
+		_configurationProvider = configurationProvider;
 	}
 
 	@Reference(unbind = "-")
@@ -1056,6 +1102,7 @@ public class JournalArticleStagedModelDataHandler
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleStagedModelDataHandler.class);
 
+	private ConfigurationProvider _configurationProvider;
 	private DDMStructureLocalService _ddmStructureLocalService;
 	private DDMTemplateLocalService _ddmTemplateLocalService;
 	private ImageLocalService _imageLocalService;
