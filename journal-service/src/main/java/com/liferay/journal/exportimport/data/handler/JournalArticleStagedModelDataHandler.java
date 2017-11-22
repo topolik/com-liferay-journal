@@ -70,6 +70,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -974,7 +975,13 @@ public class JournalArticleStagedModelDataHandler
 		Date expirationDate = article.getExpirationDate();
 
 		for (JournalArticle curArticle : articles) {
-			curArticle.setExpirationDate(expirationDate);
+			if (Objects.equals(
+					curArticle.getExpirationDate(), expirationDate)) {
+
+				continue;
+			}
+
+			curArticle.setExpirationDate(article.getExpirationDate());
 
 			_journalArticleLocalService.updateJournalArticle(curArticle);
 		}
