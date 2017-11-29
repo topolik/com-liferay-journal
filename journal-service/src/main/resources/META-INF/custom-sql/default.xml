@@ -348,7 +348,7 @@
 					(AssetEntry.classNameId = ?) AND
 					(AssetEntry.classPK = JournalFolder.folderId)
 			WHERE
-				(AssetEntry.classPK IS NULL)
+				AssetEntry.classPK IS NULL
 		]]>
 	</sql>
 	<sql id="com.liferay.journal.service.persistence.JournalFolderFinder.findF_ByG_F">
