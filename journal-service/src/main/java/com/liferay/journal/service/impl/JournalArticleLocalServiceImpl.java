@@ -95,6 +95,7 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
@@ -8574,6 +8575,9 @@ public class JournalArticleLocalServiceImpl
 			localeSet.addAll(descriptionMap.keySet());
 		}
 
+		int maxTitleLength = ModelHintsUtil.getMaxLength(
+			JournalArticleLocalization.class.getName(), "title");
+
 		List<JournalArticleLocalization> journalArticleLocalizations =
 			new ArrayList<>();
 
@@ -8587,6 +8591,12 @@ public class JournalArticleLocalServiceImpl
 
 			if (Validator.isNull(title) && Validator.isNull(description)) {
 				continue;
+			}
+
+			if (Validator.isNotNull(title) &&
+				(title.length() > maxTitleLength)) {
+
+				throw new ArticleTitleException();
 			}
 
 			JournalArticleLocalization journalArticleLocalization =
