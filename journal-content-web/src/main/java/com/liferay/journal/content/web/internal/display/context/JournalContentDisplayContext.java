@@ -312,11 +312,11 @@ public class JournalContentDisplayContext {
 			return _ddmTemplateKey;
 		}
 
-		String ddmTemplateKey = ParamUtil.getString(
-			_portletRequest, "ddmTemplateKey");
-
 		_ddmTemplateKey =
 			_journalContentPortletInstanceConfiguration.ddmTemplateKey();
+
+		String ddmTemplateKey = ParamUtil.getString(
+			_portletRequest, "ddmTemplateKey");
 
 		if (Validator.isNotNull(ddmTemplateKey)) {
 			_ddmTemplateKey = ddmTemplateKey;
@@ -332,10 +332,10 @@ public class JournalContentDisplayContext {
 
 		Stream<DDMTemplate> stream = ddmTemplates.stream();
 
-		boolean structureTemplate = stream.anyMatch(
+		boolean hasTemplate = stream.anyMatch(
 			template -> _ddmTemplateKey.equals(template.getTemplateKey()));
 
-		if (!structureTemplate) {
+		if (!hasTemplate) {
 			_ddmTemplateKey = article.getDDMTemplateKey();
 		}
 
