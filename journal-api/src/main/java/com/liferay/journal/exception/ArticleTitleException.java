@@ -15,6 +15,7 @@
 package com.liferay.journal.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Brian Wing Shun Chan
@@ -34,6 +35,18 @@ public class ArticleTitleException extends PortalException {
 
 	public ArticleTitleException(Throwable cause) {
 		super(cause);
+	}
+
+	public static class MustNotExceedMaximumLength
+		extends ArticleTitleException {
+
+		public MustNotExceedMaximumLength(String title, int titleMaxLength) {
+			super(
+				StringBundler.concat(
+					"Title ", title, " must have fewer than ",
+					String.valueOf(titleMaxLength), " characters"));
+		}
+
 	}
 
 }

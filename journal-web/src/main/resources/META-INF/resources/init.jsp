@@ -92,6 +92,7 @@ page import="com.liferay.journal.exception.NoSuchFolderException" %><%@
 page import="com.liferay.journal.model.JournalArticle" %><%@
 page import="com.liferay.journal.model.JournalArticleConstants" %><%@
 page import="com.liferay.journal.model.JournalArticleDisplay" %><%@
+page import="com.liferay.journal.model.JournalArticleLocalization" %><%@
 page import="com.liferay.journal.model.JournalFeed" %><%@
 page import="com.liferay.journal.model.JournalFeedConstants" %><%@
 page import="com.liferay.journal.model.JournalFolder" %><%@

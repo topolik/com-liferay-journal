@@ -8596,7 +8596,8 @@ public class JournalArticleLocalServiceImpl
 			if (Validator.isNotNull(title) &&
 				(title.length() > titleMaxLength)) {
 
-				throw new ArticleTitleException();
+				throw new ArticleTitleException.MustNotExceedMaximumLength(
+					title, titleMaxLength);
 			}
 
 			JournalArticleLocalization journalArticleLocalization =
