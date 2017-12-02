@@ -8575,7 +8575,7 @@ public class JournalArticleLocalServiceImpl
 			localeSet.addAll(descriptionMap.keySet());
 		}
 
-		int maxTitleLength = ModelHintsUtil.getMaxLength(
+		int titleMaxLength = ModelHintsUtil.getMaxLength(
 			JournalArticleLocalization.class.getName(), "title");
 
 		List<JournalArticleLocalization> journalArticleLocalizations =
@@ -8594,7 +8594,7 @@ public class JournalArticleLocalServiceImpl
 			}
 
 			if (Validator.isNotNull(title) &&
-				(title.length() > maxTitleLength)) {
+				(title.length() > titleMaxLength)) {
 
 				throw new ArticleTitleException();
 			}
