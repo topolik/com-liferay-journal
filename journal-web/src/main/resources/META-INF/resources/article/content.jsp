@@ -56,7 +56,7 @@ if (!searchRestriction) {
 <liferay-ui:error exception="<%= ArticleIdException.class %>" message="please-enter-a-valid-id" />
 <liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
 
-<liferay-ui:error exception="<%= ArticleTitleException.MustNotExceedMaximumSize.class %>">
+<liferay-ui:error exception="<%= ArticleTitleException.MustNotExceedMaximumLength.class %>">
 
 	<%
 	int titleMaxLength = ModelHintsUtil.getMaxLength(JournalArticleLocalization.class.getName(), "title");
