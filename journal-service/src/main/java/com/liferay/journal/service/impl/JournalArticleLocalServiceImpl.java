@@ -14,9 +14,12 @@
 
 package com.liferay.journal.service.impl;
 
+import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
+import com.liferay.asset.kernel.model.AssetRenderer;
+import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureException;
@@ -7734,6 +7737,32 @@ public class JournalArticleLocalServiceImpl
 		return urlTitle;
 	}
 
+	protected String getURLViewInContext(
+		JournalArticle article, ServiceContext serviceContext) {
+
+		String urlViewInContext = StringPool.BLANK;
+
+		try {
+			AssetRendererFactory<JournalArticle> assetRendererFactory =
+				AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
+					JournalArticle.class);
+
+			AssetRenderer<JournalArticle> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					article.getResourcePrimKey());
+
+			urlViewInContext = assetRenderer.getURLViewInContext(
+				serviceContext.getLiferayPortletRequest(),
+				serviceContext.getLiferayPortletResponse(),
+				serviceContext.getCurrentURL());
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return urlViewInContext;
+	}
+
 	protected boolean hasModifiedLatestApprovedVersion(
 		long groupId, String articleId, double version) {
 
@@ -7804,9 +7833,16 @@ public class JournalArticleLocalServiceImpl
 
 		String articleTitle = article.getTitle(serviceContext.getLanguageId());
 
-		articleURL = buildArticleURL(
-			articleURL, article.getGroupId(), article.getFolderId(),
-			article.getArticleId());
+		String layoutUuid = article.getLayoutUuid();
+
+		if (Validator.isNotNull(layoutUuid)) {
+			articleURL = getURLViewInContext(article, serviceContext);
+		}
+		else {
+			articleURL = buildArticleURL(
+				articleURL, article.getGroupId(), article.getFolderId(),
+				article.getArticleId());
+		}
 
 		if (action.equals("add") &&
 			journalGroupServiceConfiguration.emailArticleAddedEnabled()) {
