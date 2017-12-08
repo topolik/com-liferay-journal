@@ -5585,21 +5585,12 @@ public class JournalArticleLocalServiceImpl
 
 		// Friendly URLs
 
-		long classNameId = classNameLocalService.getClassNameId(
-			JournalArticle.class);
-
-		List<FriendlyURLEntry> friendlyURLEntries =
-			friendlyURLEntryLocalService.getFriendlyURLEntries(
-				groupId, classNameId, article.getResourcePrimKey());
-
-		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
-			friendlyURLEntryLocalService.deleteFriendlyURLEntry(
-				friendlyURLEntry);
-		}
+		friendlyURLEntryLocalService.deleteFriendlyURLEntry(
+			groupId, JournalArticle.class, article.getResourcePrimKey());
 
 		friendlyURLEntryLocalService.addFriendlyURLEntry(
-			groupId, classNameId, article.getResourcePrimKey(), urlTitleMap,
-			serviceContext);
+			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			article.getResourcePrimKey(), urlTitleMap, serviceContext);
 
 		// Asset
 
