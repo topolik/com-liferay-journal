@@ -18,21 +18,14 @@
 
 <%
 JournalArticle article = journalDisplayContext.getArticle();
-
-StringBundler friendlyURLBase = new StringBundler();
-
-friendlyURLBase.append(themeDisplay.getPortalURL());
-friendlyURLBase.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
 %>
 
 <div class="form-group">
-	<label for="<portlet:namespace />friendlyURL"><liferay-ui:message key="friendly-url" />
-		<liferay-ui:icon-help message='<%= LanguageUtil.format(request, "for-example-x", "<em>/news</em>", false) %>' />
-	</label>
+	<label for="<portlet:namespace />friendlyURL"><liferay-ui:message key="friendly-url" /><liferay-ui:icon-help message='<%= LanguageUtil.format(request, "for-example-x", "<em>/news</em>", false) %>' /></label>
 
 	<div class="input-group lfr-friendly-url-input-group">
 		<span class="input-group-addon" id="<portlet:namespace />urlBase">
-			<span class="input-group-constrain"><liferay-ui:message key="<%= StringUtil.shorten(friendlyURLBase.toString(), 40) %>" /></span>
+			<span class="input-group-constrain"><liferay-ui:message key="<%= StringUtil.shorten(themeDisplay.getPortalURL() + JournalArticleConstants.CANONICAL_URL_SEPARATOR, 40) %>" /></span>
 		</span>
 
 		<liferay-ui:input-localized defaultLanguageId="<%= LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()) %>" name="friendlyURL" xml="<%= HttpUtil.decodeURL(article.getFriendlyURLsXML()) %>" />
