@@ -436,9 +436,8 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 			Locale defaultLocale = LocaleUtil.fromLanguageId(
 				getDefaultLanguageId());
 
-			String defaultFriendlyURL = friendlyURLMap.get(defaultLocale);
-
-			friendlyURLMap.put(defaultSiteLocale, defaultFriendlyURL);
+			friendlyURLMap.put(
+				defaultSiteLocale, friendlyURLMap.get(defaultLocale));
 		}
 
 		return friendlyURLMap;

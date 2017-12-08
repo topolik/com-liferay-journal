@@ -3008,12 +3008,10 @@ public class JournalArticleLocalServiceImpl
 				QueryUtil.ALL_POS, new ArticleVersionComparator());
 		}
 		else {
-			OrderByComparator<JournalArticle> orderByComparator =
-				new ArticleVersionComparator();
-
 			articles = journalArticlePersistence.findByG_UT_ST(
 				groupId, urlTitle, WorkflowConstants.STATUS_APPROVED,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new ArticleVersionComparator());
 		}
 
 		if (articles.isEmpty()) {
@@ -5888,8 +5886,8 @@ public class JournalArticleLocalServiceImpl
 
 		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
-		for (Locale titleLocale : titleMap.keySet()) {
-			String title = titleMap.get(titleLocale);
+		for (Locale locale : titleMap.keySet()) {
+			String title = titleMap.get(locale);
 
 			if (Validator.isNull(title)) {
 				continue;
@@ -5900,7 +5898,7 @@ public class JournalArticleLocalServiceImpl
 				classNameLocalService.getClassNameId(JournalArticle.class),
 				article.getResourcePrimKey(), title);
 
-			friendlyURLMap.put(titleLocale, urlTitle);
+			friendlyURLMap.put(locale, urlTitle);
 		}
 
 		return journalArticleLocalService.updateArticle(
