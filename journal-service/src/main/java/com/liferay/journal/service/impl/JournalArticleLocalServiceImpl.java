@@ -3002,13 +3002,10 @@ public class JournalArticleLocalServiceImpl
 				groupId, JournalArticle.class, urlTitle);
 
 		if (friendlyURLEntry != null) {
-			JournalArticle article = fetchLatestArticle(
+			articles = journalArticlePersistence.findByR_ST(
 				friendlyURLEntry.getClassPK(),
-				WorkflowConstants.STATUS_APPROVED);
-
-			articles = new ArrayList<>();
-
-			articles.add(article);
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new ArticleVersionComparator());
 		}
 		else {
 			OrderByComparator<JournalArticle> orderByComparator =
