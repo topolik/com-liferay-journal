@@ -469,7 +469,7 @@ public class ActionUtil {
 					long groupId = jsonObject.getLong("groupId");
 
 					if (Validator.isNotNull(uuid) && (groupId > 0)) {
-						StringBundler sb = new StringBundler(7);
+						StringBundler sb = new StringBundler(5);
 
 						sb.append(
 							getElementInstanceId(content, field.getName(), i));
