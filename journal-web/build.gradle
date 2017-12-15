@@ -36,6 +36,6 @@ dependencies {
 	provided project(":apps:web-experience:journal:journal-api")
 	provided project(":apps:web-experience:journal:journal-service")
 
-	soyCompile group: "com.liferay", name: "com.liferay.frontend.taglib", version: "2.3.0-20171206.012807-7"
 	soyCompile group: "com.liferay", name: "com.liferay.frontend.js.metal.web", version: "1.0.10"
+	soyCompile group: "com.liferay", name: "com.liferay.frontend.taglib", version: "2.3.0-20171206.012807-7"
 }
