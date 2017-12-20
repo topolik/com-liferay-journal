@@ -175,6 +175,7 @@ import com.liferay.trash.kernel.exception.RestoreEntryException;
 import com.liferay.trash.kernel.exception.TrashEntryException;
 import com.liferay.trash.kernel.model.TrashEntry;
 import com.liferay.trash.kernel.model.TrashVersion;
+import com.liferay.upload.AttachmentContentUpdater;
 
 import java.io.File;
 import java.io.IOException;
@@ -419,6 +420,7 @@ public class JournalArticleLocalServiceImpl
 		article.setUrlTitle(urlTitle);
 
 		content = format(user, groupId, article, content);
+		content = _replaceTemporaryImages(article, content);
 
 		article.setContent(content);
 
@@ -5536,6 +5538,7 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		content = format(user, groupId, article, content);
+		content = _replaceTemporaryImages(article, content);
 
 		article.setFolderId(folderId);
 		article.setTreePath(article.buildTreePath());
@@ -6199,6 +6202,7 @@ public class JournalArticleLocalServiceImpl
 			LocaleUtil.toLanguageId(locale));
 
 		content = format(user, groupId, article, content);
+		content = _replaceTemporaryImages(article, content);
 
 		article.setContent(content);
 
@@ -8772,6 +8776,22 @@ public class JournalArticleLocalServiceImpl
 	protected com.liferay.portal.kernel.service.SubscriptionLocalService
 		subscriptionLocalService;
 
+	private FileEntry _addArticleAttachmentFileEntry(
+			JournalArticle article, long folderId, FileEntry fileEntry)
+		throws PortalException {
+
+		String fileEntryName = DLUtil.getUniqueFileName(
+			fileEntry.getGroupId(), fileEntry.getFolderId(),
+			fileEntry.getFileName());
+
+		return PortletFileRepositoryUtil.addPortletFileEntry(
+			article.getGroupId(), fileEntry.getUserId(),
+			JournalArticle.class.getName(), article.getResourcePrimKey(),
+			JournalConstants.SERVICE_NAME, folderId,
+			fileEntry.getContentStream(), fileEntryName,
+			fileEntry.getMimeType(), false);
+	}
+
 	private List<JournalArticleLocalization> _addArticleLocalizedFields(
 			long companyId, long articlePK, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap)
@@ -8902,6 +8922,20 @@ public class JournalArticleLocalServiceImpl
 		return urlTitleMap;
 	}
 
+	private String _replaceTemporaryImages(
+			JournalArticle article, String content)
+		throws PortalException {
+
+		Folder folder = article.addImagesFolder();
+
+		content = _attachmentContentUpdater.updateContent(
+			content, ContentTypes.TEXT_HTML,
+			tempFileEntry -> _addArticleAttachmentFileEntry(
+				article, folder.getFolderId(), tempFileEntry));
+
+		return content;
+	}
+
 	private List<JournalArticleLocalization> _updateArticleLocalizedFields(
 			long companyId, long articleId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap)
@@ -8952,6 +8986,9 @@ public class JournalArticleLocalServiceImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleLocalServiceImpl.class);
+
+	@ServiceReference(type = AttachmentContentUpdater.class)
+	private AttachmentContentUpdater _attachmentContentUpdater;
 
 	@ServiceReference(type = JournalFileUploadsConfiguration.class)
 	private JournalFileUploadsConfiguration _journalFileUploadsConfiguration;
