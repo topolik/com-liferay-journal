@@ -420,7 +420,7 @@ public class JournalArticleLocalServiceImpl
 		article.setUrlTitle(urlTitle);
 
 		content = format(user, groupId, article, content);
-		content = _replaceTemporaryImages(article, content);
+		content = _replaceTempImages(article, content);
 
 		article.setContent(content);
 
@@ -5538,7 +5538,7 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		content = format(user, groupId, article, content);
-		content = _replaceTemporaryImages(article, content);
+		content = _replaceTempImages(article, content);
 
 		article.setFolderId(folderId);
 		article.setTreePath(article.buildTreePath());
@@ -6202,7 +6202,7 @@ public class JournalArticleLocalServiceImpl
 			LocaleUtil.toLanguageId(locale));
 
 		content = format(user, groupId, article, content);
-		content = _replaceTemporaryImages(article, content);
+		content = _replaceTempImages(article, content);
 
 		article.setContent(content);
 
@@ -8922,18 +8922,15 @@ public class JournalArticleLocalServiceImpl
 		return urlTitleMap;
 	}
 
-	private String _replaceTemporaryImages(
-			JournalArticle article, String content)
+	private String _replaceTempImages(JournalArticle article, String content)
 		throws PortalException {
 
 		Folder folder = article.addImagesFolder();
 
-		content = _attachmentContentUpdater.updateContent(
+		return _attachmentContentUpdater.updateContent(
 			content, ContentTypes.TEXT_HTML,
-			tempFileEntry -> _addArticleAttachmentFileEntry(
-				article, folder.getFolderId(), tempFileEntry));
-
-		return content;
+			fileEntry -> _addArticleAttachmentFileEntry(
+				article, folder.getFolderId(), fileEntry));
 	}
 
 	private List<JournalArticleLocalization> _updateArticleLocalizedFields(
