@@ -237,9 +237,8 @@ public class JournalArticleExportImportContentProcessor
 							PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
 					}
 					catch (Exception e) {
-						if (_log.isInfoEnabled() || _log.isDebugEnabled()) {
-							StringBundler messageSB = new StringBundler(
-								Validator.isNotNull(e.getMessage()) ? 12 : 10);
+						if (_log.isDebugEnabled()) {
+							StringBundler messageSB = new StringBundler(10);
 
 							messageSB.append("Staged model with class name ");
 							messageSB.append(stagedModel.getModelClassName());
@@ -252,17 +251,14 @@ public class JournalArticleExportImportContentProcessor
 							messageSB.append("due to ");
 							messageSB.append(e);
 
+							String errorMessage = messageSB.toString();
+
 							if (Validator.isNotNull(e.getMessage())) {
-								messageSB.append(": ");
-								messageSB.append(e.getMessage());
+								errorMessage = StringBundler.concat(
+									errorMessage, ": ", e.getMessage());
 							}
 
-							if (_log.isDebugEnabled()) {
-								_log.debug(messageSB.toString(), e);
-							}
-							else {
-								_log.info(messageSB.toString());
-							}
+							_log.debug(errorMessage, e);
 						}
 					}
 				}
