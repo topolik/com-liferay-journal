@@ -7453,7 +7453,7 @@ public class JournalArticleLocalServiceImpl
 
 			AssetRenderer<JournalArticle> assetRenderer =
 				assetRendererFactory.getAssetRenderer(
-					article.getResourcePrimKey());
+					article, AssetRendererFactory.TYPE_LATEST_APPROVED);
 
 			urlViewInContext = assetRenderer.getURLViewInContext(
 				serviceContext.getLiferayPortletRequest(),
