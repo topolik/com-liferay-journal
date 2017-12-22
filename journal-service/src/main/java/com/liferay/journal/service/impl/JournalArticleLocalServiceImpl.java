@@ -7833,9 +7833,7 @@ public class JournalArticleLocalServiceImpl
 
 		String articleTitle = article.getTitle(serviceContext.getLanguageId());
 
-		String layoutUuid = article.getLayoutUuid();
-
-		if (Validator.isNotNull(layoutUuid)) {
+		if (Validator.isNotNull(article.getLayoutUuid())) {
 			articleURL = getURLViewInContext(article, serviceContext);
 		}
 		else {
