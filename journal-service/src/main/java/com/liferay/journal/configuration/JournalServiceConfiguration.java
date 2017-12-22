@@ -128,7 +128,7 @@ public interface JournalServiceConfiguration {
 
 	@Meta.AD(
 		deflt = "false",
-		description = "journal-browse-by-structures-sorted-by-name",
+		description = "journal-browse-by-structures-sorted-by-name-help",
 		name = "journal-browse-by-structures-sorted-by-name", required = false
 	)
 	public boolean structuresSortedByName();
