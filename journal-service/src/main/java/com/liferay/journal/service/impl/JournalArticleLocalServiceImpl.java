@@ -104,6 +104,7 @@ import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
@@ -7444,6 +7445,13 @@ public class JournalArticleLocalServiceImpl
 	protected String getURLViewInContext(
 		JournalArticle article, ServiceContext serviceContext) {
 
+		LiferayPortletRequest liferayPortletRequest =
+			serviceContext.getLiferayPortletRequest();
+
+		if (liferayPortletRequest == null) {
+			return StringPool.BLANK;
+		}
+
 		String urlViewInContext = StringPool.BLANK;
 
 		try {
@@ -7456,9 +7464,7 @@ public class JournalArticleLocalServiceImpl
 					article, AssetRendererFactory.TYPE_LATEST_APPROVED);
 
 			urlViewInContext = assetRenderer.getURLViewInContext(
-				serviceContext.getLiferayPortletRequest(),
-				serviceContext.getLiferayPortletResponse(),
-				serviceContext.getCurrentURL());
+				liferayPortletRequest, null, serviceContext.getCurrentURL());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
