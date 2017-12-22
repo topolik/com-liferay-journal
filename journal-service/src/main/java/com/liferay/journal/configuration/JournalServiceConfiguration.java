@@ -131,7 +131,7 @@ public interface JournalServiceConfiguration {
 		description = "journal-browse-by-structures-sorted-by-name-help",
 		name = "journal-browse-by-structures-sorted-by-name", required = false
 	)
-	public boolean structuresSortedByName();
+	public boolean journalBrowseByStructuresSortedByName();
 
 	@Meta.AD(
 		deflt = "false", description = "sync-content-search-on-startup",

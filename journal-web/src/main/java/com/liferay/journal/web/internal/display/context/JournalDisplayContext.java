@@ -1155,14 +1155,16 @@ public class JournalDisplayContext {
 
 	public boolean isStructuresSortedByName() {
 		if (_journalServiceConfiguration != null) {
-			return _journalServiceConfiguration.structuresSortedByName();
+			return _journalServiceConfiguration.
+				journalBrowseByStructuresSortedByName();
 		}
 
 		_journalServiceConfiguration =
 			(JournalServiceConfiguration)_request.getAttribute(
 				JournalServiceConfiguration.class.getName());
 
-		return _journalServiceConfiguration.structuresSortedByName();
+		return _journalServiceConfiguration.
+			journalBrowseByStructuresSortedByName();
 	}
 
 	protected SearchContext buildSearchContext(
