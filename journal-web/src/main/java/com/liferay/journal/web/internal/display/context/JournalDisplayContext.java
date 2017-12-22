@@ -116,6 +116,9 @@ public class JournalDisplayContext {
 		_liferayPortletResponse = liferayPortletResponse;
 		_portletPreferences = portletPreferences;
 
+		_journalServiceConfiguration =
+			(JournalServiceConfiguration)_request.getAttribute(
+				JournalServiceConfiguration.class.getName());
 		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			_request);
 	}
@@ -350,7 +353,9 @@ public class JournalDisplayContext {
 
 		Locale locale = themeDisplay.getLocale();
 
-		if (isStructuresSortedByName()) {
+		if (_journalServiceConfiguration.
+				journalBrowseByStructuresSortedByName()) {
+
 			_ddmStructures.sort(
 				(ddmStructure1, ddmStructure2) -> {
 					String name1 = ddmStructure1.getName(locale);
@@ -1153,20 +1158,6 @@ public class JournalDisplayContext {
 		return false;
 	}
 
-	public boolean isStructuresSortedByName() {
-		if (_journalServiceConfiguration != null) {
-			return _journalServiceConfiguration.
-				journalBrowseByStructuresSortedByName();
-		}
-
-		_journalServiceConfiguration =
-			(JournalServiceConfiguration)_request.getAttribute(
-				JournalServiceConfiguration.class.getName());
-
-		return _journalServiceConfiguration.
-			journalBrowseByStructuresSortedByName();
-	}
-
 	protected SearchContext buildSearchContext(
 		long companyId, long groupId, List<Long> folderIds, long classNameId,
 		String ddmStructureKey, String ddmTemplateKey, String keywords,
@@ -1287,7 +1278,7 @@ public class JournalDisplayContext {
 	private String[] _displayViews;
 	private JournalFolder _folder;
 	private Long _folderId;
-	private JournalServiceConfiguration _journalServiceConfiguration;
+	private final JournalServiceConfiguration _journalServiceConfiguration;
 	private String _keywords;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
