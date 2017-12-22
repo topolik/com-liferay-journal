@@ -323,6 +323,12 @@ public class JournalDisplayContext {
 		return ddmStructure.getPrimaryKey();
 	}
 
+	public List<DDMStructure> getDDMStructures() throws PortalException {
+		Integer restrictionType = getRestrictionType();
+
+		return getDDMStructures(restrictionType);
+	}
+
 	public List<DDMStructure> getDDMStructures(Integer restrictionType)
 		throws PortalException {
 
