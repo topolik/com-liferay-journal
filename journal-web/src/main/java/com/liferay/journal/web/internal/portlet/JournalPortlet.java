@@ -28,7 +28,6 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.item.selector.ItemSelector;
-import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.constants.JournalWebKeys;
 import com.liferay.journal.exception.ArticleContentException;
@@ -79,7 +78,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.model.TrashedModel;
-import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
@@ -88,7 +86,6 @@ import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -478,10 +475,6 @@ public class JournalPortlet extends MVCPortlet {
 		}
 
 		renderRequest.setAttribute(
-			JournalServiceConfiguration.class.getName(),
-			getJournalServiceConfiguration());
-
-		renderRequest.setAttribute(
 			JournalWebConfiguration.class.getName(), _journalWebConfiguration);
 
 		renderRequest.setAttribute(
@@ -511,10 +504,6 @@ public class JournalPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		resourceRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
-
-		resourceRequest.setAttribute(
-			JournalServiceConfiguration.class.getName(),
-			getJournalServiceConfiguration());
 
 		resourceRequest.setAttribute(
 			JournalWebConfiguration.class.getName(), _journalWebConfiguration);
@@ -1239,22 +1228,6 @@ public class JournalPortlet extends MVCPortlet {
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);
-		}
-	}
-
-	protected JournalServiceConfiguration getJournalServiceConfiguration()
-		throws PortletException {
-
-		long companyId = CompanyThreadLocal.getCompanyId();
-
-		try {
-			return ConfigurationProviderUtil.getCompanyConfiguration(
-				JournalServiceConfiguration.class, companyId);
-		}
-		catch (Exception e) {
-			_log.error("Unable to get configuration", e);
-
-			throw new PortletException(e);
 		}
 	}
 

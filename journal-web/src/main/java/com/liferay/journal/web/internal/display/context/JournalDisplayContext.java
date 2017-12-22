@@ -123,9 +123,9 @@ public class JournalDisplayContext {
 		_portletPreferences = portletPreferences;
 		_trashHelper = trashHelper;
 
-		_journalServiceConfiguration =
-			(JournalServiceConfiguration)_request.getAttribute(
-				JournalServiceConfiguration.class.getName());
+		_journalWebConfiguration =
+			(JournalWebConfiguration)_request.getAttribute(
+				JournalWebConfiguration.class.getName());
 		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			_request);
 	}
@@ -383,9 +383,7 @@ public class JournalDisplayContext {
 
 		Locale locale = themeDisplay.getLocale();
 
-		if (_journalServiceConfiguration.
-				journalBrowseByStructuresSortedByName()) {
-
+		if (_journalWebConfiguration.journalBrowseByStructuresSortedByName()) {
 			_ddmStructures.sort(
 				(ddmStructure1, ddmStructure2) -> {
 					String name1 = ddmStructure1.getName(locale);
@@ -421,13 +419,9 @@ public class JournalDisplayContext {
 		_displayStyle = ParamUtil.getString(_request, "displayStyle");
 
 		if (Validator.isNull(_displayStyle)) {
-			JournalWebConfiguration journalWebConfiguration =
-				(JournalWebConfiguration)_request.getAttribute(
-					JournalWebConfiguration.class.getName());
-
 			_displayStyle = portalPreferences.getValue(
 				JournalPortletKeys.JOURNAL, "display-style",
-				journalWebConfiguration.defaultDisplayView());
+				_journalWebConfiguration.defaultDisplayView());
 		}
 		else if (ArrayUtil.contains(displayViews, _displayStyle)) {
 			portalPreferences.setValue(
@@ -446,14 +440,10 @@ public class JournalDisplayContext {
 
 	public String[] getDisplayViews() {
 		if (_displayViews == null) {
-			JournalWebConfiguration journalWebConfiguration =
-				(JournalWebConfiguration)_request.getAttribute(
-					JournalWebConfiguration.class.getName());
-
 			_displayViews = StringUtil.split(
 				PrefsParamUtil.getString(
 					_portletPreferences, _request, "displayViews",
-					StringUtil.merge(journalWebConfiguration.displayViews())));
+					StringUtil.merge(_journalWebConfiguration.displayViews())));
 		}
 
 		return _displayViews;
@@ -618,11 +608,7 @@ public class JournalDisplayContext {
 			return _maxAddMenuItems;
 		}
 
-		JournalWebConfiguration journalWebConfiguration =
-			(JournalWebConfiguration)_request.getAttribute(
-				JournalWebConfiguration.class.getName());
-
-		_maxAddMenuItems = journalWebConfiguration.maxAddMenuItems();
+		_maxAddMenuItems = _journalWebConfiguration.maxAddMenuItems();
 
 		return _maxAddMenuItems;
 	}
@@ -684,13 +670,9 @@ public class JournalDisplayContext {
 	}
 
 	public String[] getOrderColumns() {
-		JournalWebConfiguration journalWebConfiguration =
-			(JournalWebConfiguration)_request.getAttribute(
-				JournalWebConfiguration.class.getName());
-
 		String[] orderColumns = {"display-date", "modified-date", "title"};
 
-		if (!journalWebConfiguration.journalArticleForceAutogenerateId()) {
+		if (!_journalWebConfiguration.journalArticleForceAutogenerateId()) {
 			orderColumns = ArrayUtil.append(orderColumns, "id");
 		}
 
@@ -908,11 +890,7 @@ public class JournalDisplayContext {
 				folderIds.add(getFolderId());
 			}
 
-			JournalWebConfiguration journalWebConfiguration =
-				(JournalWebConfiguration)_request.getAttribute(
-					JournalWebConfiguration.class.getName());
-
-			if (journalWebConfiguration.journalArticlesSearchWithIndex()) {
+			if (_journalWebConfiguration.journalArticlesSearchWithIndex()) {
 				boolean orderByAsc = false;
 
 				if (Objects.equals(getOrderByType(), "asc")) {
@@ -1420,7 +1398,7 @@ public class JournalDisplayContext {
 	private String[] _displayViews;
 	private JournalFolder _folder;
 	private Long _folderId;
-	private final JournalServiceConfiguration _journalServiceConfiguration;
+	private final JournalWebConfiguration _journalWebConfiguration;
 	private String _keywords;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
