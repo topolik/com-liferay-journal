@@ -949,9 +949,7 @@ public class JournalDisplayContext {
 
 				Document[] documents = hits.getDocs();
 
-				for (int i = 0; i < documents.length; i++) {
-					Document document = documents[i];
-
+				for (Document document : documents) {
 					JournalArticle article = null;
 					JournalFolder folder = null;
 
