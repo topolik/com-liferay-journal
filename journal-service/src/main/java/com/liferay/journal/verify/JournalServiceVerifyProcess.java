@@ -326,10 +326,10 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	protected void updateDocumentLibraryElements(Element element) {
-		List<Element> dynamicContentEl = element.elements("dynamic-content");
+		List<Element> dynamicContentElements = element.elements(
+			"dynamic-content");
 
-		for (Element dynamicContentElement : dynamicContentEl) {
-
+		for (Element dynamicContentElement : dynamicContentElements) {
 			String path = dynamicContentElement.getStringValue();
 
 			String[] pathArray = StringUtil.split(path, CharPool.SLASH);
