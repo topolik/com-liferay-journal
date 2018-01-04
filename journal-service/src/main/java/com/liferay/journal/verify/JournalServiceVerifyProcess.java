@@ -326,34 +326,37 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	protected void updateDocumentLibraryElements(Element element) {
-		Element dynamicContentElement = element.element("dynamic-content");
+		List<Element> dynamicContentEl = element.elements("dynamic-content");
 
-		String path = dynamicContentElement.getStringValue();
+		for (Element dynamicContentElement : dynamicContentEl) {
 
-		String[] pathArray = StringUtil.split(path, CharPool.SLASH);
+			String path = dynamicContentElement.getStringValue();
 
-		if (pathArray.length != 5) {
-			return;
-		}
+			String[] pathArray = StringUtil.split(path, CharPool.SLASH);
 
-		long groupId = GetterUtil.getLong(pathArray[2]);
-		long folderId = GetterUtil.getLong(pathArray[3]);
-		String title = _http.decodeURL(HtmlUtil.escape(pathArray[4]));
+			if (pathArray.length != 5) {
+				return;
+			}
 
-		try {
-			FileEntry fileEntry = _dlAppLocalService.getFileEntry(
-				groupId, folderId, title);
+			long groupId = GetterUtil.getLong(pathArray[2]);
+			long folderId = GetterUtil.getLong(pathArray[3]);
+			String title = _http.decodeURL(HtmlUtil.escape(pathArray[4]));
 
-			Node node = dynamicContentElement.node(0);
+			try {
+				FileEntry fileEntry = _dlAppLocalService.getFileEntry(
+					groupId, folderId, title);
 
-			node.setText(path + StringPool.SLASH + fileEntry.getUuid());
-		}
-		catch (PortalException pe) {
+				Node node = dynamicContentElement.node(0);
 
-			// LPS-52675
+				node.setText(path + StringPool.SLASH + fileEntry.getUuid());
+			}
+			catch (PortalException pe) {
 
-			if (_log.isDebugEnabled()) {
-				_log.debug(pe, pe);
+				// LPS-52675
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(pe, pe);
+				}
 			}
 		}
 	}
