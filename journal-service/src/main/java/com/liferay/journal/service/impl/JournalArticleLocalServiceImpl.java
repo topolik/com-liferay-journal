@@ -1003,10 +1003,12 @@ public class JournalArticleLocalServiceImpl
 
 		Map<Locale, String> newTitleMap = oldArticle.getTitleMap();
 
-		for (Locale locale : newTitleMap.keySet()) {
+		for (Map.Entry<Locale, String> entry : newTitleMap.entrySet()) {
+			Locale locale = entry.getKey();
+
 			StringBundler sb = new StringBundler(5);
 
-			sb.append(newTitleMap.get(locale));
+			sb.append(entry.getValue());
 			sb.append(StringPool.SPACE);
 			sb.append(LanguageUtil.get(locale, "duplicate"));
 			sb.append(StringPool.SPACE);
@@ -5893,8 +5895,8 @@ public class JournalArticleLocalServiceImpl
 
 		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
-		for (Locale locale : titleMap.keySet()) {
-			String title = titleMap.get(locale);
+		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
+			String title = entry.getValue();
 
 			if (Validator.isNull(title)) {
 				continue;
@@ -5905,7 +5907,7 @@ public class JournalArticleLocalServiceImpl
 				classNameLocalService.getClassNameId(JournalArticle.class),
 				article.getResourcePrimKey(), title);
 
-			friendlyURLMap.put(locale, urlTitle);
+			friendlyURLMap.put(entry.getKey(), urlTitle);
 		}
 
 		return journalArticleLocalService.updateArticle(
@@ -8063,12 +8065,12 @@ public class JournalArticleLocalServiceImpl
 			return;
 		}
 
-		for (Locale locale : descriptionMap.keySet()) {
+		for (Map.Entry<Locale, String> entry : descriptionMap.entrySet()) {
 			String description = SanitizerUtil.sanitize(
 				companyId, groupId, userId, JournalArticle.class.getName(),
-				classPK, ContentTypes.TEXT_HTML, descriptionMap.get(locale));
+				classPK, ContentTypes.TEXT_HTML, entry.getValue());
 
-			descriptionMap.put(locale, description);
+			descriptionMap.put(entry.getKey(), description);
 		}
 	}
 
@@ -8513,8 +8515,8 @@ public class JournalArticleLocalServiceImpl
 		int titleMaxLength = ModelHintsUtil.getMaxLength(
 			JournalArticleLocalization.class.getName(), "title");
 
-		for (Locale locale : titleMap.keySet()) {
-			String title = titleMap.get(locale);
+		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
+			String title = entry.getValue();
 
 			if (Validator.isNull(title) || (title.length() <= titleMaxLength)) {
 				continue;
@@ -8948,8 +8950,8 @@ public class JournalArticleLocalServiceImpl
 
 		Map<String, String> urlTitleMap = new HashMap<>();
 
-		for (Locale locale : titleMap.keySet()) {
-			String title = titleMap.get(locale);
+		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
+			String title = entry.getValue();
 
 			if (Validator.isNull(title)) {
 				continue;
@@ -8960,7 +8962,7 @@ public class JournalArticleLocalServiceImpl
 				classNameLocalService.getClassNameId(JournalArticle.class),
 				resourcePrimKey, title);
 
-			urlTitleMap.put(LocaleUtil.toLanguageId(locale), urlTitle);
+			urlTitleMap.put(LocaleUtil.toLanguageId(entry.getKey()), urlTitle);
 		}
 
 		return urlTitleMap;
