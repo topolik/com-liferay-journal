@@ -5589,8 +5589,16 @@ public class JournalArticleLocalServiceImpl
 
 		// Friendly URLs
 
-		friendlyURLEntryLocalService.deleteFriendlyURLEntry(
-			groupId, JournalArticle.class, article.getResourcePrimKey());
+		List<FriendlyURLEntry> friendlyURLEntries =
+			friendlyURLEntryLocalService.getFriendlyURLEntries(
+				groupId,
+				classNameLocalService.getClassNameId(JournalArticle.class),
+				article.getResourcePrimKey());
+
+		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
+			friendlyURLEntryLocalService.deleteFriendlyURLEntry(
+				friendlyURLEntry);
+		}
 
 		friendlyURLEntryLocalService.addFriendlyURLEntry(
 			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
