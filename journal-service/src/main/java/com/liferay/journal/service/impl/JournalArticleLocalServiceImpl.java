@@ -647,7 +647,7 @@ public class JournalArticleLocalServiceImpl
 
 		return journalArticleLocalService.addArticle(
 			userId, groupId, folderId, classNameId, classPK, articleId,
-			autoArticleId, version, titleMap, titleMap, descriptionMap, content,
+			autoArticleId, version, titleMap, descriptionMap, titleMap, content,
 			ddmStructureKey, ddmTemplateKey, layoutUuid, displayDateMonth,
 			displayDateDay, displayDateYear, displayDateHour, displayDateMinute,
 			expirationDateMonth, expirationDateDay, expirationDateYear,
