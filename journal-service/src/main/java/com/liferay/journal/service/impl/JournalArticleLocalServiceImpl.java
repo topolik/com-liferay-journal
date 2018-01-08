@@ -406,14 +406,14 @@ public class JournalArticleLocalServiceImpl
 
 		JournalArticle article = journalArticlePersistence.create(id);
 
+		Map<String, String> urlTitleMap = _getURLTitleMap(
+			groupId, resourcePrimKey, friendlyURLMap);
+
 		Locale locale = getArticleDefaultLocale(content);
 
 		if (MapUtil.isEmpty(friendlyURLMap)) {
 			friendlyURLMap = titleMap;
 		}
-
-		Map<String, String> urlTitleMap = _getURLTitleMap(
-			groupId, resourcePrimKey, friendlyURLMap);
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
