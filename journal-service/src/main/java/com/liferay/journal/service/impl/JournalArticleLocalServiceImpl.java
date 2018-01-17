@@ -368,9 +368,13 @@ public class JournalArticleLocalServiceImpl
 		catch (IOException ioe) {
 		}
 
+		boolean validate = !ExportImportThreadLocal.isImportInProcess();
+
 		Date now = new Date();
 
-		validateDDMStructureId(groupId, folderId, ddmStructureKey);
+		if (validate) {
+			validateDDMStructureId(groupId, folderId, ddmStructureKey);
+		}
 
 		if (autoArticleId) {
 			articleId = String.valueOf(counterLocalService.increment());
@@ -378,13 +382,13 @@ public class JournalArticleLocalServiceImpl
 
 		sanitize(user.getCompanyId(), groupId, userId, classPK, descriptionMap);
 
-		validate(
-			user.getCompanyId(), groupId, classNameId, articleId, autoArticleId,
-			version, titleMap, content, ddmStructureKey, ddmTemplateKey,
-			displayDate, expirationDate, smallImage, smallImageURL,
-			smallImageFile, smallImageBytes, serviceContext);
+		if (validate) {
+			validate(
+				user.getCompanyId(), groupId, classNameId, articleId,
+				autoArticleId, version, titleMap, content, ddmStructureKey,
+				ddmTemplateKey, displayDate, expirationDate, smallImage,
+				smallImageURL, smallImageFile, smallImageBytes, serviceContext);
 
-		if (!ExportImportThreadLocal.isImportInProcess()) {
 			validateReferences(
 				groupId, ddmStructureKey, ddmTemplateKey, layoutUuid,
 				smallImage, smallImageURL, smallImageBytes, 0, content);
@@ -5481,6 +5485,8 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
+		boolean validate = !ExportImportThreadLocal.isImportInProcess();
+
 		Date now = new Date();
 
 		boolean expired = false;
@@ -5493,13 +5499,13 @@ public class JournalArticleLocalServiceImpl
 			user.getCompanyId(), groupId, userId, article.getClassPK(),
 			descriptionMap);
 
-		validate(
-			user.getCompanyId(), groupId, latestArticle.getClassNameId(),
-			titleMap, content, ddmStructureKey, ddmTemplateKey, displayDate,
-			expirationDate, smallImage, smallImageURL, smallImageFile,
-			smallImageBytes, serviceContext);
+		if (validate) {
+			validate(
+				user.getCompanyId(), groupId, latestArticle.getClassNameId(),
+				titleMap, content, ddmStructureKey, ddmTemplateKey, displayDate,
+				expirationDate, smallImage, smallImageURL, smallImageFile,
+				smallImageBytes, serviceContext);
 
-		if (!ExportImportThreadLocal.isImportInProcess()) {
 			validateReferences(
 				groupId, ddmStructureKey, ddmTemplateKey, layoutUuid,
 				smallImage, smallImageURL, smallImageBytes,
