@@ -6928,7 +6928,9 @@ public class JournalArticleLocalServiceImpl
 			long imageId = journalArticleImageLocalService.getArticleImageId(
 				groupId, articleId, version, elInstanceId, elName, elLanguage);
 
-			if (dynamicContent.getText().equals("delete") ||
+			String dynamicContentText = dynamicContent.getText();
+
+			if (dynamicContentText.equals("delete") ||
 				Validator.isNull(dynamicContent.getText())) {
 
 				dynamicContent.setText(StringPool.BLANK);
@@ -7003,7 +7005,7 @@ public class JournalArticleLocalServiceImpl
 
 					imageLocalService.updateImage(imageId, bytes);
 				}
-				else if (dynamicContent.getText().equals("update")) {
+				else if (dynamicContentText.equals("update")) {
 					dynamicContent.setText(StringPool.BLANK);
 				}
 
@@ -7018,7 +7020,7 @@ public class JournalArticleLocalServiceImpl
 
 				continue;
 			}
-			else if (dynamicContent.getText().equals("update")) {
+			else if (dynamicContentText.equals("update")) {
 				dynamicContent.setText(StringPool.BLANK);
 
 				continue;
@@ -8087,7 +8089,9 @@ public class JournalArticleLocalServiceImpl
 		JournalArticle firstArticle = journalArticlePersistence.findByG_A_First(
 			groupId, articleId, new ArticleVersionComparator(false));
 
-		if (firstArticle.getUrlTitle().equals(urlTitle)) {
+		String firstArticleUrlTitle = firstArticle.getUrlTitle();
+
+		if (firstArticleUrlTitle.equals(urlTitle)) {
 			return;
 		}
 
@@ -8095,7 +8099,9 @@ public class JournalArticleLocalServiceImpl
 			groupId, articleId);
 
 		for (JournalArticle article : articles) {
-			if (!article.getUrlTitle().equals(urlTitle)) {
+			String curArticleUrlTitle = article.getUrlTitle();
+
+			if (!curArticleUrlTitle.equals(urlTitle)) {
 				article.setUrlTitle(urlTitle);
 
 				journalArticlePersistence.update(article);
