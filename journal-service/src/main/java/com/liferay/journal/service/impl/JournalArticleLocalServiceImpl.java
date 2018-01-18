@@ -368,9 +368,9 @@ public class JournalArticleLocalServiceImpl
 		catch (IOException ioe) {
 		}
 
-		boolean validate = !ExportImportThreadLocal.isImportInProcess();
-
 		Date now = new Date();
+
+		boolean validate = !ExportImportThreadLocal.isImportInProcess();
 
 		if (validate) {
 			validateDDMStructureId(groupId, folderId, ddmStructureKey);
@@ -5485,8 +5485,6 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		boolean validate = !ExportImportThreadLocal.isImportInProcess();
-
 		Date now = new Date();
 
 		boolean expired = false;
@@ -5498,6 +5496,8 @@ public class JournalArticleLocalServiceImpl
 		sanitize(
 			user.getCompanyId(), groupId, userId, article.getClassPK(),
 			descriptionMap);
+
+		boolean validate = !ExportImportThreadLocal.isImportInProcess();
 
 		if (validate) {
 			validate(
