@@ -368,8 +368,6 @@ public class JournalArticleLocalServiceImpl
 		catch (IOException ioe) {
 		}
 
-		Date now = new Date();
-
 		boolean validate = !ExportImportThreadLocal.isImportInProcess();
 
 		if (validate) {
@@ -446,6 +444,8 @@ public class JournalArticleLocalServiceImpl
 		article.setSmallImage(smallImage);
 		article.setSmallImageId(counterLocalService.increment());
 		article.setSmallImageURL(smallImageURL);
+
+		Date now = new Date();
 
 		if ((expirationDate == null) || expirationDate.after(now)) {
 			article.setStatus(WorkflowConstants.STATUS_DRAFT);
