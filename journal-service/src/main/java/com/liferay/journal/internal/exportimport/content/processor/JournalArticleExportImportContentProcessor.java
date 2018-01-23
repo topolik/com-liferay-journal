@@ -17,11 +17,14 @@ package com.liferay.journal.internal.exportimport.content.processor;
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.content.processor.base.BaseTextExportImportContentProcessor;
+import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
+import com.liferay.exportimport.kernel.lar.PortletDataHandlerControl;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.exception.NoSuchArticleException;
+import com.liferay.journal.exportimport.data.handler.JournalPortletDataHandler;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.exception.BulkException;
@@ -34,9 +37,13 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -139,6 +146,137 @@ public class JournalArticleExportImportContentProcessor
 
 			throw e;
 		}
+	}
+
+	@Override
+	protected String replaceExportDLReferences(
+			PortletDataContext portletDataContext, StagedModel stagedModel,
+			String content, boolean exportReferencedContent)
+		throws Exception {
+
+		Group group = _groupLocalService.getGroup(
+			portletDataContext.getGroupId());
+
+		if (group.isStagingGroup()) {
+			group = group.getLiveGroup();
+		}
+
+		if (group.isStaged() && !group.isStagedRemotely() &&
+			!group.isStagedPortlet(PortletKeys.DOCUMENT_LIBRARY)) {
+
+			return content;
+		}
+
+		StringBuilder sb = new StringBuilder(content);
+
+		String contextPath = _portal.getPathContext();
+
+		String[] patterns = {
+			contextPath.concat("/c/document_library/get_file?"),
+			contextPath.concat("/documents/"),
+			contextPath.concat("/image/image_gallery?")
+		};
+
+		int beginPos = -1;
+		int endPos = content.length();
+
+		while (true) {
+			beginPos = StringUtil.lastIndexOfAny(content, patterns, endPos);
+
+			if (beginPos == -1) {
+				break;
+			}
+
+			Map<String, String[]> dlReferenceParameters =
+				getDLReferenceParameters(
+					portletDataContext.getScopeGroupId(), content,
+					beginPos + contextPath.length(), endPos);
+
+			FileEntry fileEntry = getFileEntry(dlReferenceParameters);
+
+			if (fileEntry == null) {
+				endPos = beginPos - 1;
+
+				continue;
+			}
+
+			endPos = MapUtil.getInteger(dlReferenceParameters, "endPos");
+
+			try {
+				if (_isAlwaysIncludeReference(portletDataContext, fileEntry) &&
+					exportReferencedContent && !fileEntry.isInTrash()) {
+
+					StagedModelDataHandlerUtil.exportReferenceStagedModel(
+						portletDataContext, stagedModel, fileEntry,
+						PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
+				}
+				else {
+					Element entityElement =
+						portletDataContext.getExportDataElement(stagedModel);
+
+					String referenceType =
+						PortletDataContext.REFERENCE_TYPE_DEPENDENCY;
+
+					if (fileEntry.isInTrash()) {
+						referenceType =
+							PortletDataContext.
+								REFERENCE_TYPE_DEPENDENCY_DISPOSABLE;
+					}
+
+					portletDataContext.addReferenceElement(
+						stagedModel, entityElement, fileEntry, referenceType,
+						true);
+				}
+
+				String path = ExportImportPathUtil.getModelPath(fileEntry);
+
+				StringBundler exportedReferenceSB = new StringBundler(6);
+
+				exportedReferenceSB.append("[$dl-reference=");
+				exportedReferenceSB.append(path);
+				exportedReferenceSB.append("$]");
+
+				if (fileEntry.isInTrash()) {
+					String originalReference = sb.substring(beginPos, endPos);
+
+					exportedReferenceSB.append("[#dl-reference=");
+					exportedReferenceSB.append(originalReference);
+					exportedReferenceSB.append("#]");
+				}
+
+				sb.replace(beginPos, endPos, exportedReferenceSB.toString());
+
+				int deleteTimestampParametersOffset = beginPos;
+
+				if (fileEntry.isInTrash()) {
+					deleteTimestampParametersOffset = sb.indexOf(
+						"[#dl-reference=", beginPos);
+				}
+
+				deleteTimestampParameters(sb, deleteTimestampParametersOffset);
+			}
+			catch (Exception e) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+				else if (_log.isWarnEnabled()) {
+					StringBundler exceptionSB = new StringBundler(6);
+
+					exceptionSB.append("Unable to process file entry ");
+					exceptionSB.append(fileEntry.getFileEntryId());
+					exceptionSB.append(" for staged model ");
+					exceptionSB.append(stagedModel.getModelClassName());
+					exceptionSB.append(" with primary key ");
+					exceptionSB.append(stagedModel.getPrimaryKeyObj());
+
+					_log.warn(exceptionSB.toString());
+				}
+			}
+
+			endPos = beginPos - 1;
+		}
+
+		return sb.toString();
 	}
 
 	protected String replaceExportJournalArticleReferences(
@@ -426,6 +564,35 @@ public class JournalArticleExportImportContentProcessor
 		}
 	}
 
+	private boolean _isAlwaysIncludeReference(
+		PortletDataContext portletDataContext,
+		StagedModel referenceStagedModel) {
+
+		Map<String, String[]> parameterMap =
+			portletDataContext.getParameterMap();
+
+		String[] referencedContentBehaviorArray = parameterMap.get(
+			PortletDataHandlerControl.getNamespacedControlName(
+				JournalPortletDataHandler.NAMESPACE,
+				"referenced-content-behavior"));
+
+		String referencedContentBehavior = "include-if-modified";
+
+		if (!ArrayUtil.isEmpty(referencedContentBehaviorArray)) {
+			referencedContentBehavior = referencedContentBehaviorArray[0];
+		}
+
+		if (referencedContentBehavior.equals("include-always") ||
+			(referencedContentBehavior.equals("include-if-modified") &&
+			 portletDataContext.isWithinDateRange(
+				 referenceStagedModel.getModifiedDate()))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleExportImportContentProcessor.class);
 
@@ -437,5 +604,8 @@ public class JournalArticleExportImportContentProcessor
 
 	@Reference
 	private JSONFactory _jsonFactory;
+
+	@Reference
+	private Portal _portal;
 
 }
