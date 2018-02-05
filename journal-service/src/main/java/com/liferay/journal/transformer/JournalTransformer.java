@@ -250,6 +250,10 @@ public class JournalTransformer {
 			Template template = getTemplate(
 				templateId, tokens, languageId, document, script, langType);
 
+			if (themeDisplay != null && themeDisplay.getRequest() != null) {
+				template.prepare(themeDisplay.getRequest());
+			}
+
 			if (contextObjects != null) {
 				template.putAll(contextObjects);
 			}
@@ -323,10 +327,6 @@ public class JournalTransformer {
 						TemplateManagerUtil.getTemplateManager(langType);
 
 					HttpServletRequest request = themeDisplay.getRequest();
-
-					if (request != null) {
-						template.prepare(request);
-					}
 
 					templateManager.addTaglibSupport(
 						template, request, themeDisplay.getResponse());
