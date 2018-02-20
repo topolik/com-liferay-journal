@@ -219,7 +219,7 @@ public class JournalContentPortletToolbarContributor
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Could not get Journal Content Portlet permission.", pe);
+					"Unable to check Journal Content portlet permission", pe);
 			}
 		}
 
