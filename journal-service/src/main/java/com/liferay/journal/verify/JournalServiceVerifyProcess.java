@@ -983,6 +983,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	/**
 	 * @deprecated As of 3.24.4
 	 */
+	@Deprecated
 	protected void verifyTree() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			long[] companyIds = PortalInstances.getCompanyIdsBySQL();
