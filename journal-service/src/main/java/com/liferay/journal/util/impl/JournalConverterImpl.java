@@ -603,6 +603,9 @@ public class JournalConverterImpl implements JournalConverter {
 			jsonObject.put("alt", dynamicContentElement.attributeValue("alt"));
 			jsonObject.put("data", dynamicContentElement.getText());
 			jsonObject.put(
+				"fileEntryId",
+				dynamicContentElement.attributeValue("fileEntryId"));
+			jsonObject.put(
 				"name", dynamicContentElement.attributeValue("name"));
 			jsonObject.put(
 				"title", dynamicContentElement.attributeValue("title"));

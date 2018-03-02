@@ -6863,22 +6863,22 @@ public class JournalArticleLocalServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
-		String data = jsonObject.getString("data");
-
-		if (Validator.isNotNull(data)) {
-			dynamicContentElement.clearContent();
-
-			dynamicContentElement.addCDATA(data);
-
-			return;
-		}
-
+		String fileEntryId = jsonObject.getString("fileEntryId");
 		String uuid = jsonObject.getString("uuid");
 		long groupId = jsonObject.getLong("groupId");
-		boolean tempFile = jsonObject.getBoolean("tempFile");
 
-		FileEntry fileEntry = dlAppLocalService.getFileEntryByUuidAndGroupId(
-			uuid, groupId);
+		FileEntry fileEntry = null;
+
+		if (Validator.isNotNull(fileEntryId)) {
+			fileEntry = dlAppLocalService.getFileEntry(
+				Long.parseLong(fileEntryId));
+		}
+		else {
+			fileEntry = dlAppLocalService.getFileEntryByUuidAndGroupId(
+				uuid, groupId);
+		}
+
+		boolean tempFile = jsonObject.getBoolean("tempFile");
 
 		if (tempFile) {
 			String fileEntryName = DLUtil.getUniqueFileName(
@@ -6898,8 +6898,10 @@ public class JournalArticleLocalServiceImpl
 
 		dynamicContentElement.clearContent();
 
-		dynamicContentElement.addAttribute(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+		if (Validator.isNull(fileEntryId)) {
+			dynamicContentElement.addAttribute(
+				"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+		}
 
 		dynamicContentElement.addCDATA(previewURL);
 	}
@@ -6916,7 +6918,14 @@ public class JournalArticleLocalServiceImpl
 			String elType = dynamicContent.attributeValue(
 				"type", StringPool.BLANK);
 
-			dynamicContent.addAttribute("fileEntryId", StringPool.BLANK);
+			String dynamicContentText = dynamicContent.getText();
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				dynamicContentText);
+
+			String fileEntryId = jsonObject.getString("fileEntryId");
+
+			dynamicContent.addAttribute("fileEntryId", fileEntryId);
 
 			if (elType.equals("document")) {
 				if (ExportImportThreadLocal.isImportInProcess()) {
@@ -6938,10 +6947,8 @@ public class JournalArticleLocalServiceImpl
 			long imageId = journalArticleImageLocalService.getArticleImageId(
 				groupId, articleId, version, elInstanceId, elName, elLanguage);
 
-			String dynamicContentText = dynamicContent.getText();
-
-			if (dynamicContentText.equals("delete") ||
-				Validator.isNull(dynamicContent.getText())) {
+			if (Validator.isNull(dynamicContentText) ||
+				dynamicContentText.equals("delete")) {
 
 				dynamicContent.setText(StringPool.BLANK);
 
@@ -6993,9 +7000,6 @@ public class JournalArticleLocalServiceImpl
 				long oldImageId = 0;
 
 				if (incrementVersion) {
-					JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-						dynamicContent.getText());
-
 					oldImageId = GetterUtil.getLong(
 						HttpUtil.getParameter(
 							jsonObject.getString("data"), "img_id", false));
