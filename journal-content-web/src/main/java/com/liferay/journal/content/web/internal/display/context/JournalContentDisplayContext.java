@@ -80,7 +80,6 @@ import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
-import javax.portlet.RenderResponse;
 
 /**
  * @author Eudaldo Alonso
@@ -917,15 +916,6 @@ public class JournalContentDisplayContext {
 		if (Validator.isNull(getPortletResource()) && !isShowArticle()) {
 			portletRequest.setAttribute(
 				WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-		}
-		else if (isShowArticle() &&
-				 (portletResponse instanceof RenderResponse)) {
-
-			RenderResponse renderResponse = (RenderResponse)portletResponse;
-
-			JournalArticleDisplay articleDisplay = getArticleDisplay();
-
-			renderResponse.setTitle(articleDisplay.getTitle());
 		}
 	}
 
