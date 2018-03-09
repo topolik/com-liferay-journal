@@ -22,7 +22,6 @@ import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.portal.kernel.cache.MultiVMPool;
 import com.liferay.portal.kernel.cache.PortalCache;
-import com.liferay.portal.kernel.cache.PortalCacheHelperUtil;
 import com.liferay.portal.kernel.cache.index.IndexEncoder;
 import com.liferay.portal.kernel.cache.index.PortalCacheIndexer;
 import com.liferay.portal.kernel.cluster.ClusterInvokeAcceptor;
@@ -249,8 +248,7 @@ public class JournalContentImpl
 			if ((articleDisplay != null) && articleDisplay.isCacheable() &&
 				lifecycleRender) {
 
-				PortalCacheHelperUtil.putWithoutReplicator(
-					_portalCache, journalContentKey, articleDisplay);
+				_portalCache.put(journalContentKey, articleDisplay);
 			}
 		}
 
