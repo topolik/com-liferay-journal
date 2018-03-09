@@ -6863,6 +6863,16 @@ public class JournalArticleLocalServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
+		String data = jsonObject.getString("data");
+
+		if (Validator.isNotNull(data)) {
+			dynamicContentElement.clearContent();
+
+			dynamicContentElement.addCDATA(data);
+
+			return;
+		}
+
 		String fileEntryId = jsonObject.getString("fileEntryId");
 		String uuid = jsonObject.getString("uuid");
 		long groupId = jsonObject.getLong("groupId");
