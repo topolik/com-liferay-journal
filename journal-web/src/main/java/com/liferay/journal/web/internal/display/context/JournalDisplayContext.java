@@ -551,6 +551,10 @@ public class JournalDisplayContext {
 			return _orderByType;
 		}
 
+		if (isNavigationRecent()) {
+			return "DESC";
+		}
+
 		_orderByType = ParamUtil.getString(_request, "orderByType");
 
 		if (Validator.isNull(_orderByType)) {
@@ -719,7 +723,7 @@ public class JournalDisplayContext {
 			}
 
 			if (isNavigationRecent()) {
-				articleSearchContainer.setOrderByCol("create-date");
+				articleSearchContainer.setOrderByCol("modified-date");
 				articleSearchContainer.setOrderByType(getOrderByType());
 			}
 
