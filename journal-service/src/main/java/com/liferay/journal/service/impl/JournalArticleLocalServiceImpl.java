@@ -6930,10 +6930,16 @@ public class JournalArticleLocalServiceImpl
 
 			String dynamicContentText = dynamicContent.getText();
 
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				dynamicContentText);
+			String fileEntryId = StringPool.BLANK;
 
-			String fileEntryId = jsonObject.getString("fileEntryId");
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			if (Validator.isNotNull(dynamicContentText)) {
+				jsonObject = JSONFactoryUtil.createJSONObject(
+					dynamicContentText);
+
+				fileEntryId = jsonObject.getString("fileEntryId");
+			}
 
 			dynamicContent.addAttribute("fileEntryId", fileEntryId);
 
