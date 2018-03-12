@@ -81,7 +81,9 @@ data.put("qa-id", "navigation");
 
 		<div class="sidenav-content">
 			<div class="journal-breadcrumb" id="<portlet:namespace />breadcrumbContainer">
-				<liferay-util:include page="/breadcrumb.jsp" servletContext="<%= application %>" />
+				<c:if test="<%= !journalDisplayContext.isNavigationMine() && !journalDisplayContext.isNavigationRecent() %>">
+					<liferay-util:include page="/breadcrumb.jsp" servletContext="<%= application %>" />
+				</c:if>
 			</div>
 
 			<%
