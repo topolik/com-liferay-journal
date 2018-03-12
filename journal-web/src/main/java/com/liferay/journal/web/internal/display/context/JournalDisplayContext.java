@@ -552,7 +552,7 @@ public class JournalDisplayContext {
 		}
 
 		if (isNavigationRecent()) {
-			return "DESC";
+			return "desc";
 		}
 
 		_orderByType = ParamUtil.getString(_request, "orderByType");
