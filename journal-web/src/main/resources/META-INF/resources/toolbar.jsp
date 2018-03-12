@@ -95,13 +95,13 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			/>
 		</liferay-frontend:management-bar-navigation>
 
-		<c:if test="<%= !journalDisplayContext.isNavigationRecent() %>">
-			<liferay-frontend:management-bar-filter
-				label="status"
-				managementBarFilterItems="<%= journalDisplayContext.getManagementBarStatusFilterItems() %>"
-				value="<%= journalDisplayContext.getManagementBarStatusFilterValue() %>"
-			/>
+		<liferay-frontend:management-bar-filter
+			label="status"
+			managementBarFilterItems="<%= journalDisplayContext.getManagementBarStatusFilterItems() %>"
+			value="<%= journalDisplayContext.getManagementBarStatusFilterValue() %>"
+		/>
 
+		<c:if test="<%= !journalDisplayContext.isNavigationRecent() %>">
 			<liferay-frontend:management-bar-sort
 				orderByCol="<%= journalDisplayContext.getOrderByCol() %>"
 				orderByType="<%= journalDisplayContext.getOrderByType() %>"
