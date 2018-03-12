@@ -6881,7 +6881,7 @@ public class JournalArticleLocalServiceImpl
 
 		if (Validator.isNotNull(fileEntryId)) {
 			fileEntry = dlAppLocalService.getFileEntry(
-				Long.parseLong(fileEntryId));
+				GetterUtil.getLong(fileEntryId));
 		}
 		else {
 			fileEntry = dlAppLocalService.getFileEntryByUuidAndGroupId(
