@@ -267,6 +267,10 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 		}
 	}
 
+	/**
+	 * @deprecated As of 3.24.5, with no direct replacement
+	 */
+	@Deprecated
 	protected void updateCreateAndModifiedDates() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
 			_journalArticleResourceLocalService.getActionableDynamicQuery();
@@ -300,6 +304,10 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 		}
 	}
 
+	/**
+	 * @deprecated As of 3.24.5, with no direct replacement
+	 */
+	@Deprecated
 	protected void updateCreateDate(JournalArticleResource articleResource) {
 		List<JournalArticle> articles = _journalArticleLocalService.getArticles(
 			articleResource.getGroupId(), articleResource.getArticleId(),
@@ -504,6 +512,10 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 		}
 	}
 
+	/**
+	 * @deprecated As of 3.24.5, with no direct replacement
+	 */
+	@Deprecated
 	protected void updateModifiedDate(JournalArticleResource articleResource) {
 		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
 			articleResource.getResourcePrimKey(),
@@ -665,7 +677,6 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 				_log.debug("Assets verified for articles");
 			}
 
-			updateCreateAndModifiedDates();
 			updateResourcePrimKey();
 		}
 	}
