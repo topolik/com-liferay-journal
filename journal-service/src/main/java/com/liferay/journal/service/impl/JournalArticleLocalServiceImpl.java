@@ -88,6 +88,7 @@ import com.liferay.portal.kernel.exception.NoSuchImageException;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -6930,15 +6931,22 @@ public class JournalArticleLocalServiceImpl
 
 			String dynamicContentText = dynamicContent.getText();
 
-			String fileEntryId = StringPool.BLANK;
+			String fileEntryId = dynamicContent.attributeValue(
+				"fileEntryId", StringPool.BLANK);
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			if (Validator.isNotNull(dynamicContentText)) {
-				jsonObject = JSONFactoryUtil.createJSONObject(
-					dynamicContentText);
+			if (Validator.isNull(fileEntryId) &&
+				Validator.isNotNull(dynamicContentText)) {
 
-				fileEntryId = jsonObject.getString("fileEntryId");
+				try {
+					jsonObject = JSONFactoryUtil.createJSONObject(
+						dynamicContentText);
+
+					fileEntryId = jsonObject.getString("fileEntryId");
+				}
+				catch (JSONException jsone) {
+				}
 			}
 
 			dynamicContent.addAttribute("fileEntryId", fileEntryId);
