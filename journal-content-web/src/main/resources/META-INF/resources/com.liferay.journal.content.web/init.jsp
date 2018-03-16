@@ -23,9 +23,9 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.dynamic.data.mapping.model.DDMTemplate" %><%@
 page import="com.liferay.journal.content.web.internal.constants.JournalContentWebKeys" %><%@
 page import="com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext" %><%@
-page import="com.liferay.journal.content.web.internal.security.permission.resource.JournalArticlePermission" %><%@
+page import="com.liferay.journal.service.permission.JournalArticlePermission" %><%@
 page import="com.liferay.journal.model.JournalArticle" %><%@
-page import="com.liferay.petra.string.StringPool" %><%@
+page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %>
