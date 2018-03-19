@@ -61,7 +61,9 @@ renderResponse.setTitle(title);
 	<portlet:param name="mvcPath" value="/edit_folder.jsp" />
 </portlet:actionURL>
 
-<liferay-util:buffer var="removeDDMStructureIcon">
+<liferay-util:buffer
+	var="removeDDMStructureIcon"
+>
 	<liferay-ui:icon
 		icon="times"
 		markupView="lexicon"
@@ -342,7 +344,9 @@ renderResponse.setTitle(title);
 	</aui:button-row>
 </aui:form>
 
-<liferay-util:buffer var="workflowDefinitionsBuffer">
+<liferay-util:buffer
+	var="workflowDefinitionsBuffer"
+>
 	<c:if test="<%= workflowEnabled %>">
 		<aui:select label="" name="LIFERAY_WORKFLOW_DEFINITION_DDM_STRUCTURE" title="workflow-definition">
 			<aui:option label="no-workflow" value="" />
