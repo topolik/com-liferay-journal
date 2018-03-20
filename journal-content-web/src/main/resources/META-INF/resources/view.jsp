@@ -92,11 +92,19 @@ AssetRendererFactory<JournalArticle> assetRendererFactory = AssetRendererFactory
 					</c:when>
 					<c:when test="<%= articleDisplay != null %>">
 						<div class="text-right user-tool-asset-addon-entries">
-							<liferay-ui:asset-addon-entry-display assetAddonEntries="<%= journalContentDisplayContext.getSelectedUserToolAssetAddonEntries() %>" />
+							<liferay-ui:asset-addon-entry-display
+								assetAddonEntries="<%= journalContentDisplayContext.getSelectedUserToolAssetAddonEntries() %>"
+							/>
 						</div>
 
 						<div class="pull-right visible-interaction">
-							<liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
+							<liferay-ui:icon-menu
+								direction="left-side"
+								icon="<%= StringPool.BLANK %>"
+								markupView="lexicon"
+								message="<%= StringPool.BLANK %>"
+								showWhenSingleIcon="<%= true %>"
+							>
 								<c:if test="<%= journalContentDisplayContext.isShowEditArticleIcon() %>">
 
 									<%
@@ -190,7 +198,9 @@ AssetRendererFactory<JournalArticle> assetRendererFactory = AssetRendererFactory
 
 <c:if test="<%= (articleDisplay != null) && journalContentDisplayContext.hasViewPermission() %>">
 	<div class="content-metadata-asset-addon-entries">
-		<liferay-ui:asset-addon-entry-display assetAddonEntries="<%= journalContentDisplayContext.getSelectedContentMetadataAssetAddonEntries() %>" />
+		<liferay-ui:asset-addon-entry-display
+			assetAddonEntries="<%= journalContentDisplayContext.getSelectedContentMetadataAssetAddonEntries() %>"
+		/>
 	</div>
 </c:if>
 

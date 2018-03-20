@@ -57,7 +57,11 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				<portlet:param name="showEditActions" value="<%= String.valueOf(journalDisplayContext.isShowEditActions()) %>" />
 			</portlet:renderURL>
 
-			<liferay-frontend:management-bar-filter-item active="<%= journalDisplayContext.isNavigationHome() %>" label="all" url="<%= viewArticlesHomeURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active="<%= journalDisplayContext.isNavigationHome() %>"
+				label="all"
+				url="<%= viewArticlesHomeURL.toString() %>"
+			/>
 
 			<portlet:renderURL var="viewRecentArticlesURL">
 				<portlet:param name="navigation" value="recent" />
@@ -65,7 +69,11 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				<portlet:param name="showEditActions" value="<%= String.valueOf(journalDisplayContext.isShowEditActions()) %>" />
 			</portlet:renderURL>
 
-			<liferay-frontend:management-bar-filter-item active="<%= journalDisplayContext.isNavigationRecent() %>" label="recent" url="<%= viewRecentArticlesURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active="<%= journalDisplayContext.isNavigationRecent() %>"
+				label="recent"
+				url="<%= viewRecentArticlesURL.toString() %>"
+			/>
 
 			<portlet:renderURL var="viewMyArticlesURL">
 				<portlet:param name="navigation" value="mine" />
@@ -73,9 +81,18 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				<portlet:param name="showEditActions" value="<%= String.valueOf(journalDisplayContext.isShowEditActions()) %>" />
 			</portlet:renderURL>
 
-			<liferay-frontend:management-bar-filter-item active="<%= journalDisplayContext.isNavigationMine() %>" label="mine" url="<%= viewMyArticlesURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active="<%= journalDisplayContext.isNavigationMine() %>"
+				label="mine"
+				url="<%= viewMyArticlesURL.toString() %>"
+			/>
 
-			<liferay-frontend:management-bar-filter-item active="<%= journalDisplayContext.isNavigationStructure() %>" id="structures" label="structures" url="javascript:;" />
+			<liferay-frontend:management-bar-filter-item
+				active="<%= journalDisplayContext.isNavigationStructure() %>"
+				id="structures"
+				label="structures"
+				url="javascript:;"
+			/>
 		</liferay-frontend:management-bar-navigation>
 
 		<liferay-frontend:management-bar-filter
@@ -100,19 +117,31 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			/>
 		</c:if>
 
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>' icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>' label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>' />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>'
+			icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>'
+			label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>'
+		/>
 
 		<%
 		String taglibURL = "javascript:Liferay.fire('" + renderResponse.getNamespace() + "editEntry', {action: 'expireEntries'}); void(0);";
 		%>
 
-		<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="time" label="expire" />
+		<liferay-frontend:management-bar-button
+			href="<%= taglibURL %>"
+			icon="time"
+			label="expire"
+		/>
 
 		<%
 		taglibURL = "javascript:Liferay.fire('" + renderResponse.getNamespace() + "editEntry', {action: 'moveEntries'}); void(0);";
 		%>
 
-		<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="change" label="move" />
+		<liferay-frontend:management-bar-button
+			href="<%= taglibURL %>"
+			icon="change"
+			label="move"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 

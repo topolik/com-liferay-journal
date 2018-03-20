@@ -36,7 +36,12 @@ JournalPortletUtil.addPortletBreadcrumbEntries(folder, request, portletURL);
 %>
 
 <aui:form cssClass="container-fluid-1280" method="post" name="selectFolderFm">
-	<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showParentGroups="<%= false %>" />
+	<liferay-ui:breadcrumb
+		showCurrentGroup="<%= false %>"
+		showGuestGroup="<%= false %>"
+		showLayout="<%= false %>"
+		showParentGroups="<%= false %>"
+	/>
 
 	<aui:button-row cssClass="text-center">
 
@@ -109,7 +114,9 @@ JournalPortletUtil.addPortletBreadcrumbEntries(folder, request, portletURL);
 			</c:if>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

@@ -100,7 +100,9 @@ renderResponse.setTitle(title);
 				<aui:input name="description" />
 			</aui:fieldset>
 
-			<liferay-ui:custom-attributes-available className="<%= JournalFolder.class.getName() %>">
+			<liferay-ui:custom-attributes-available
+				className="<%= JournalFolder.class.getName() %>"
+			>
 				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
 					<liferay-ui:custom-attribute-list
 						className="<%= JournalFolder.class.getName() %>"
@@ -236,7 +238,9 @@ renderResponse.setTitle(title);
 								/>
 
 								<c:if test="<%= workflowEnabled %>">
-									<liferay-ui:search-container-column-text name="workflow">
+									<liferay-ui:search-container-column-text
+										name="workflow"
+									>
 										<aui:select label="" name='<%= "workflowDefinition" + ddmStructure.getStructureId() %>'>
 											<aui:option label="no-workflow" value="" />
 
@@ -272,7 +276,10 @@ renderResponse.setTitle(title);
 								</liferay-ui:search-container-column-text>
 							</liferay-ui:search-container-row>
 
-							<liferay-ui:search-iterator markupView="lexicon" paginate="<%= false %>" />
+							<liferay-ui:search-iterator
+								markupView="lexicon"
+								paginate="<%= false %>"
+							/>
 						</liferay-ui:search-container>
 
 						<liferay-ui:icon

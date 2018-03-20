@@ -21,7 +21,9 @@ JournalItemSelectorViewDisplayContext journalItemSelectorViewDisplayContext = (J
 %>
 
 <div class="container-fluid-1280 lfr-item-viewer" id="itemSelectorUploadContainer">
-	<liferay-util:buffer var="selectFileHTML">
+	<liferay-util:buffer
+		var="selectFileHTML"
+	>
 		<label class="btn btn-default" for="<portlet:namespace />inputFile"><liferay-ui:message key="select-file" /></label>
 
 		<input class="hide" id="<portlet:namespace />inputFile" type="file" />
