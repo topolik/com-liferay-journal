@@ -6874,17 +6874,18 @@ public class JournalArticleLocalServiceImpl
 			return;
 		}
 
-		String fileEntryId = jsonObject.getString("fileEntryId");
-		String uuid = jsonObject.getString("uuid");
-		long groupId = jsonObject.getLong("groupId");
-
 		FileEntry fileEntry = null;
+
+		String fileEntryId = jsonObject.getString("fileEntryId");
 
 		if (Validator.isNotNull(fileEntryId)) {
 			fileEntry = dlAppLocalService.getFileEntry(
 				GetterUtil.getLong(fileEntryId));
 		}
 		else {
+			String uuid = jsonObject.getString("uuid");
+			long groupId = jsonObject.getLong("groupId");
+
 			fileEntry = dlAppLocalService.getFileEntryByUuidAndGroupId(
 				uuid, groupId);
 		}
