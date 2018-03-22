@@ -33,6 +33,7 @@ page import="com.liferay.dynamic.data.mapping.model.DDMStructure" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMTemplate" %><%@
 page import="com.liferay.dynamic.data.mapping.util.DDMNavigationHelper" %><%@
 page import="com.liferay.journal.constants.JournalContentPortletKeys" %><%@
+page import="com.liferay.journal.content.web.internal.constants.JournalContentWebKeys" %><%@
 page import="com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext" %><%@
 page import="com.liferay.journal.exception.NoSuchArticleException" %><%@
 page import="com.liferay.journal.model.JournalArticle" %><%@
@@ -75,13 +76,9 @@ page import="javax.portlet.WindowState" %>
 <portlet:defineObjects />
 
 <%
-JournalContentDisplayContext journalContentDisplayContext = JournalContentDisplayContext.create(liferayPortletRequest, liferayPortletResponse, portletDisplay, _ddmStructureClassNameId);
+JournalContentDisplayContext journalContentDisplayContext = (JournalContentDisplayContext)request.getAttribute(JournalContentWebKeys.JOURNAL_CONTENT_DISPLAY_CONTEXT);
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
-%>
-
-<%!
-private long _ddmStructureClassNameId = PortalUtil.getClassNameId(DDMStructure.class);
 %>
 
 <%@ include file="/init-ext.jsp" %>
