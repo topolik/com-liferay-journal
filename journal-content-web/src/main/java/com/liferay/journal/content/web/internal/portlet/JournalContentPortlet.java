@@ -243,23 +243,6 @@ public class JournalContentPortlet extends MVCPortlet {
 		}
 	}
 
-	@Reference
-	protected void setExportArticleUtil(ExportArticleUtil exportArticleUtil) {
-		_exportArticleUtil = exportArticleUtil;
-	}
-
-	@Reference
-	protected void setJournalContent(JournalContent journalContent) {
-		_journalContent = journalContent;
-	}
-
-	@Reference
-	protected void setJournalContentSearchLocal(
-		JournalArticleLocalService journalArticleLocalService) {
-
-		_journalArticleLocalService = journalArticleLocalService;
-	}
-
 	protected void unsetExportArticleUtil(ExportArticleUtil exportArticleUtil) {
 		_exportArticleUtil = exportArticleUtil;
 	}
@@ -280,8 +263,13 @@ public class JournalContentPortlet extends MVCPortlet {
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentPortlet.class);
 
+	@Reference
 	private ExportArticleUtil _exportArticleUtil;
+
+	@Reference
 	private JournalArticleLocalService _journalArticleLocalService;
+
+	@Reference
 	private JournalContent _journalContent;
 
 }
