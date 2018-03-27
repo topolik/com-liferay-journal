@@ -241,20 +241,6 @@ public class JournalContentPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void unsetExportArticleUtil(ExportArticleUtil exportArticleUtil) {
-		_exportArticleUtil = exportArticleUtil;
-	}
-
-	protected void unsetJournalContent(JournalContent journalContent) {
-		_journalContent = null;
-	}
-
-	protected void unsetJournalContentSearchLocal(
-		JournalArticleLocalService journalArticleLocalService) {
-
-		_journalArticleLocalService = null;
-	}
-
 	private static final long _CLASS_NAME_ID = PortalUtil.getClassNameId(
 		DDMStructure.class);
 
