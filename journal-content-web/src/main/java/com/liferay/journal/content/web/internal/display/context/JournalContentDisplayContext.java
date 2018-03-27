@@ -118,7 +118,7 @@ public class JournalContentDisplayContext {
 		return journalContentDisplayContext;
 	}
 
-	public void clearCache() throws PortalException {
+	public void clearCache() {
 		String articleId = getArticleId();
 
 		if (Validator.isNotNull(articleId)) {
@@ -280,7 +280,7 @@ public class JournalContentDisplayContext {
 			JournalArticleAssetRenderer.getClassPK(article));
 	}
 
-	public DDMStructure getDDMStructure() throws PortalException {
+	public DDMStructure getDDMStructure() {
 		JournalArticle article = getArticle();
 
 		if (article == null) {
@@ -509,7 +509,7 @@ public class JournalContentDisplayContext {
 		return _contentMetadataAssetAddonEntries;
 	}
 
-	public long[] getSelectedGroupIds() throws PortalException {
+	public long[] getSelectedGroupIds() {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -929,7 +929,7 @@ public class JournalContentDisplayContext {
 		return _showSelectArticleIcon;
 	}
 
-	public boolean isShowSelectArticleLink() throws PortalException {
+	public boolean isShowSelectArticleLink() {
 		if (_showSelectArticleLink != null) {
 			return _showSelectArticleLink;
 		}
