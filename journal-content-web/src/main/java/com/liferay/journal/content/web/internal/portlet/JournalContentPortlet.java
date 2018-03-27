@@ -169,8 +169,7 @@ public class JournalContentPortlet extends MVCPortlet {
 			JournalContentDisplayContext journalContentDisplayContext =
 				JournalContentDisplayContext.create(
 					renderRequest, renderResponse,
-					themeDisplay.getPortletDisplay(),
-					_DDM_STRUCTURE_CLASS_NAME_ID);
+					themeDisplay.getPortletDisplay(), _CLASS_NAME_ID);
 
 			renderRequest.setAttribute(
 				JournalContentWebKeys.JOURNAL_CONTENT_DISPLAY_CONTEXT,
@@ -226,8 +225,7 @@ public class JournalContentPortlet extends MVCPortlet {
 				JournalContentDisplayContext journalContentDisplayContext =
 					JournalContentDisplayContext.create(
 						resourceRequest, resourceResponse,
-						themeDisplay.getPortletDisplay(),
-						_DDM_STRUCTURE_CLASS_NAME_ID);
+						themeDisplay.getPortletDisplay(), _CLASS_NAME_ID);
 
 				resourceRequest.setAttribute(
 					JournalContentWebKeys.JOURNAL_CONTENT_DISPLAY_CONTEXT,
@@ -257,8 +255,8 @@ public class JournalContentPortlet extends MVCPortlet {
 		_journalArticleLocalService = null;
 	}
 
-	private static final long _DDM_STRUCTURE_CLASS_NAME_ID =
-		PortalUtil.getClassNameId(DDMStructure.class);
+	private static final long _CLASS_NAME_ID = PortalUtil.getClassNameId(
+		DDMStructure.class);
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentPortlet.class);
