@@ -276,7 +276,7 @@ public class JournalContentDisplayContext {
 			JournalArticleAssetRenderer.getClassPK(article));
 	}
 
-	public DDMStructure getDDMStructure() {
+	public DDMStructure getDDMStructure() throws PortalException {
 		JournalArticle article = getArticle();
 
 		if (article == null) {
