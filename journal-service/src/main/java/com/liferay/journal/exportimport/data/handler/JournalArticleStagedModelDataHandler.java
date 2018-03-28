@@ -275,7 +275,7 @@ public class JournalArticleStagedModelDataHandler
 		if ((latestArticle != null) &&
 			(latestArticle.getId() == article.getId())) {
 
-			articleElement.addAttribute("latest", String.valueOf(true));
+			articleElement.addAttribute("latest", Boolean.TRUE.toString());
 		}
 
 		if (article.getFolderId() !=
