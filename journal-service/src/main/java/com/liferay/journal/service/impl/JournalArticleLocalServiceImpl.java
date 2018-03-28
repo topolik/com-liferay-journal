@@ -6947,6 +6947,9 @@ public class JournalArticleLocalServiceImpl
 					fileEntryId = jsonObject.getString("fileEntryId");
 				}
 				catch (JSONException jsone) {
+					if (_log.isDebugEnabled()) {
+						_log.debug("Unable to parse JSON", jsone);
+					}
 				}
 			}
 
