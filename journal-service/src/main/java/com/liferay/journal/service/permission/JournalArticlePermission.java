@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Raymond Augé
  */
 @Component(
-	property = {"model.class.name=com.liferay.journal.model.JournalArticle"},
+	property = "model.class.name=com.liferay.journal.model.JournalArticle",
 	service = BaseModelPermissionChecker.class
 )
 public class JournalArticlePermission implements BaseModelPermissionChecker {

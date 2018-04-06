@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	property = {"resource.name=" + JournalPermission.RESOURCE_NAME},
+	property = "resource.name=" + JournalPermission.RESOURCE_NAME,
 	service = ResourcePermissionChecker.class
 )
 public class JournalPermission extends BaseResourcePermissionChecker {
