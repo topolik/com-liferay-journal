@@ -165,9 +165,9 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Reference(unbind = "-")
 	protected void setAssetVocabularyLocalService(
-		AssetVocabularyLocalService assetVocabuaryLocalService) {
+		AssetVocabularyLocalService assetVocabularyLocalService) {
 
-		_assetVocabularyLocalService = assetVocabuaryLocalService;
+		_assetVocabularyLocalService = assetVocabularyLocalService;
 	}
 
 	@Reference(unbind = "-")
