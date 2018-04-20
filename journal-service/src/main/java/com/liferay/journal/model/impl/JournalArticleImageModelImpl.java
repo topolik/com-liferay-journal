@@ -156,7 +156,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		attributes.put("elInstanceId", getElInstanceId());
 		attributes.put("elName", getElName());
 		attributes.put("languageId", getLanguageId());
-		attributes.put("tempImage", getTempImage());
+		attributes.put("tempImage", isTempImage());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -451,7 +451,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		journalArticleImageImpl.setElInstanceId(getElInstanceId());
 		journalArticleImageImpl.setElName(getElName());
 		journalArticleImageImpl.setLanguageId(getLanguageId());
-		journalArticleImageImpl.setTempImage(getTempImage());
+		journalArticleImageImpl.setTempImage(isTempImage());
 
 		journalArticleImageImpl.resetOriginalValues();
 
@@ -581,7 +581,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			journalArticleImageCacheModel.languageId = null;
 		}
 
-		journalArticleImageCacheModel.tempImage = getTempImage();
+		journalArticleImageCacheModel.tempImage = isTempImage();
 
 		return journalArticleImageCacheModel;
 	}
@@ -607,7 +607,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		sb.append(", languageId=");
 		sb.append(getLanguageId());
 		sb.append(", tempImage=");
-		sb.append(getTempImage());
+		sb.append(isTempImage());
 		sb.append("}");
 
 		return sb.toString();
@@ -655,7 +655,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>tempImage</column-name><column-value><![CDATA[");
-		sb.append(getTempImage());
+		sb.append(isTempImage());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");

@@ -40,7 +40,7 @@ public class JournalArticleImageSoap implements Serializable {
 		soapModel.setElInstanceId(model.getElInstanceId());
 		soapModel.setElName(model.getElName());
 		soapModel.setLanguageId(model.getLanguageId());
-		soapModel.setTempImage(model.getTempImage());
+		soapModel.setTempImage(model.isTempImage());
 
 		return soapModel;
 	}

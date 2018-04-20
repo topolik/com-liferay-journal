@@ -708,7 +708,7 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticleImage journalArticleImage : list) {
-					if ((tempImage != journalArticleImage.getTempImage())) {
+					if ((tempImage != journalArticleImage.isTempImage())) {
 						list = null;
 
 						break;
@@ -2494,7 +2494,7 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 				args);
 
-			args = new Object[] { journalArticleImageModelImpl.getTempImage() };
+			args = new Object[] { journalArticleImageModelImpl.isTempImage() };
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_TEMPIMAGE, args);
 			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEMPIMAGE,

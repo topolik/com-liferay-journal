@@ -65,7 +65,7 @@ public class JournalArticleImageWrapper implements JournalArticleImage,
 		attributes.put("elInstanceId", getElInstanceId());
 		attributes.put("elName", getElName());
 		attributes.put("languageId", getLanguageId());
-		attributes.put("tempImage", getTempImage());
+		attributes.put("tempImage", isTempImage());
 
 		return attributes;
 	}

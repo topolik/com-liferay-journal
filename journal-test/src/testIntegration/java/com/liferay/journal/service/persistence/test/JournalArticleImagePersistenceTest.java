@@ -160,8 +160,8 @@ public class JournalArticleImagePersistenceTest {
 			newJournalArticleImage.getElName());
 		Assert.assertEquals(existingJournalArticleImage.getLanguageId(),
 			newJournalArticleImage.getLanguageId());
-		Assert.assertEquals(existingJournalArticleImage.getTempImage(),
-			newJournalArticleImage.getTempImage());
+		Assert.assertEquals(existingJournalArticleImage.isTempImage(),
+			newJournalArticleImage.isTempImage());
 	}
 
 	@Test
