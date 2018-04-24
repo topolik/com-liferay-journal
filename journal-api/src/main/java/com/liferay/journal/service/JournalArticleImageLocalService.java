@@ -81,6 +81,7 @@ public interface JournalArticleImageLocalService extends BaseLocalService,
 	* @param articleImageId the primary key for the new journal article image
 	* @return the new journal article image
 	*/
+	@Transactional(enabled = false)
 	public JournalArticleImage createJournalArticleImage(long articleImageId);
 
 	public void deleteArticleImage(JournalArticleImage articleImage);
