@@ -2419,6 +2419,8 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	@Override
 	protected JournalArticleImage removeImpl(
 		JournalArticleImage journalArticleImage) {
+		journalArticleImage = toUnwrappedModel(journalArticleImage);
+
 		Session session = null;
 
 		try {
@@ -2450,6 +2452,8 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	@Override
 	public JournalArticleImage updateImpl(
 		JournalArticleImage journalArticleImage) {
+		journalArticleImage = toUnwrappedModel(journalArticleImage);
+
 		boolean isNew = journalArticleImage.isNew();
 
 		JournalArticleImageModelImpl journalArticleImageModelImpl = (JournalArticleImageModelImpl)journalArticleImage;
@@ -2580,6 +2584,30 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		journalArticleImage.resetOriginalValues();
 
 		return journalArticleImage;
+	}
+
+	protected JournalArticleImage toUnwrappedModel(
+		JournalArticleImage journalArticleImage) {
+		if (journalArticleImage instanceof JournalArticleImageImpl) {
+			return journalArticleImage;
+		}
+
+		JournalArticleImageImpl journalArticleImageImpl = new JournalArticleImageImpl();
+
+		journalArticleImageImpl.setNew(journalArticleImage.isNew());
+		journalArticleImageImpl.setPrimaryKey(journalArticleImage.getPrimaryKey());
+
+		journalArticleImageImpl.setArticleImageId(journalArticleImage.getArticleImageId());
+		journalArticleImageImpl.setGroupId(journalArticleImage.getGroupId());
+		journalArticleImageImpl.setCompanyId(journalArticleImage.getCompanyId());
+		journalArticleImageImpl.setArticleId(journalArticleImage.getArticleId());
+		journalArticleImageImpl.setVersion(journalArticleImage.getVersion());
+		journalArticleImageImpl.setElInstanceId(journalArticleImage.getElInstanceId());
+		journalArticleImageImpl.setElName(journalArticleImage.getElName());
+		journalArticleImageImpl.setLanguageId(journalArticleImage.getLanguageId());
+		journalArticleImageImpl.setTempImage(journalArticleImage.isTempImage());
+
+		return journalArticleImageImpl;
 	}
 
 	/**
