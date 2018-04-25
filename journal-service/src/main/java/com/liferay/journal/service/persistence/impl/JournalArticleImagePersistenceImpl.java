@@ -2543,7 +2543,7 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEMPIMAGE,
 					args);
 
-				args = new Object[] { journalArticleImageModelImpl.getTempImage() };
+				args = new Object[] { journalArticleImageModelImpl.isTempImage() };
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_TEMPIMAGE, args);
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEMPIMAGE,
