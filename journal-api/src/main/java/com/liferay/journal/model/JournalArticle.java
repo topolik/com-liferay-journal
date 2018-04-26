@@ -74,22 +74,22 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 		};
 
 	@Override
-	public java.lang.String buildTreePath()
+	public String buildTreePath()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public long getArticleImageId(java.lang.String elInstanceId,
-		java.lang.String elName, java.lang.String languageId);
+	public long getArticleImageId(String elInstanceId, String elName,
+		String languageId);
 
-	public java.lang.String getArticleImageURL(
+	public String getArticleImageURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
 	public JournalArticleResource getArticleResource()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getArticleResourceUuid()
+	public String getArticleResourceUuid()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getContentByLocale(java.lang.String languageId);
+	public String getContentByLocale(String languageId);
 
 	public com.liferay.dynamic.data.mapping.model.DDMStructure getDDMStructure()
 		throws com.liferay.portal.kernel.exception.PortalException;
@@ -104,44 +104,44 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 
 	public com.liferay.portal.kernel.model.Layout getLayout();
 
-	public java.lang.String getSmallImageType()
+	public String getSmallImageType()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* @deprecated As of 3.3.0, replaced by {@link #getDDMStructureKey()}
 	*/
-	@java.lang.Deprecated()
-	public java.lang.String getStructureId();
+	@Deprecated()
+	public String getStructureId();
 
 	/**
 	* @deprecated As of 3.3.0, replaced by {@link #getDDMTemplateKey()}
 	*/
-	@java.lang.Deprecated()
-	public java.lang.String getTemplateId();
+	@Deprecated()
+	public String getTemplateId();
 
 	public boolean hasApprovedVersion();
 
 	/**
 	* @deprecated As of 3.3.0, with no direct replacement
 	*/
-	@java.lang.Deprecated()
+	@Deprecated()
 	public boolean isTemplateDriven();
 
-	public void setDefaultLanguageId(java.lang.String defaultLanguageId);
+	public void setDefaultLanguageId(String defaultLanguageId);
 
 	public void setDocument(com.liferay.portal.kernel.xml.Document document);
 
-	public void setSmallImageType(java.lang.String smallImageType);
+	public void setSmallImageType(String smallImageType);
 
 	/**
 	* @deprecated As of 3.3.0, replaced by {@link #setDDMStructureKey(String)}
 	*/
-	@java.lang.Deprecated()
-	public void setStructureId(java.lang.String ddmStructureKey);
+	@Deprecated()
+	public void setStructureId(String ddmStructureKey);
 
 	/**
 	* @deprecated As of 3.3.0, replaced by {@link #setDDMTemplateKey(String)}
 	*/
-	@java.lang.Deprecated()
-	public void setTemplateId(java.lang.String ddmTemplateKey);
+	@Deprecated()
+	public void setTemplateId(String ddmTemplateKey);
 }

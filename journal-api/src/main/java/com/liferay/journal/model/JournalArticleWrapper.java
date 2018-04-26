@@ -306,13 +306,13 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public java.lang.String buildTreePath()
+	public String buildTreePath()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _journalArticle.buildTreePath();
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new JournalArticleWrapper((JournalArticle)_journalArticle.clone());
 	}
 
@@ -327,19 +327,19 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the article ID of this journal article
 	*/
 	@Override
-	public java.lang.String getArticleId() {
+	public String getArticleId() {
 		return _journalArticle.getArticleId();
 	}
 
 	@Override
-	public long getArticleImageId(java.lang.String elInstanceId,
-		java.lang.String elName, java.lang.String languageId) {
+	public long getArticleImageId(String elInstanceId, String elName,
+		String languageId) {
 		return _journalArticle.getArticleImageId(elInstanceId, elName,
 			languageId);
 	}
 
 	@Override
-	public java.lang.String getArticleImageURL(
+	public String getArticleImageURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay) {
 		return _journalArticle.getArticleImageURL(themeDisplay);
 	}
@@ -351,13 +351,13 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public java.lang.String getArticleResourceUuid()
+	public String getArticleResourceUuid()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _journalArticle.getArticleResourceUuid();
 	}
 
 	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
+	public String[] getAvailableLanguageIds() {
 		return _journalArticle.getAvailableLanguageIds();
 	}
 
@@ -367,7 +367,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the fully qualified class name of this journal article
 	*/
 	@Override
-	public java.lang.String getClassName() {
+	public String getClassName() {
 		return _journalArticle.getClassName();
 	}
 
@@ -407,12 +407,12 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the content of this journal article
 	*/
 	@Override
-	public java.lang.String getContent() {
+	public String getContent() {
 		return _journalArticle.getContent();
 	}
 
 	@Override
-	public java.lang.String getContentByLocale(java.lang.String languageId) {
+	public String getContentByLocale(String languageId) {
 		return _journalArticle.getContentByLocale(languageId);
 	}
 
@@ -438,7 +438,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the ddm structure key of this journal article
 	*/
 	@Override
-	public java.lang.String getDDMStructureKey() {
+	public String getDDMStructureKey() {
 		return _journalArticle.getDDMStructureKey();
 	}
 
@@ -454,12 +454,12 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the ddm template key of this journal article
 	*/
 	@Override
-	public java.lang.String getDDMTemplateKey() {
+	public String getDDMTemplateKey() {
 		return _journalArticle.getDDMTemplateKey();
 	}
 
 	@Override
-	public java.lang.String getDefaultLanguageId() {
+	public String getDefaultLanguageId() {
 		return _journalArticle.getDefaultLanguageId();
 	}
 
@@ -469,7 +469,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the description of this journal article
 	*/
 	@Override
-	public java.lang.String getDescription() {
+	public String getDescription() {
 		return _journalArticle.getDescription();
 	}
 
@@ -480,7 +480,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized description of this journal article
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale) {
+	public String getDescription(java.util.Locale locale) {
 		return _journalArticle.getDescription(locale);
 	}
 
@@ -492,8 +492,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized description of this journal article. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale,
-		boolean useDefault) {
+	public String getDescription(java.util.Locale locale, boolean useDefault) {
 		return _journalArticle.getDescription(locale, useDefault);
 	}
 
@@ -504,7 +503,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized description of this journal article
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
+	public String getDescription(String languageId) {
 		return _journalArticle.getDescription(languageId);
 	}
 
@@ -516,18 +515,17 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized description of this journal article
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
+	public String getDescription(String languageId, boolean useDefault) {
 		return _journalArticle.getDescription(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentLanguageId() {
+	public String getDescriptionCurrentLanguageId() {
 		return _journalArticle.getDescriptionCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentValue() {
+	public String getDescriptionCurrentValue() {
 		return _journalArticle.getDescriptionCurrentValue();
 	}
 
@@ -537,7 +535,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the locales and localized descriptions of this journal article
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+	public Map<java.util.Locale, String> getDescriptionMap() {
 		return _journalArticle.getDescriptionMap();
 	}
 
@@ -638,7 +636,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the layout uuid of this journal article
 	*/
 	@Override
-	public java.lang.String getLayoutUuid() {
+	public String getLayoutUuid() {
 		return _journalArticle.getLayoutUuid();
 	}
 
@@ -708,7 +706,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public java.lang.String getSmallImageType()
+	public String getSmallImageType()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _journalArticle.getSmallImageType();
 	}
@@ -719,7 +717,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the small image url of this journal article
 	*/
 	@Override
-	public java.lang.String getSmallImageURL() {
+	public String getSmallImageURL() {
 		return _journalArticle.getSmallImageURL();
 	}
 
@@ -749,7 +747,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the status by user name of this journal article
 	*/
 	@Override
-	public java.lang.String getStatusByUserName() {
+	public String getStatusByUserName() {
 		return _journalArticle.getStatusByUserName();
 	}
 
@@ -759,7 +757,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the status by user uuid of this journal article
 	*/
 	@Override
-	public java.lang.String getStatusByUserUuid() {
+	public String getStatusByUserUuid() {
 		return _journalArticle.getStatusByUserUuid();
 	}
 
@@ -778,7 +776,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	@Deprecated
 	@Override
-	public java.lang.String getStructureId() {
+	public String getStructureId() {
 		return _journalArticle.getStructureId();
 	}
 
@@ -787,7 +785,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	@Deprecated
 	@Override
-	public java.lang.String getTemplateId() {
+	public String getTemplateId() {
 		return _journalArticle.getTemplateId();
 	}
 
@@ -797,7 +795,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the title of this journal article
 	*/
 	@Override
-	public java.lang.String getTitle() {
+	public String getTitle() {
 		return _journalArticle.getTitle();
 	}
 
@@ -808,7 +806,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized title of this journal article
 	*/
 	@Override
-	public java.lang.String getTitle(java.util.Locale locale) {
+	public String getTitle(java.util.Locale locale) {
 		return _journalArticle.getTitle(locale);
 	}
 
@@ -820,7 +818,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized title of this journal article. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
+	public String getTitle(java.util.Locale locale, boolean useDefault) {
 		return _journalArticle.getTitle(locale, useDefault);
 	}
 
@@ -831,7 +829,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized title of this journal article
 	*/
 	@Override
-	public java.lang.String getTitle(java.lang.String languageId) {
+	public String getTitle(String languageId) {
 		return _journalArticle.getTitle(languageId);
 	}
 
@@ -843,18 +841,17 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the localized title of this journal article
 	*/
 	@Override
-	public java.lang.String getTitle(java.lang.String languageId,
-		boolean useDefault) {
+	public String getTitle(String languageId, boolean useDefault) {
 		return _journalArticle.getTitle(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getTitleCurrentLanguageId() {
+	public String getTitleCurrentLanguageId() {
 		return _journalArticle.getTitleCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getTitleCurrentValue() {
+	public String getTitleCurrentValue() {
 		return _journalArticle.getTitleCurrentValue();
 	}
 
@@ -864,7 +861,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the locales and localized titles of this journal article
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getTitleMap() {
+	public Map<java.util.Locale, String> getTitleMap() {
 		return _journalArticle.getTitleMap();
 	}
 
@@ -907,7 +904,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the tree path of this journal article
 	*/
 	@Override
-	public java.lang.String getTreePath() {
+	public String getTreePath() {
 		return _journalArticle.getTreePath();
 	}
 
@@ -917,7 +914,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the url title of this journal article
 	*/
 	@Override
-	public java.lang.String getUrlTitle() {
+	public String getUrlTitle() {
 		return _journalArticle.getUrlTitle();
 	}
 
@@ -937,7 +934,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the user name of this journal article
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _journalArticle.getUserName();
 	}
 
@@ -947,7 +944,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the user uuid of this journal article
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _journalArticle.getUserUuid();
 	}
 
@@ -957,7 +954,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @return the uuid of this journal article
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _journalArticle.getUuid();
 	}
 
@@ -1164,7 +1161,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param articleId the article ID of this journal article
 	*/
 	@Override
-	public void setArticleId(java.lang.String articleId) {
+	public void setArticleId(String articleId) {
 		_journalArticle.setArticleId(articleId);
 	}
 
@@ -1174,7 +1171,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public void setClassName(java.lang.String className) {
+	public void setClassName(String className) {
 		_journalArticle.setClassName(className);
 	}
 
@@ -1214,7 +1211,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param content the content of this journal article
 	*/
 	@Override
-	public void setContent(java.lang.String content) {
+	public void setContent(String content) {
 		_journalArticle.setContent(content);
 	}
 
@@ -1234,7 +1231,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param DDMStructureKey the ddm structure key of this journal article
 	*/
 	@Override
-	public void setDDMStructureKey(java.lang.String DDMStructureKey) {
+	public void setDDMStructureKey(String DDMStructureKey) {
 		_journalArticle.setDDMStructureKey(DDMStructureKey);
 	}
 
@@ -1244,12 +1241,12 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param DDMTemplateKey the ddm template key of this journal article
 	*/
 	@Override
-	public void setDDMTemplateKey(java.lang.String DDMTemplateKey) {
+	public void setDDMTemplateKey(String DDMTemplateKey) {
 		_journalArticle.setDDMTemplateKey(DDMTemplateKey);
 	}
 
 	@Override
-	public void setDefaultLanguageId(java.lang.String defaultLanguageId) {
+	public void setDefaultLanguageId(String defaultLanguageId) {
 		_journalArticle.setDefaultLanguageId(defaultLanguageId);
 	}
 
@@ -1259,7 +1256,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param description the description of this journal article
 	*/
 	@Override
-	public void setDescription(java.lang.String description) {
+	public void setDescription(String description) {
 		_journalArticle.setDescription(description);
 	}
 
@@ -1270,8 +1267,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale) {
+	public void setDescription(String description, java.util.Locale locale) {
 		_journalArticle.setDescription(description, locale);
 	}
 
@@ -1283,13 +1279,13 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale, java.util.Locale defaultLocale) {
+	public void setDescription(String description, java.util.Locale locale,
+		java.util.Locale defaultLocale) {
 		_journalArticle.setDescription(description, locale, defaultLocale);
 	}
 
 	@Override
-	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+	public void setDescriptionCurrentLanguageId(String languageId) {
 		_journalArticle.setDescriptionCurrentLanguageId(languageId);
 	}
 
@@ -1299,8 +1295,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param descriptionMap the locales and localized descriptions of this journal article
 	*/
 	@Override
-	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap) {
+	public void setDescriptionMap(Map<java.util.Locale, String> descriptionMap) {
 		_journalArticle.setDescriptionMap(descriptionMap);
 	}
 
@@ -1312,7 +1307,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	@Override
 	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap,
+		Map<java.util.Locale, String> descriptionMap,
 		java.util.Locale defaultLocale) {
 		_journalArticle.setDescriptionMap(descriptionMap, defaultLocale);
 	}
@@ -1414,7 +1409,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param layoutUuid the layout uuid of this journal article
 	*/
 	@Override
-	public void setLayoutUuid(java.lang.String layoutUuid) {
+	public void setLayoutUuid(String layoutUuid) {
 		_journalArticle.setLayoutUuid(layoutUuid);
 	}
 
@@ -1489,7 +1484,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public void setSmallImageType(java.lang.String smallImageType) {
+	public void setSmallImageType(String smallImageType) {
 		_journalArticle.setSmallImageType(smallImageType);
 	}
 
@@ -1499,7 +1494,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param smallImageURL the small image url of this journal article
 	*/
 	@Override
-	public void setSmallImageURL(java.lang.String smallImageURL) {
+	public void setSmallImageURL(String smallImageURL) {
 		_journalArticle.setSmallImageURL(smallImageURL);
 	}
 
@@ -1529,7 +1524,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param statusByUserName the status by user name of this journal article
 	*/
 	@Override
-	public void setStatusByUserName(java.lang.String statusByUserName) {
+	public void setStatusByUserName(String statusByUserName) {
 		_journalArticle.setStatusByUserName(statusByUserName);
 	}
 
@@ -1539,7 +1534,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param statusByUserUuid the status by user uuid of this journal article
 	*/
 	@Override
-	public void setStatusByUserUuid(java.lang.String statusByUserUuid) {
+	public void setStatusByUserUuid(String statusByUserUuid) {
 		_journalArticle.setStatusByUserUuid(statusByUserUuid);
 	}
 
@@ -1558,7 +1553,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	@Deprecated
 	@Override
-	public void setStructureId(java.lang.String ddmStructureKey) {
+	public void setStructureId(String ddmStructureKey) {
 		_journalArticle.setStructureId(ddmStructureKey);
 	}
 
@@ -1567,7 +1562,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	@Deprecated
 	@Override
-	public void setTemplateId(java.lang.String ddmTemplateKey) {
+	public void setTemplateId(String ddmTemplateKey) {
 		_journalArticle.setTemplateId(ddmTemplateKey);
 	}
 
@@ -1577,7 +1572,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param title the title of this journal article
 	*/
 	@Override
-	public void setTitle(java.lang.String title) {
+	public void setTitle(String title) {
 		_journalArticle.setTitle(title);
 	}
 
@@ -1588,7 +1583,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setTitle(java.lang.String title, java.util.Locale locale) {
+	public void setTitle(String title, java.util.Locale locale) {
 		_journalArticle.setTitle(title, locale);
 	}
 
@@ -1600,13 +1595,13 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setTitle(java.lang.String title, java.util.Locale locale,
+	public void setTitle(String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_journalArticle.setTitle(title, locale, defaultLocale);
 	}
 
 	@Override
-	public void setTitleCurrentLanguageId(java.lang.String languageId) {
+	public void setTitleCurrentLanguageId(String languageId) {
 		_journalArticle.setTitleCurrentLanguageId(languageId);
 	}
 
@@ -1616,7 +1611,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param titleMap the locales and localized titles of this journal article
 	*/
 	@Override
-	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap) {
+	public void setTitleMap(Map<java.util.Locale, String> titleMap) {
 		_journalArticle.setTitleMap(titleMap);
 	}
 
@@ -1627,7 +1622,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap,
+	public void setTitleMap(Map<java.util.Locale, String> titleMap,
 		java.util.Locale defaultLocale) {
 		_journalArticle.setTitleMap(titleMap, defaultLocale);
 	}
@@ -1638,7 +1633,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param treePath the tree path of this journal article
 	*/
 	@Override
-	public void setTreePath(java.lang.String treePath) {
+	public void setTreePath(String treePath) {
 		_journalArticle.setTreePath(treePath);
 	}
 
@@ -1648,7 +1643,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param urlTitle the url title of this journal article
 	*/
 	@Override
-	public void setUrlTitle(java.lang.String urlTitle) {
+	public void setUrlTitle(String urlTitle) {
 		_journalArticle.setUrlTitle(urlTitle);
 	}
 
@@ -1668,7 +1663,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param userName the user name of this journal article
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_journalArticle.setUserName(userName);
 	}
 
@@ -1678,7 +1673,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param userUuid the user uuid of this journal article
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_journalArticle.setUserUuid(userUuid);
 	}
 
@@ -1688,7 +1683,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	* @param uuid the uuid of this journal article
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_journalArticle.setUuid(uuid);
 	}
 
@@ -1713,7 +1708,7 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _journalArticle.toString();
 	}
 
@@ -1723,12 +1718,12 @@ public class JournalArticleWrapper implements JournalArticle,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _journalArticle.toXmlString();
 	}
 
 	@Override
-	public void updateTreePath(java.lang.String treePath) {
+	public void updateTreePath(String treePath) {
 		_journalArticle.updateTreePath(treePath);
 	}
 

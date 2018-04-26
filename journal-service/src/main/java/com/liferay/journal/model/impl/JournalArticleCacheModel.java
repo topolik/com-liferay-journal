@@ -364,7 +364,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 		statusByUserName = objectInput.readUTF();
 		statusDate = objectInput.readLong();
 
-		_defaultLanguageId = (java.lang.String)objectInput.readObject();
+		_defaultLanguageId = (String)objectInput.readObject();
 		_document = (com.liferay.portal.kernel.xml.Document)objectInput.readObject();
 	}
 
@@ -539,6 +539,6 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 	public long statusByUserId;
 	public String statusByUserName;
 	public long statusDate;
-	public java.lang.String _defaultLanguageId;
+	public String _defaultLanguageId;
 	public com.liferay.portal.kernel.xml.Document _document;
 }

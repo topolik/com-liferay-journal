@@ -36,9 +36,8 @@ public class JournalArticleImageLocalServiceWrapper
 
 	@Override
 	public void addArticleImageId(long articleImageId, long groupId,
-		java.lang.String articleId, double version,
-		java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId)
+		String articleId, double version, String elInstanceId, String elName,
+		String languageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_journalArticleImageLocalService.addArticleImageId(articleImageId,
 			groupId, articleId, version, elInstanceId, elName, languageId);
@@ -80,16 +79,14 @@ public class JournalArticleImageLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteArticleImage(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId) {
+	public void deleteArticleImage(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId) {
 		_journalArticleImageLocalService.deleteArticleImage(groupId, articleId,
 			version, elInstanceId, elName, languageId);
 	}
 
 	@Override
-	public void deleteImages(long groupId, java.lang.String articleId,
-		double version) {
+	public void deleteImages(long groupId, String articleId, double version) {
 		_journalArticleImageLocalService.deleteImages(groupId, articleId,
 			version);
 	}
@@ -235,17 +232,16 @@ public class JournalArticleImageLocalServiceWrapper
 	}
 
 	@Override
-	public long getArticleImageId(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId) {
+	public long getArticleImageId(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId) {
 		return _journalArticleImageLocalService.getArticleImageId(groupId,
 			articleId, version, elInstanceId, elName, languageId);
 	}
 
 	@Override
-	public long getArticleImageId(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId, boolean tempImage) {
+	public long getArticleImageId(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId,
+		boolean tempImage) {
 		return _journalArticleImageLocalService.getArticleImageId(groupId,
 			articleId, version, elInstanceId, elName, languageId, tempImage);
 	}
@@ -258,7 +254,7 @@ public class JournalArticleImageLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.journal.model.JournalArticleImage> getArticleImages(
-		long groupId, java.lang.String articleId, double version) {
+		long groupId, String articleId, double version) {
 		return _journalArticleImageLocalService.getArticleImages(groupId,
 			articleId, version);
 	}
@@ -321,7 +317,7 @@ public class JournalArticleImageLocalServiceWrapper
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _journalArticleImageLocalService.getOSGiServiceIdentifier();
 	}
 

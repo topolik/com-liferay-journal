@@ -61,9 +61,8 @@ public interface JournalArticleImageLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link JournalArticleImageLocalServiceUtil} to access the journal article image local service. Add custom service methods to {@link com.liferay.journal.service.impl.JournalArticleImageLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public void addArticleImageId(long articleImageId, long groupId,
-		java.lang.String articleId, double version,
-		java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId) throws PortalException;
+		String articleId, double version, String elInstanceId, String elName,
+		String languageId) throws PortalException;
 
 	/**
 	* Adds the journal article image to the database. Also notifies the appropriate model listeners.
@@ -88,12 +87,10 @@ public interface JournalArticleImageLocalService extends BaseLocalService,
 
 	public void deleteArticleImage(long articleImageId);
 
-	public void deleteArticleImage(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId);
+	public void deleteArticleImage(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId);
 
-	public void deleteImages(long groupId, java.lang.String articleId,
-		double version);
+	public void deleteImages(long groupId, String articleId, double version);
 
 	/**
 	* Deletes the journal article image from the database. Also notifies the appropriate model listeners.
@@ -193,21 +190,20 @@ public interface JournalArticleImageLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getArticleImageId(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId);
+	public long getArticleImageId(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getArticleImageId(long groupId, java.lang.String articleId,
-		double version, java.lang.String elInstanceId, java.lang.String elName,
-		java.lang.String languageId, boolean tempImage);
+	public long getArticleImageId(long groupId, String articleId,
+		double version, String elInstanceId, String elName, String languageId,
+		boolean tempImage);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticleImage> getArticleImages(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticleImage> getArticleImages(long groupId,
-		java.lang.String articleId, double version);
+		String articleId, double version);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticleImagesCount(long groupId);
@@ -253,7 +249,7 @@ public interface JournalArticleImageLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
