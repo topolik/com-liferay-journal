@@ -24,6 +24,7 @@ import com.liferay.journal.model.JournalArticleImageModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
+import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -665,7 +666,7 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	private static final ClassLoader _classLoader = JournalArticleImage.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			JournalArticleImage.class
+			JournalArticleImage.class, ModelWrapper.class
 		};
 	private long _articleImageId;
 	private long _groupId;

@@ -35,10 +35,13 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -2419,8 +2422,6 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	@Override
 	protected JournalArticleImage removeImpl(
 		JournalArticleImage journalArticleImage) {
-		journalArticleImage = toUnwrappedModel(journalArticleImage);
-
 		Session session = null;
 
 		try {
@@ -2452,9 +2453,23 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	@Override
 	public JournalArticleImage updateImpl(
 		JournalArticleImage journalArticleImage) {
-		journalArticleImage = toUnwrappedModel(journalArticleImage);
-
 		boolean isNew = journalArticleImage.isNew();
+
+		if (!(journalArticleImage instanceof JournalArticleImageModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(journalArticleImage.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(journalArticleImage);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in journalArticleImage proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom JournalArticleImage implementation " +
+				journalArticleImage.getClass());
+		}
 
 		JournalArticleImageModelImpl journalArticleImageModelImpl = (JournalArticleImageModelImpl)journalArticleImage;
 
@@ -2584,30 +2599,6 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		journalArticleImage.resetOriginalValues();
 
 		return journalArticleImage;
-	}
-
-	protected JournalArticleImage toUnwrappedModel(
-		JournalArticleImage journalArticleImage) {
-		if (journalArticleImage instanceof JournalArticleImageImpl) {
-			return journalArticleImage;
-		}
-
-		JournalArticleImageImpl journalArticleImageImpl = new JournalArticleImageImpl();
-
-		journalArticleImageImpl.setNew(journalArticleImage.isNew());
-		journalArticleImageImpl.setPrimaryKey(journalArticleImage.getPrimaryKey());
-
-		journalArticleImageImpl.setArticleImageId(journalArticleImage.getArticleImageId());
-		journalArticleImageImpl.setGroupId(journalArticleImage.getGroupId());
-		journalArticleImageImpl.setCompanyId(journalArticleImage.getCompanyId());
-		journalArticleImageImpl.setArticleId(journalArticleImage.getArticleId());
-		journalArticleImageImpl.setVersion(journalArticleImage.getVersion());
-		journalArticleImageImpl.setElInstanceId(journalArticleImage.getElInstanceId());
-		journalArticleImageImpl.setElName(journalArticleImage.getElName());
-		journalArticleImageImpl.setLanguageId(journalArticleImage.getLanguageId());
-		journalArticleImageImpl.setTempImage(journalArticleImage.isTempImage());
-
-		return journalArticleImageImpl;
 	}
 
 	/**
