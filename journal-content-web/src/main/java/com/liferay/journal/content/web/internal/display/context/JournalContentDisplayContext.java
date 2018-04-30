@@ -36,7 +36,9 @@ import com.liferay.journal.content.web.configuration.JournalContentPortletInstan
 import com.liferay.journal.content.web.internal.constants.JournalContentWebKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleDisplay;
+import com.liferay.journal.model.JournalArticleResource;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.journal.service.JournalArticleResourceLocalServiceUtil;
 import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.web.asset.JournalArticleAssetRenderer;
@@ -142,21 +144,16 @@ public class JournalContentDisplayContext {
 		long articleResourcePrimKey = ParamUtil.getLong(
 			_portletRequest, "articleResourcePrimKey");
 
-		if (articleResourcePrimKey > 0) {
-			_article = JournalArticleLocalServiceUtil.fetchLatestArticle(
-				articleResourcePrimKey, WorkflowConstants.STATUS_ANY, true);
-		}
-		else {
-			_article = JournalArticleLocalServiceUtil.fetchLatestArticle(
-				getArticleGroupId(), getArticleId(),
-				WorkflowConstants.STATUS_ANY);
+		if (articleResourcePrimKey == 0) {
+			JournalArticleResource articleResource =
+				JournalArticleResourceLocalServiceUtil.fetchArticleResource(
+					getArticleGroupId(), getArticleId());
+
+			articleResourcePrimKey = articleResource.getResourcePrimKey();
 		}
 
-		if ((_article != null) && _article.isExpired()) {
-			_article = JournalArticleLocalServiceUtil.fetchLatestArticle(
-				_article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
-				true);
-		}
+		_article = JournalArticleLocalServiceUtil.fetchLatestArticle(
+			articleResourcePrimKey, WorkflowConstants.STATUS_ANY, true);
 
 		return _article;
 	}
