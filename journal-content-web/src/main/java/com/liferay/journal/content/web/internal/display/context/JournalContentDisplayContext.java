@@ -144,7 +144,9 @@ public class JournalContentDisplayContext {
 		long articleResourcePrimKey = ParamUtil.getLong(
 			_portletRequest, "articleResourcePrimKey");
 
-		if (articleResourcePrimKey == 0) {
+		if ((articleResourcePrimKey == 0) &&
+			Validator.isNotNull(getArticleId())) {
+
 			JournalArticleResource articleResource =
 				JournalArticleResourceLocalServiceUtil.fetchArticleResource(
 					getArticleGroupId(), getArticleId());
