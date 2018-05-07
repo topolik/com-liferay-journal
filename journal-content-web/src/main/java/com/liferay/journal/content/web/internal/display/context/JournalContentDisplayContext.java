@@ -144,14 +144,14 @@ public class JournalContentDisplayContext {
 		long articleResourcePrimKey = ParamUtil.getLong(
 			_portletRequest, "articleResourcePrimKey");
 
-		if ((articleResourcePrimKey == 0) &&
-			Validator.isNotNull(getArticleId())) {
-
+		if (articleResourcePrimKey == 0) {
 			JournalArticleResource articleResource =
 				JournalArticleResourceLocalServiceUtil.fetchArticleResource(
 					getArticleGroupId(), getArticleId());
 
-			articleResourcePrimKey = articleResource.getResourcePrimKey();
+			if (articleResource != null) {
+				articleResourcePrimKey = articleResource.getResourcePrimKey();
+			}
 		}
 
 		_article = JournalArticleLocalServiceUtil.fetchLatestArticle(
