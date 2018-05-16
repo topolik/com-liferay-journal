@@ -19494,7 +19494,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_LTD_S;
 		finderArgs = new Object[] {
-				displayDate, status,
+				_getTime(displayDate), status,
 				
 				start, end, orderByComparator
 			};
@@ -19905,7 +19905,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByLtD_S(Date displayDate, int status) {
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_LTD_S;
 
-		Object[] finderArgs = new Object[] { displayDate, status };
+		Object[] finderArgs = new Object[] { _getTime(displayDate), status };
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -33247,6 +33247,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	protected EntityCache entityCache;
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
+
+	private Long _getTime(Date date) {
+		if (date == null) {
+			return null;
+		}
+
+		return date.getTime();
+	}
+
 	private static final String _SQL_SELECT_JOURNALARTICLE = "SELECT journalArticle FROM JournalArticle journalArticle";
 	private static final String _SQL_SELECT_JOURNALARTICLE_WHERE_PKS_IN = "SELECT journalArticle FROM JournalArticle journalArticle WHERE id_ IN (";
 	private static final String _SQL_SELECT_JOURNALARTICLE_WHERE = "SELECT journalArticle FROM JournalArticle journalArticle WHERE ";
