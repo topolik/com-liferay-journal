@@ -102,9 +102,9 @@ public class JournalFeedFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "feedId", StringPool.LIKE, false, feedIds);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(name)", StringPool.LIKE, false, names);
+				sql, "LOWER(name)", StringPool.LIKE, false, names);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(description)", StringPool.LIKE, true, descriptions);
+				sql, "LOWER(description)", StringPool.LIKE, true, descriptions);
 
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
@@ -208,9 +208,9 @@ public class JournalFeedFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "feedId", StringPool.LIKE, false, feedIds);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(name)", StringPool.LIKE, false, names);
+				sql, "LOWER(name)", StringPool.LIKE, false, names);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(description)", StringPool.LIKE, true, descriptions);
+				sql, "LOWER(description)", StringPool.LIKE, true, descriptions);
 
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
