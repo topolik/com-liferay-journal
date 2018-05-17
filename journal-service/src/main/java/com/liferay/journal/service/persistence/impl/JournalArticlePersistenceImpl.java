@@ -31621,12 +31621,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				(orderByComparator == null)) {
 			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_ED_ST;
-			finderArgs = new Object[] { classNameId, expirationDate, status };
+			finderArgs = new Object[] {
+					classNameId, _getTime(expirationDate), status
+				};
 		}
 		else {
 			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_ED_ST;
 			finderArgs = new Object[] {
-					classNameId, expirationDate, status,
+					classNameId, _getTime(expirationDate), status,
 					
 					start, end, orderByComparator
 				};
@@ -32069,7 +32071,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByC_ED_ST(long classNameId, Date expirationDate, int status) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_ED_ST;
 
-		Object[] finderArgs = new Object[] { classNameId, expirationDate, status };
+		Object[] finderArgs = new Object[] {
+				classNameId, _getTime(expirationDate), status
+			};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
