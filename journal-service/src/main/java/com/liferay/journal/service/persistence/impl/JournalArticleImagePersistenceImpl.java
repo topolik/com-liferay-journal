@@ -1992,22 +1992,6 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 					result = journalArticleImage;
 
 					cacheResult(journalArticleImage);
-
-					if ((journalArticleImage.getGroupId() != groupId) ||
-							(journalArticleImage.getArticleId() == null) ||
-							!journalArticleImage.getArticleId().equals(articleId) ||
-							(journalArticleImage.getVersion() != version) ||
-							(journalArticleImage.getElInstanceId() == null) ||
-							!journalArticleImage.getElInstanceId()
-													.equals(elInstanceId) ||
-							(journalArticleImage.getElName() == null) ||
-							!journalArticleImage.getElName().equals(elName) ||
-							(journalArticleImage.getLanguageId() == null) ||
-							!journalArticleImage.getLanguageId()
-													.equals(languageId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_G_A_V_E_E_L,
-							finderArgs, journalArticleImage);
-					}
 				}
 			}
 			catch (Exception e) {
