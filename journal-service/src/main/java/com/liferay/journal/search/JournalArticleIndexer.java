@@ -863,7 +863,6 @@ public class JournalArticleIndexer
 			indexableActionableDynamicQuery.setInterval(
 				_batchIndexingHelper.getBulkSize(
 					JournalArticle.class.getName()));
-
 			indexableActionableDynamicQuery.setPerformActionMethod(
 				new ActionableDynamicQuery.
 					PerformActionMethod<JournalArticle>() {
