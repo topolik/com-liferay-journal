@@ -48,8 +48,7 @@ public class ContentMetadataAssetAddonEntryTracker {
 	@Reference(
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY,
-		unbind = "removeContentMetadataAssetAddonEntry"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void addContentMetadataAssetAddonEntry(
 		ContentMetadataAssetAddonEntry contentMetadataAssetAddonEntry) {

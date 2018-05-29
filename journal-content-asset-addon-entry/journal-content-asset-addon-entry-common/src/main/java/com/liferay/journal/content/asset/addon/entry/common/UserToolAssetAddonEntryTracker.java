@@ -44,8 +44,7 @@ public class UserToolAssetAddonEntryTracker {
 	@Reference(
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY,
-		unbind = "removeUserToolAssetAddonEntry"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void addUserToolAssetAddonEntry(
 		UserToolAssetAddonEntry userToolAssetAddonEntry) {
