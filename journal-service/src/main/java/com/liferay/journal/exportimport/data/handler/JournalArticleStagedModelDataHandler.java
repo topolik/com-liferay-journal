@@ -1015,8 +1015,7 @@ public class JournalArticleStagedModelDataHandler
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
-		target = "(model.class.name=com.liferay.journal.model.JournalArticle)",
-		unbind = "-"
+		target = "(model.class.name=com.liferay.journal.model.JournalArticle)"
 	)
 	protected void setExportImportContentProcessor(
 		ExportImportContentProcessor<String> exportImportContentProcessor) {
@@ -1073,6 +1072,10 @@ public class JournalArticleStagedModelDataHandler
 	@Reference(unbind = "-")
 	protected void setUserLocalService(UserLocalService userLocalService) {
 		_userLocalService = userLocalService;
+	}
+
+	protected void unsetExportImportContentProcessor(
+		ExportImportContentProcessor<String> exportImportContentProcessor) {
 	}
 
 	protected void updateArticleVersions(JournalArticle article)
