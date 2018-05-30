@@ -400,8 +400,8 @@ public class JournalConverterUtilTest {
 			fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
 			false, false);
 
-		for (int i = 0; i < previewURLs.length; i++) {
-			element.addCDATA(previewURLs[i]);
+		for (String previewURL : previewURLs) {
+			element.addCDATA(previewURL);
 
 			Fields actualFields = _journalConverter.getDDMFields(
 				_ddmStructure, document.asXML());
