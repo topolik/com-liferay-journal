@@ -937,8 +937,8 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 					articles = _journalArticleLocalService.getArticles(
 						DEFAULT_GROUP_ID);
 
-					for (int j = 0; j < articles.size(); j++) {
-						article = articles.get(j);
+					for (JournalArticle curArticle : articles) {
+						article = curArticle;
 
 						_journalArticleLocalService.checkNewLine(
 							article.getGroupId(), article.getArticleId(),
