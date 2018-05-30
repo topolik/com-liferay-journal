@@ -489,7 +489,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 					articleImageId);
 
 			if (articleImage == null) {
-				return;
+				continue;
 			}
 
 			if (!elName.equals(articleImage.getElName())) {
