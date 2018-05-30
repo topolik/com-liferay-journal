@@ -477,24 +477,27 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 
 		String elName = element.attributeValue("name");
 
-		Element dynamicContentElement = element.element("dynamic-content");
+		List<Element> dynamicContentElements = element.elements(
+			"dynamic-content");
 
-		long articleImageId = GetterUtil.getLong(
-			dynamicContentElement.attributeValue("id"));
+		for (Element dynamicContentElement : dynamicContentElements) {
+			long articleImageId = GetterUtil.getLong(
+				dynamicContentElement.attributeValue("id"));
 
-		JournalArticleImage articleImage =
-			_journalArticleImageLocalService.fetchJournalArticleImage(
-				articleImageId);
+			JournalArticleImage articleImage =
+				_journalArticleImageLocalService.fetchJournalArticleImage(
+					articleImageId);
 
-		if (articleImage == null) {
-			return;
-		}
+			if (articleImage == null) {
+				return;
+			}
 
-		if (!elName.equals(articleImage.getElName())) {
-			articleImage.setElName(elName);
+			if (!elName.equals(articleImage.getElName())) {
+				articleImage.setElName(elName);
 
-			_journalArticleImageLocalService.updateJournalArticleImage(
-				articleImage);
+				_journalArticleImageLocalService.updateJournalArticleImage(
+					articleImage);
+			}
 		}
 	}
 
