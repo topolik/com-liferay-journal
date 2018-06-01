@@ -140,7 +140,7 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 
 	setTimeout(
 		function() {
-			selectSmallImageType('<%= (article != null) && Validator.isNotNull(article.getSmallImageURL()) ? 0 : 1 %>');
+			selectSmallImageType('<%= ((article != null) && Validator.isNotNull(article.getSmallImageURL())) ? 0 : 1 %>');
 		},
 		0
 	);

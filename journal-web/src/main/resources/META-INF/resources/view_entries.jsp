@@ -106,7 +106,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							</h6>
 
 							<h5>
-								<aui:a href="<%= rowURL != null ? rowURL.toString() : null %>">
+								<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>">
 									<%= HtmlUtil.escape(curArticle.getTitle(locale)) %>
 								</aui:a>
 							</h5>
@@ -149,7 +149,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 										resultRow="<%= row %>"
 										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
 										title="<%= curArticle.getTitle(locale) %>"
-										url="<%= rowURL != null ? rowURL.toString() : null %>"
+										url="<%= (rowURL != null) ? rowURL.toString() : null %>"
 									>
 										<%@ include file="/article_vertical_card.jspf" %>
 									</liferay-frontend:vertical-card>
@@ -162,7 +162,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 										resultRow="<%= row %>"
 										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
 										title="<%= curArticle.getTitle(locale) %>"
-										url="<%= rowURL != null ? rowURL.toString() : null %>"
+										url="<%= (rowURL != null) ? rowURL.toString() : null %>"
 									>
 										<%@ include file="/article_vertical_card.jspf" %>
 									</liferay-frontend:icon-vertical-card>
@@ -279,7 +279,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							</h6>
 
 							<h5>
-								<aui:a href="<%= rowURL != null ? rowURL.toString() : null %>">
+								<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>">
 									<%= HtmlUtil.escape(curFolder.getName()) %>
 								</aui:a>
 							</h5>
