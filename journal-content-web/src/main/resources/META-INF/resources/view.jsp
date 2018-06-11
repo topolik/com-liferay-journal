@@ -101,7 +101,7 @@ if (journalContentDisplayContext.isShowArticle()) {
 							/>
 						</div>
 
-						<div class="journal-content-article">
+						<div class="clearfix journal-content-article">
 							<%= articleDisplay.getContent() %>
 						</div>
 
