@@ -7714,7 +7714,6 @@ public class JournalArticleLocalServiceImpl
 		subscriptionSender.setNotificationType(notificationType);
 
 		subscriptionSender.setPortletId(portletId);
-
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setScopeGroupId(article.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);
