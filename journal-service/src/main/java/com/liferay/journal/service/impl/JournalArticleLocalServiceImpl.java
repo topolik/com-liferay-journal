@@ -7486,6 +7486,17 @@ public class JournalArticleLocalServiceImpl
 		return urlTitle;
 	}
 
+	/**
+	 * @deprecated As of 3.27.0, replaced by {@link
+	 *             #getURLViewInContext(JournalArticle, String, ServiceContext)}
+	 */
+	@Deprecated
+	protected String getURLViewInContext(
+		JournalArticle article, ServiceContext serviceContext) {
+
+		throw new UnsupportedOperationException();
+	}
+
 	protected String getURLViewInContext(
 		JournalArticle article, String portletId,
 		ServiceContext serviceContext) {
