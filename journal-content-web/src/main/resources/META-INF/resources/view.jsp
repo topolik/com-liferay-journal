@@ -101,7 +101,7 @@ if (journalContentDisplayContext.isShowArticle()) {
 							/>
 						</div>
 
-						<div class="clearfix journal-content-article">
+						<div class="clearfix journal-content-article" data-analytics-asset-id="<%= articleDisplay.getArticleId() %>" data-analytics-asset-title="<%= articleDisplay.getTitle() %>" data-analytics-asset-type="web-content">
 							<%= articleDisplay.getContent() %>
 						</div>
 
