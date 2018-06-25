@@ -1030,7 +1030,7 @@ public class JournalArticleStagedModelDataHandler
 	}
 
 	/**
-	 * @deprecated As of 3.24.0, replaced by {@link
+	 * @deprecated As of Judson, replaced by {@link
 	 *       #setExportImportContentProcessor(ExportImportContentProcessor)}
 	 */
 	@Deprecated

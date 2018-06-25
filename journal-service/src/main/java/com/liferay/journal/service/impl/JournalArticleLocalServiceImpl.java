@@ -301,7 +301,7 @@ public class JournalArticleLocalServiceImpl
 	 *         workflow actions for the web content article. Can also set
 	 *         whether to add the default guest and group permissions.
 	 * @return the web content article
-	 * @deprecated As of 3.24.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -5268,7 +5268,7 @@ public class JournalArticleLocalServiceImpl
 	 *         content update activity; otherwise it is considered a web content
 	 *         add activity.
 	 * @return the updated web content article
-	 * @deprecated As of 3.24.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -7487,7 +7487,7 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of 3.27.0, replaced by {@link
+	 * @deprecated As of Judson, replaced by {@link
 	 *             #getURLViewInContext(JournalArticle, String, ServiceContext)}
 	 */
 	@Deprecated
@@ -8493,7 +8493,7 @@ public class JournalArticleLocalServiceImpl
 	protected DDMTemplateLocalService ddmTemplateLocalService;
 
 	/**
-	 * @deprecated As of 3.8.0, replaced by {@link #journalConverter}
+	 * @deprecated As of Judson, replaced by {@link #journalConverter}
 	 */
 	@Deprecated
 	@ServiceReference(type = DDMXML.class)
