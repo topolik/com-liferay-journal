@@ -1031,7 +1031,8 @@ public class JournalArticleStagedModelDataHandler
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 *       #setExportImportContentProcessor(ExportImportContentProcessor)}
+	 *             #setExportImportContentProcessor(
+	 *             ExportImportContentProcessor)}
 	 */
 	@Deprecated
 	@Reference(unbind = "-")

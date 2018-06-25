@@ -88,8 +88,8 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getContentByLocale(Document,
-	 *             String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getContentByLocale(Document, String)}
 	 */
 	@Deprecated
 	public static String getContentByLocale(
@@ -392,7 +392,8 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #setDDMStructureKey(String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #setDDMStructureKey(String)}
 	 */
 	@Deprecated
 	@Override
@@ -401,7 +402,8 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #setDDMTemplateKey(String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #setDDMTemplateKey(String)}
 	 */
 	@Deprecated
 	@Override

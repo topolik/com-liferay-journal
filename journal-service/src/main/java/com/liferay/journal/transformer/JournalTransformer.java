@@ -88,7 +88,8 @@ public class JournalTransformer {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #JournalTransformer(boolean)}
+	 * @deprecated As of Judson, replaced by {@link
+	 *             #JournalTransformer(boolean)}
 	 */
 	@Deprecated
 	public JournalTransformer(
@@ -98,7 +99,8 @@ public class JournalTransformer {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #JournalTransformer(boolean)}
+	 * @deprecated As of Judson, replaced by {@link
+	 *             #JournalTransformer(boolean)}
 	 */
 	@Deprecated
 	public JournalTransformer(
