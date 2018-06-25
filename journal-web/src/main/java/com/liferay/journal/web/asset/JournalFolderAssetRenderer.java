@@ -69,7 +69,7 @@ public class JournalFolderAssetRenderer
 	}
 
 	/**
-	 * @deprecated As of 1.3.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	@Override

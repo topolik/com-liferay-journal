@@ -564,7 +564,7 @@ public class JournalRSSUtil {
 	}
 
 	/**
-	 * @deprecated As of 1.9.0, replaced by
+	 * @deprecated As of Judson, replaced by
 	 * 		{@link #processContent(ResourceRequest, ResourceResponse,
 	 * 		JournalFeed, JournalArticle, String, ThemeDisplay, SyndEntry,
 	 * 		SyndContent)}
