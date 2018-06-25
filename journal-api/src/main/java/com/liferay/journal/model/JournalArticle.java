@@ -108,13 +108,13 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #getDDMStructureKey()}
+	* @deprecated As of Wilberforce, replaced by {@link #getDDMStructureKey()}
 	*/
 	@Deprecated()
 	public String getStructureId();
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #getDDMTemplateKey()}
+	* @deprecated As of Wilberforce, replaced by {@link #getDDMTemplateKey()}
 	*/
 	@Deprecated()
 	public String getTemplateId();
@@ -122,7 +122,7 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 	public boolean hasApprovedVersion();
 
 	/**
-	* @deprecated As of 3.3.0, with no direct replacement
+	* @deprecated As of Wilberforce, with no direct replacement
 	*/
 	@Deprecated()
 	public boolean isTemplateDriven();
@@ -134,13 +134,15 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 	public void setSmallImageType(String smallImageType);
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #setDDMStructureKey(String)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#setDDMStructureKey(String)}
 	*/
 	@Deprecated()
 	public void setStructureId(String ddmStructureKey);
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #setDDMTemplateKey(String)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#setDDMTemplateKey(String)}
 	*/
 	@Deprecated()
 	public void setTemplateId(String ddmTemplateKey);

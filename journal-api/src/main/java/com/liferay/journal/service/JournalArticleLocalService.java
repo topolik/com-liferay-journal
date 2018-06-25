@@ -98,83 +98,89 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*     &lt;/static-content&gt;
 	* &lt;/root&gt;
 	* </code>
-	* </pre>
-	* </p>
+	* </pre></p>
 	*
-	* @param userId the primary key of the web content article's creator/owner
+	* @param userId the primary key of the web content article's
+	creator/owner
 	* @param groupId the primary key of the web content article's group
 	* @param folderId the primary key of the web content article folder
-	* @param classNameId the primary key of the DDMStructure class if the web
-	content article is related to a DDM structure, the primary key of
-	the class name associated with the article, or
-	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
-	module otherwise
-	* @param classPK the primary key of the DDM structure, if the primary key
-	of the DDMStructure class is given as the
-	<code>classNameId</code> parameter, the primary key of the class
-	associated with the web content article, or <code>0</code>
-	otherwise
+	* @param classNameId the primary key of the DDMStructure class if the
+	web content article is related to a DDM structure, the
+	primary key of the class name associated with the article, or
+	JournalArticleConstants.CLASSNAME_ID_DEFAULT in the
+	journal-api module otherwise
+	* @param classPK the primary key of the DDM structure, if the primary
+	key of the DDMStructure class is given as the
+	<code>classNameId</code> parameter, the primary key of the
+	class associated with the web content article, or
+	<code>0</code> otherwise
 	* @param articleId the primary key of the web content article
-	* @param autoArticleId whether to auto generate the web content article ID
+	* @param autoArticleId whether to auto generate the web content
+	article ID
 	* @param version the web content article's version
-	* @param titleMap the web content article's locales and localized titles
-	* @param descriptionMap the web content article's locales and localized
-	descriptions
+	* @param titleMap the web content article's locales and localized
+	titles
+	* @param descriptionMap the web content article's locales and
+	localized descriptions
 	* @param content the HTML content wrapped in XML
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure, if the article is related to a DDM structure, or
-	<code>null</code> otherwise
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
+	* @param ddmStructureKey the primary key of the web content article's
+	DDM structure, if the article is related to a DDM structure,
+	or <code>null</code> otherwise
+	* @param ddmTemplateKey the primary key of the web content article's
+	DDM template
 	* @param layoutUuid the unique string identifying the web content
 	article's display page
 	* @param displayDateMonth the month the web content article is set to
 	display
-	* @param displayDateDay the calendar day the web content article is set to
-	display
+	* @param displayDateDay the calendar day the web content article is
+	set to display
 	* @param displayDateYear the year the web content article is set to
 	display
 	* @param displayDateHour the hour the web content article is set to
 	display
-	* @param displayDateMinute the minute the web content article is set to
-	display
-	* @param expirationDateMonth the month the web content article is set to
-	expire
-	* @param expirationDateDay the calendar day the web content article is set
+	* @param displayDateMinute the minute the web content article is set
+	to display
+	* @param expirationDateMonth the month the web content article is set
 	to expire
+	* @param expirationDateDay the calendar day the web content article is
+	set to expire
 	* @param expirationDateYear the year the web content article is set to
 	expire
 	* @param expirationDateHour the hour the web content article is set to
 	expire
-	* @param expirationDateMinute the minute the web content article is set to
-	expire
-	* @param neverExpire whether the web content article is not set to auto
-	expire
+	* @param expirationDateMinute the minute the web content article is
+	set to expire
+	* @param neverExpire whether the web content article is not set to
+	auto expire
 	* @param reviewDateMonth the month the web content article is set for
 	review
-	* @param reviewDateDay the calendar day the web content article is set for
+	* @param reviewDateDay the calendar day the web content article is set
+	for review
+	* @param reviewDateYear the year the web content article is set for
 	review
-	* @param reviewDateYear the year the web content article is set for review
-	* @param reviewDateHour the hour the web content article is set for review
-	* @param reviewDateMinute the minute the web content article is set for
+	* @param reviewDateHour the hour the web content article is set for
 	review
-	* @param neverReview whether the web content article is not set for review
+	* @param reviewDateMinute the minute the web content article is set
+	for review
+	* @param neverReview whether the web content article is not set for
+	review
 	* @param indexable whether the web content article is searchable
 	* @param smallImage whether the web content article has a small image
 	* @param smallImageURL the web content article's small image URL
 	* @param smallImageFile the web content article's small image file
 	* @param images the web content's images
 	* @param articleURL the web content article's accessible URL
-	* @param validateReferences whether the article references are validated
-	or not
+	* @param validateReferences whether the article references are
+	validated or not
 	* @param serviceContext the service context to be applied. Can set the
 	UUID, creation date, modification date, expando bridge
-	attributes, guest permissions, group permissions, asset category
-	IDs, asset tag names, asset link entry IDs, URL title, and
-	workflow actions for the web content article. Can also set
-	whether to add the default guest and group permissions.
+	attributes, guest permissions, group permissions, asset
+	category IDs, asset tag names, asset link entry IDs, URL
+	title, and workflow actions for the web content article. Can
+	also set whether to add the default guest and group
+	permissions.
 	* @return the web content article
-	* @deprecated As of 3.24.0
+	* @deprecated As of Judson
 	*/
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -213,8 +219,7 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	*     &lt;/static-content&gt;
 	* &lt;/root&gt;
 	* </code>
-	* </pre>
-	* </p>
+	* </pre></p>
 	*
 	* @param userId the primary key of the web content article's creator/owner
 	* @param groupId the primary key of the web content article's group
@@ -918,7 +923,7 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link
+	* @deprecated As of Wilberforce, replaced by {@link
 	#getArticleContent(JournalArticle, String, String, String,
 	PortletRequestModel,ThemeDisplay)}
 	*/
@@ -965,9 +970,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, double, String, String, String, PortletRequestModel,
-	ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, double, String, String,
+	String, PortletRequestModel, ThemeDisplay)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -986,9 +991,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, double, String, String, String, PortletRequestModel,
-	ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, double, String, String,
+	String, PortletRequestModel, ThemeDisplay)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1029,9 +1034,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the latest web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, String, String, String, PortletRequestModel,
-	ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, String, String, String,
+	PortletRequestModel, ThemeDisplay)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1049,9 +1054,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the latest web content from the matching web content article
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, String, String, String, PortletRequestModel,
-	ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, String, String, String,
+	PortletRequestModel, ThemeDisplay)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -2078,8 +2083,8 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	folder
 	* @return the updated web content article, which was moved to a new
 	folder
-	* @deprecated As of 3.3.0, replaced by {@link #moveArticle(long, String,
-	long, ServiceContext)}
+	* @deprecated As of Wilberforce, replaced by {@link #moveArticle(long,
+	String, long, ServiceContext)}
 	*/
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -2174,8 +2179,7 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* <code>
 	* /(Folder's folderId)/(Subfolder's folderId)/(article's articleId)
 	* </code>
-	* </pre>
-	* </p>
+	* </pre></p>
 	*
 	* @param companyId the primary key of the web content article's company
 	*/
@@ -2595,9 +2599,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		boolean andSearch, int start, int end, Sort sort);
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #search(long, long, List,
-	long, String, String, String, String, int, String, String,
-	LinkedHashMap, boolean, int, int, Sort)}
+	* @deprecated As of Wilberforce, replaced by {@link #search(long, long,
+	List, long, String, String, String, String, int, String,
+	String, LinkedHashMap, boolean, int, int, Sort)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -3070,79 +3074,86 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param folderId the primary key of the web content article folder
 	* @param articleId the primary key of the web content article
 	* @param version the web content article's version
-	* @param titleMap the web content article's locales and localized titles
-	* @param descriptionMap the web content article's locales and localized
-	descriptions
-	* @param content the HTML content wrapped in XML. For more information,
-	see the content example in the {@link #addArticle(long, long,
-	long, long, long, String, boolean, double, Map, Map, String,
-	String, String, String, int, int, int, int, int, int, int, int,
-	int, int, boolean, int, int, int, int, int, boolean, boolean,
-	boolean, String, File, Map, String, ServiceContext)} description.
-	* @param ddmStructureKey the primary key of the web content article's DDM
-	structure, if the article is related to a DDM structure, or
-	<code>null</code> otherwise
-	* @param ddmTemplateKey the primary key of the web content article's DDM
-	template
+	* @param titleMap the web content article's locales and localized
+	titles
+	* @param descriptionMap the web content article's locales and
+	localized descriptions
+	* @param content the HTML content wrapped in XML. For more
+	information, see the content example in the {@link
+	#addArticle(long, long, long, long, long, String, boolean,
+	double, Map, Map, String, String, String, String, int, int,
+	int, int, int, int, int, int, int, int, boolean, int, int,
+	int, int, int, boolean, boolean, boolean, String, File, Map,
+	String, ServiceContext)} description.
+	* @param ddmStructureKey the primary key of the web content article's
+	DDM structure, if the article is related to a DDM structure,
+	or <code>null</code> otherwise
+	* @param ddmTemplateKey the primary key of the web content article's
+	DDM template
 	* @param layoutUuid the unique string identifying the web content
 	article's display page
 	* @param displayDateMonth the month the web content article is set to
 	display
-	* @param displayDateDay the calendar day the web content article is set to
-	display
+	* @param displayDateDay the calendar day the web content article is
+	set to display
 	* @param displayDateYear the year the web content article is set to
 	display
 	* @param displayDateHour the hour the web content article is set to
 	display
-	* @param displayDateMinute the minute the web content article is set to
-	display
-	* @param expirationDateMonth the month the web content article is set to
-	expire
-	* @param expirationDateDay the calendar day the web content article is set
+	* @param displayDateMinute the minute the web content article is set
+	to display
+	* @param expirationDateMonth the month the web content article is set
 	to expire
+	* @param expirationDateDay the calendar day the web content article is
+	set to expire
 	* @param expirationDateYear the year the web content article is set to
 	expire
 	* @param expirationDateHour the hour the web content article is set to
 	expire
-	* @param expirationDateMinute the minute the web content article is set to
-	expire
-	* @param neverExpire whether the web content article is not set to auto
-	expire
+	* @param expirationDateMinute the minute the web content article is
+	set to expire
+	* @param neverExpire whether the web content article is not set to
+	auto expire
 	* @param reviewDateMonth the month the web content article is set for
 	review
-	* @param reviewDateDay the calendar day the web content article is set for
+	* @param reviewDateDay the calendar day the web content article is set
+	for review
+	* @param reviewDateYear the year the web content article is set for
 	review
-	* @param reviewDateYear the year the web content article is set for review
-	* @param reviewDateHour the hour the web content article is set for review
-	* @param reviewDateMinute the minute the web content article is set for
+	* @param reviewDateHour the hour the web content article is set for
 	review
-	* @param neverReview whether the web content article is not set for review
+	* @param reviewDateMinute the minute the web content article is set
+	for review
+	* @param neverReview whether the web content article is not set for
+	review
 	* @param indexable whether the web content is searchable
-	* @param smallImage whether to update web content article's a small image.
-	A file must be passed in as <code>smallImageFile</code> value,
-	otherwise the current small image is deleted.
+	* @param smallImage whether to update web content article's a small
+	image. A file must be passed in as
+	<code>smallImageFile</code> value, otherwise the current
+	small image is deleted.
 	* @param smallImageURL the web content article's small image URL
 	(optionally <code>null</code>)
 	* @param smallImageFile the web content article's new small image file
 	(optionally <code>null</code>). Must pass in
-	<code>smallImage</code> value of <code>true</code> to replace the
-	article's small image file.
-	* @param images the web content's images (optionally <code>null</code>)
-	* @param articleURL the web content article's accessible URL (optionally
+	<code>smallImage</code> value of <code>true</code> to replace
+	the article's small image file.
+	* @param images the web content's images (optionally
 	<code>null</code>)
-	* @param validateReferences whether the article references are validated
-	or not
+	* @param articleURL the web content article's accessible URL
+	(optionally <code>null</code>)
+	* @param validateReferences whether the article references are
+	validated or not
 	* @param serviceContext the service context to be applied. Can set the
-	modification date, expando bridge attributes, asset category IDs,
-	asset tag names, asset link entry IDs, asset priority, workflow
-	actions, URL title , and can set whether to add the default
-	command update for the web content article. With respect to
-	social activities, by setting the service context's command to
-	{@link Constants#UPDATE}, the invocation is considered a web
-	content update activity; otherwise it is considered a web content
-	add activity.
+	modification date, expando bridge attributes, asset category
+	IDs, asset tag names, asset link entry IDs, asset priority,
+	workflow actions, URL title , and can set whether to add the
+	default command update for the web content article. With
+	respect to social activities, by setting the service
+	context's command to {@link Constants#UPDATE}, the invocation
+	is considered a web content update activity; otherwise it is
+	considered a web content add activity.
 	* @return the updated web content article
-	* @deprecated As of 3.24.0
+	* @deprecated As of Judson
 	*/
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -3324,7 +3335,7 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	* @param assetTagNames the new asset tag names
 	* @param assetLinkEntryIds the primary keys of the new asset link
 	entries
-	* @deprecated As of 3.3.0, replaced by {@link #updateAsset(long,
+	* @deprecated As of Wilberforce, replaced by {@link #updateAsset(long,
 	JournalArticle, long[], String[], long[], Double)}
 	*/
 	@Deprecated
@@ -3479,7 +3490,7 @@ public interface JournalArticleLocalService extends BaseLocalService,
 	article's old DDM template
 	* @param newDDMTemplateKey the primary key of the web content
 	article's new DDM template
-	* @deprecated As of 3.3.0, replaced by {@link #updateDDMTemplateKey}
+	* @deprecated As of Wilberforce, replaced by {@link #updateDDMTemplateKey}
 	*/
 	@Deprecated
 	public void updateTemplateId(long groupId, long classNameId,

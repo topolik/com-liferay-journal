@@ -140,8 +140,8 @@ public interface JournalFolderService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	/**
-	* @deprecated As of 3.3.0, replaced by {@link #getSubfolderIds(List, long,
-	long, boolean)}
+	* @deprecated As of Wilberforce, replaced by {@link #getSubfolderIds(List,
+	long, long, boolean)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

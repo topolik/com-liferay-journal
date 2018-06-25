@@ -473,8 +473,9 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the matching web content
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, double, String, PortletRequestModel, ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, double, String,
+	PortletRequestModel, ThemeDisplay)}
 	*/
 	@Deprecated
 	@Override
@@ -516,8 +517,9 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	* @param languageId the primary key of the language translation to get
 	* @param themeDisplay the theme display
 	* @return the matching web content
-	* @deprecated As of 3.3.0, replaced by {@link #getArticleContent(long,
-	String, String, PortletRequestModel, ThemeDisplay)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getArticleContent(long, String, String, PortletRequestModel,
+	ThemeDisplay)}
 	*/
 	@Deprecated
 	@Override
@@ -1111,8 +1113,8 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	* @param articleId the primary key of the web content article
 	* @param newFolderId the primary key of the web content article's new
 	folder
-	* @deprecated As of 3.3.0, replaced by {@link #moveArticle(long, String,
-	long, ServiceContext)}
+	* @deprecated As of Wilberforce, replaced by {@link #moveArticle(long,
+	String, long, ServiceContext)}
 	*/
 	@Deprecated
 	@Override
@@ -1900,8 +1902,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	*     &lt;/static-content&gt;
 	* &lt;/root&gt;
 	* </code>
-	* </pre>
-	* </p>
+	* </pre></p>
 	*
 	* @param groupId the primary key of the web content article's group
 	* @param folderId the primary key of the web content article folder
