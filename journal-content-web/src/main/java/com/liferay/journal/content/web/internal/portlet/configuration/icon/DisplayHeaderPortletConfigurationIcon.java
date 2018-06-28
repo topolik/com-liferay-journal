@@ -40,7 +40,9 @@ import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Daniel Couso
+ * @deprecated As of Wilberforce, with no direct replacement
  */
+@Deprecated
 @Component(
 	immediate = true,
 	property = {

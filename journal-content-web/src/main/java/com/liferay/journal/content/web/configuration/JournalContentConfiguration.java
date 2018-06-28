@@ -20,7 +20,9 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 
 /**
  * @author Daniel Couso
+ * @deprecated As of Wilberforce, with no direct replacement
  */
+@Deprecated
 @ExtendedObjectClassDefinition(category = "web-experience")
 @Meta.OCD(
 	id = "com.liferay.journal.content.web.configuration.JournalContentConfiguration",

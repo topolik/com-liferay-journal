@@ -28,7 +28,9 @@ import javax.portlet.PortletResponse;
 
 /**
  * @author Daniel Couso
+ * @deprecated As of Wilberforce, with no direct replacement
  */
+@Deprecated
 public abstract class BaseJournalArticlePortletConfigurationIcon
 	extends BaseJSPPortletConfigurationIcon {
 

@@ -21,7 +21,9 @@ import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Daniel Couso
+ * @deprecated As of Wilberforce, with no direct replacement
  */
+@Deprecated
 @Component
 public class JournalContentConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
