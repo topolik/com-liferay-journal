@@ -15,11 +15,14 @@
 package com.liferay.journal.content.web.internal.servlet.taglib;
 
 import com.liferay.journal.constants.JournalContentPortletKeys;
+import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
 import com.liferay.journal.content.web.internal.constants.JournalContentWebKeys;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.module.configuration.ConfigurationException;
+import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
 
@@ -46,6 +49,23 @@ public class JournalContentPortletHeaderDynamicInclude
 			HttpServletRequest request, HttpServletResponse response,
 			String key)
 		throws IOException {
+
+		try {
+			JournalContentConfiguration journalContentConfiguration =
+				_configurationProvider.getSystemConfiguration(
+					JournalContentConfiguration.class);
+
+			if (journalContentConfiguration.singleMenu()) {
+				return;
+			}
+		}
+		catch (ConfigurationException ce) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ce, ce);
+			}
+
+			return;
+		}
 
 		JournalContentDisplayContext journalContentDisplayContext =
 			(JournalContentDisplayContext)request.getAttribute(
@@ -85,11 +105,20 @@ public class JournalContentPortletHeaderDynamicInclude
 			"portlet_header_" + JournalContentPortletKeys.JOURNAL_CONTENT);
 	}
 
+	@Reference(unbind = "-")
+	protected void setConfigurationProvider(
+		ConfigurationProvider configurationProvider) {
+
+		_configurationProvider = configurationProvider;
+	}
+
 	private static final String _JSP_PATH =
 		"/com.liferay.journal.content.web/portlet_header.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentPortletHeaderDynamicInclude.class);
+
+	private ConfigurationProvider _configurationProvider;
 
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.journal.content.web)"
