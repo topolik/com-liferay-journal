@@ -4,7 +4,4 @@
 	<checkstyle>
 		<suppress checks="StaticVariableNameCheck" files="journal-service/src/main/java/com/liferay/journal/configuration/JournalServiceConfigurationValues\.java" />
 	</checkstyle>
-	<source-check>
-		<suppress checks="CDNCheck" files="journal-test/src/testIntegration/resources/com/liferay/journal/dependencies/test-journal-content-image-field\.xml" />
-	</source-check>
 </suppressions>
