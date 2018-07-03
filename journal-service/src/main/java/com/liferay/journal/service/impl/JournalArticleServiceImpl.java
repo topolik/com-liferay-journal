@@ -1304,8 +1304,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 * @param      articleId the primary key of the web content article
 	 * @param      newFolderId the primary key of the web content article's new
 	 *             folder
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #moveArticle(long,
-	 *             String, long, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #moveArticle(long, String, long, ServiceContext)}
 	 */
 	@Deprecated
 	@Override

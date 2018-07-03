@@ -579,8 +579,8 @@ public class JournalConverterImpl implements JournalConverter {
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #getFieldValue(String,
-	 *             String, Element, Locale)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #getFieldValue(String, String, Element, Locale)}
 	 */
 	@Deprecated
 	protected Serializable getFieldValue(

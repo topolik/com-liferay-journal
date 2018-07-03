@@ -3528,8 +3528,8 @@ public class JournalArticleLocalServiceImpl
 	 *             folder
 	 * @return     the updated web content article, which was moved to a new
 	 *             folder
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #moveArticle(long,
-	 *             String, long, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #moveArticle(long, String, long, ServiceContext)}
 	 */
 	@Deprecated
 	@Indexable(type = IndexableType.REINDEX)
@@ -4455,9 +4455,9 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #search(long, long,
-	 *             List, long, String, String, String, String, int, String,
-	 *             String, LinkedHashMap, boolean, int, int, Sort)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #search(long,
+	 *             long, List, long, String, String, String, String, int,
+	 *             String, String, LinkedHashMap, boolean, int, int, Sort)}
 	 */
 	@Deprecated
 	@Override
@@ -5836,8 +5836,9 @@ public class JournalArticleLocalServiceImpl
 	 * @param      assetTagNames the new asset tag names
 	 * @param      assetLinkEntryIds the primary keys of the new asset link
 	 *             entries
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateAsset(long,
-	 *             JournalArticle, long[], String[], long[], Double)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateAsset(long, JournalArticle, long[], String[], long[],
+	 *             Double)}
 	 */
 	@Deprecated
 	@Override
@@ -6287,7 +6288,8 @@ public class JournalArticleLocalServiceImpl
 	 *             article's old DDM template
 	 * @param      newDDMTemplateKey the primary key of the web content
 	 *             article's new DDM template
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateDDMTemplateKey}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateDDMTemplateKey}
 	 */
 	@Deprecated
 	@Override
@@ -7805,8 +7807,8 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #sendEmail(JournalArticle,
-	 *             String, String, ServiceContext)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #sendEmail(JournalArticle, String, String, ServiceContext)}
 	 */
 	@Deprecated
 	protected void sendEmail(
@@ -8472,9 +8474,9 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #validateReferences(long,
-	 *             String, String, String, boolean, String, byte[], long,
-	 *             String)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #validateReferences(long, String, String, String, boolean,
+	 *             String, byte[], long, String)}
 	 */
 	@Deprecated
 	protected void validateReferences(
