@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 public class ExportArticleUtil {
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #sendFile(String,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #sendFile(String,
 	 *             PortletRequest, PortletResponse)}
 	 */
 	@Deprecated

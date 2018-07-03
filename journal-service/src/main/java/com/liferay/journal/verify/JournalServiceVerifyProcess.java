@@ -141,7 +141,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	@Reference(unbind = "-")
@@ -152,7 +152,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	@Reference(unbind = "-")
@@ -197,7 +197,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	@Reference(unbind = "-")
@@ -268,7 +268,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void updateCreateAndModifiedDates() throws Exception {
@@ -305,7 +305,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void updateCreateDate(JournalArticleResource articleResource) {
@@ -368,7 +368,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void updateDynamicElements(JournalArticle article)
@@ -432,7 +432,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void updateExpirationDate(
@@ -516,7 +516,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void updateModifiedDate(JournalArticleResource articleResource) {
@@ -994,7 +994,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void verifyTree() throws Exception {
@@ -1008,7 +1008,7 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void verifyURLTitle() throws Exception {
