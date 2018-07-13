@@ -22,7 +22,7 @@ AssetRendererFactory<?> assetRendererFactory = (AssetRendererFactory<?>)request.
 JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribute(WebKeys.JOURNAL_ARTICLE_DISPLAY);
 %>
 
-<div class="journal-content-article">
+<div class="journal-content-article" data-analytics-asset-id="<%= articleDisplay.getArticleId() %>" data-analytics-asset-title="<%= articleDisplay.getTitle() %>" data-analytics-asset-type="web-content">
 	<%= articleDisplay.getContent() %>
 </div>
 
