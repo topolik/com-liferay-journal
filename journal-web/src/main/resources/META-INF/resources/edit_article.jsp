@@ -81,6 +81,12 @@ if (ddmTemplate == null) {
 	}
 }
 
+boolean editingDDMStructureDefaultValues = false;
+
+if (classNameId > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+	editingDDMStructureDefaultValues = true;
+}
+
 String defaultLanguageId = LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault());
 
 boolean changeableDefaultLanguage = journalWebConfiguration.changeableDefaultLanguage();
@@ -93,6 +99,10 @@ if (article != null) {
 	}
 
 	defaultLanguageId = articleDefaultLanguageId;
+}
+
+if (editingDDMStructureDefaultValues) {
+	changeableDefaultLanguage = false;
 }
 
 boolean showHeader = ParamUtil.getBoolean(request, "showHeader", true);
@@ -126,7 +136,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 
 	String title = StringPool.BLANK;
 
-	if (classNameId > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+	if (editingDDMStructureDefaultValues) {
 		title = LanguageUtil.get(request, "structure-default-values");
 	}
 	else if ((article != null) && !article.isNew()) {
@@ -281,7 +291,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 			publishButtonLabel = "submit-for-publication";
 		}
 
-		if (classNameId > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		if (editingDDMStructureDefaultValues) {
 			publishButtonLabel = "save";
 		}
 		%>
