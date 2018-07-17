@@ -106,7 +106,7 @@ public class JournalArticleExportImportContentProcessor
 		content = super.replaceImportContentReferences(
 			portletDataContext, stagedModel, content);
 
-		content = _replaceImportImageFileEntryIds(portletDataContext, content);
+		content = replaceImportImageFileEntryIds(portletDataContext, content);
 
 		return content;
 	}
@@ -418,6 +418,53 @@ public class JournalArticleExportImportContentProcessor
 		return document.asXML();
 	}
 
+	protected String replaceImportImageFileEntryIds(
+			PortletDataContext portletDataContext, String content)
+		throws Exception {
+
+		Map<Long, Long> dlFileEntryIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				DLFileEntry.class);
+
+		if (MapUtil.isNotEmpty(dlFileEntryIds)) {
+			Document contentDocument = SAXReaderUtil.read(content);
+
+			contentDocument = contentDocument.clone();
+
+			for (Map.Entry entry : dlFileEntryIds.entrySet()) {
+				StringBuffer sb = new StringBuffer(4);
+
+				sb.append("//dynamic-element[@type='image']");
+				sb.append("/dynamic-content[@fileEntryId='");
+				sb.append(entry.getKey());
+				sb.append("']");
+
+				XPath xPath = SAXReaderUtil.createXPath(sb.toString());
+
+				List<Node> imageNodes = xPath.selectNodes(contentDocument);
+
+				for (Node imageNode : imageNodes) {
+					Element imageEl = (Element)imageNode;
+
+					List<Attribute> attributes = imageEl.attributes();
+
+					for (Attribute attribute : attributes) {
+						if (StringUtil.equals(
+								attribute.getName(), "fileEntryId")) {
+
+							attribute.setValue(
+								String.valueOf(entry.getValue()));
+						}
+					}
+				}
+			}
+
+			content = contentDocument.formattedString();
+		}
+
+		return content;
+	}
+
 	protected String replaceImportJournalArticleReferences(
 			PortletDataContext portletDataContext, StagedModel stagedModel,
 			String content)
@@ -595,53 +642,6 @@ public class JournalArticleExportImportContentProcessor
 		}
 
 		return false;
-	}
-
-	private String _replaceImportImageFileEntryIds(
-			PortletDataContext portletDataContext, String content)
-		throws Exception {
-
-		Map<Long, Long> dlFileEntryIds =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				DLFileEntry.class);
-
-		if (MapUtil.isNotEmpty(dlFileEntryIds)) {
-			Document contentDocument = SAXReaderUtil.read(content);
-
-			contentDocument = contentDocument.clone();
-
-			for (Map.Entry entry : dlFileEntryIds.entrySet()) {
-				StringBuffer sb = new StringBuffer(4);
-
-				sb.append("//dynamic-element[@type='image']");
-				sb.append("/dynamic-content[@fileEntryId='");
-				sb.append(entry.getKey());
-				sb.append("']");
-
-				XPath xPath = SAXReaderUtil.createXPath(sb.toString());
-
-				List<Node> imageNodes = xPath.selectNodes(contentDocument);
-
-				for (Node imageNode : imageNodes) {
-					Element imageEl = (Element)imageNode;
-
-					List<Attribute> attributes = imageEl.attributes();
-
-					for (Attribute attribute : attributes) {
-						if (StringUtil.equals(
-								attribute.getName(), "fileEntryId")) {
-
-							attribute.setValue(
-								String.valueOf(entry.getValue()));
-						}
-					}
-				}
-			}
-
-			content = contentDocument.formattedString();
-		}
-
-		return content;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
