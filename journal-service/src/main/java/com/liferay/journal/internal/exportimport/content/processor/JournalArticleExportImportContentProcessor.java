@@ -444,9 +444,9 @@ public class JournalArticleExportImportContentProcessor
 				List<Node> imageNodes = xPath.selectNodes(contentDocument);
 
 				for (Node imageNode : imageNodes) {
-					Element imageEl = (Element)imageNode;
+					Element imageElement = (Element)imageNode;
 
-					List<Attribute> attributes = imageEl.attributes();
+					List<Attribute> attributes = imageElement.attributes();
 
 					for (Attribute attribute : attributes) {
 						if (StringUtil.equals(
