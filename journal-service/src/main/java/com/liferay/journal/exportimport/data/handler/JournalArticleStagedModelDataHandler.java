@@ -232,6 +232,10 @@ public class JournalArticleStagedModelDataHandler
 		boolean preloaded = GetterUtil.getBoolean(
 			referenceElement.attributeValue("preloaded"));
 
+		if (!preloaded) {
+			return super.validateMissingReference(uuid, groupId);
+		}
+
 		JournalArticle existingArticle = fetchExistingArticle(
 			uuid, articleResourceUuid, groupId, articleArticleId, null, 0.0,
 			preloaded);
@@ -421,11 +425,16 @@ public class JournalArticleStagedModelDataHandler
 		boolean preloaded = GetterUtil.getBoolean(
 			referenceElement.attributeValue("preloaded"));
 
-		JournalArticle existingArticle = null;
+		JournalArticle existingArticle;
 
-		existingArticle = fetchExistingArticle(
-			uuid, articleResourceUuid, groupId, articleArticleId, null, 0.0,
-			preloaded);
+		if (!preloaded) {
+			existingArticle = fetchMissingReference(uuid, groupId);
+		}
+		else {
+			existingArticle = fetchExistingArticle(
+				uuid, articleResourceUuid, groupId, articleArticleId, null, 0.0,
+				preloaded);
+		}
 
 		Map<String, String> articleArticleIds =
 			(Map<String, String>)portletDataContext.getNewPrimaryKeysMap(
