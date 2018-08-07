@@ -27,8 +27,8 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 
 /**
- * @author Daniel Couso
- * @deprecated As of Wilberforce, with no direct replacement
+ * @author     Daniel Couso
+ * @deprecated As of Wilberforce (7.0.x), with no direct replacement
  */
 @Deprecated
 public abstract class BaseJournalArticlePortletConfigurationIcon

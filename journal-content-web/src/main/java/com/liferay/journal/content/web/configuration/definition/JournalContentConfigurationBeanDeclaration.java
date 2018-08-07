@@ -20,8 +20,8 @@ import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaratio
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Daniel Couso
- * @deprecated As of Wilberforce, with no direct replacement
+ * @author     Daniel Couso
+ * @deprecated As of Wilberforce (7.0.x), with no direct replacement
  */
 @Component
 @Deprecated
