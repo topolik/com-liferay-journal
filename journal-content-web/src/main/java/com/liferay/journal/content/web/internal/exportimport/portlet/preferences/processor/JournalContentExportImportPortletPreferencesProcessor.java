@@ -256,9 +256,17 @@ public class JournalContentExportImportPortletPreferencesProcessor
 
 		long groupId = MapUtil.getLong(groupIds, importGroupId, importGroupId);
 
-		portletDataContext.setScopeGroupId(groupId);
-
 		String articleId = portletPreferences.getValue("articleId", null);
+
+		Map<String, Long> articleGroupIds =
+			(Map<String, Long>)portletDataContext.getNewPrimaryKeysMap(
+				JournalArticle.class + ".groupId");
+
+		if (articleGroupIds.containsKey(articleId)) {
+			groupId = articleGroupIds.get(articleId);
+		}
+
+		portletDataContext.setScopeGroupId(groupId);
 
 		try {
 			if (Validator.isNotNull(articleId)) {
