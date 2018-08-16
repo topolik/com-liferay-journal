@@ -50,4 +50,10 @@ public interface JournalContentPortletInstanceConfiguration {
 	@Meta.AD(required = false)
 	public String userToolAssetAddonEntryKeys();
 
+	@Meta.AD(
+		deflt = "false", description = "sort-structures-by-name-help",
+		name = "sort-structures-by-name", required = false
+	)
+	public boolean sortStructuresByByName();
+
 }
