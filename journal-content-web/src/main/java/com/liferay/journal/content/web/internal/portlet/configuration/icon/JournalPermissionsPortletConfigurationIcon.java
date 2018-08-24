@@ -59,6 +59,12 @@ public class JournalPermissionsPortletConfigurationIcon
 
 	@Override
 	public double getWeight() {
+		String menuStyle = getMenuStyle();
+
+		if (menuStyle.equals("single-menu-content")) {
+			return 18.0;
+		}
+
 		return 0.1;
 	}
 

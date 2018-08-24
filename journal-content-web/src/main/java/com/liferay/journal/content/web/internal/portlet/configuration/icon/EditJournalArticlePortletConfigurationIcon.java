@@ -69,6 +69,12 @@ public class EditJournalArticlePortletConfigurationIcon
 
 	@Override
 	public double getWeight() {
+		String menuStyle = getMenuStyle();
+
+		if (menuStyle.equals("single-menu-content")) {
+			return 20.0;
+		}
+
 		return 0.5;
 	}
 

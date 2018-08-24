@@ -65,6 +65,12 @@ public class DisplaySeparatorPortletConfigurationIcon
 	}
 
 	public double getWeight() {
+		String menuStyle = getMenuStyle();
+
+		if (menuStyle.equals("single-menu-content")) {
+			return 21.0;
+		}
+
 		return 0.8;
 	}
 

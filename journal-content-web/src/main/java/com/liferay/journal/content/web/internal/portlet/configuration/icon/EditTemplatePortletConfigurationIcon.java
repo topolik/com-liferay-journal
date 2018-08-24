@@ -51,6 +51,12 @@ public class EditTemplatePortletConfigurationIcon
 
 	@Override
 	public double getWeight() {
+		String menuStyle = getMenuStyle();
+
+		if (menuStyle.equals("single-menu-content")) {
+			return 19.0;
+		}
+
 		return 0.2;
 	}
 
