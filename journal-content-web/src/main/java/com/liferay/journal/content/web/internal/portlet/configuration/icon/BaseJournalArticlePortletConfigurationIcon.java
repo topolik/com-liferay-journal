@@ -14,11 +14,19 @@
 
 package com.liferay.journal.content.web.internal.portlet.configuration.icon;
 
+import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
+import com.liferay.journal.model.JournalArticle;
+import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.module.configuration.ConfigurationException;
+import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.configuration.icon.BaseJSPPortletConfigurationIcon;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -33,6 +41,65 @@ import javax.portlet.PortletResponse;
 @Deprecated
 public abstract class BaseJournalArticlePortletConfigurationIcon
 	extends BaseJSPPortletConfigurationIcon {
+
+	public String getMenuStyle() {
+		try {
+			JournalContentConfiguration journalContentConfiguration =
+				_configurationProvider.getSystemConfiguration(
+					JournalContentConfiguration.class);
+
+			String menuStyle = journalContentConfiguration.menuStyle();
+
+			return menuStyle;
+		}
+		catch (ConfigurationException ce) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ce, ce);
+			}
+
+			return null;
+		}
+	}
+
+	public boolean isShow(PortletRequest portletRequest) {
+		String menuStyle = getMenuStyle();
+
+		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
+			return false;
+		}
+
+		JournalContentDisplayContext journalContentDisplayContext =
+			getJournalContentDisplayContext(
+				portletRequest, null, ddmStructureClassNameId);
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		JournalArticle article = journalContentDisplayContext.getArticle();
+
+		if (article == null) {
+			return false;
+		}
+
+		try {
+			if (journalContentDisplayContext.isShowEditArticleIcon() ||
+				journalContentDisplayContext.isShowEditTemplateIcon() ||
+				JournalArticlePermission.contains(
+					permissionChecker, article, ActionKeys.PERMISSIONS)) {
+
+				return true;
+			}
+		}
+		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe, pe);
+			}
+
+			return false;
+		}
+
+		return false;
+	}
 
 	protected JournalContentDisplayContext getJournalContentDisplayContext(
 		PortletRequest portletRequest, PortletResponse portletResponse,
@@ -54,6 +121,9 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 
 		return null;
 	}
+
+	protected ConfigurationProvider _configurationProvider;
+	protected long ddmStructureClassNameId;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseJournalArticlePortletConfigurationIcon.class);
