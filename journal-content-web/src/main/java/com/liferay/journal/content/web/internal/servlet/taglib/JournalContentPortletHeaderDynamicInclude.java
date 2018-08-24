@@ -55,7 +55,9 @@ public class JournalContentPortletHeaderDynamicInclude
 				_configurationProvider.getSystemConfiguration(
 					JournalContentConfiguration.class);
 
-			if (journalContentConfiguration.singleMenu()) {
+			String menuStyle = journalContentConfiguration.menuStyle();
+
+			if (!menuStyle.equals("separate-menus")) {
 				return;
 			}
 		}

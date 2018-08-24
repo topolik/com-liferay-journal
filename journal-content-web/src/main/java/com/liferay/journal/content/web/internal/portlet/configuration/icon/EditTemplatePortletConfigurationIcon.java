@@ -16,11 +16,7 @@ package com.liferay.journal.content.web.internal.portlet.configuration.icon;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.constants.JournalContentPortletKeys;
-import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.util.Portal;
@@ -60,26 +56,15 @@ public class EditTemplatePortletConfigurationIcon
 
 	@Override
 	public boolean isShow(PortletRequest portletRequest) {
-		try {
-			JournalContentConfiguration journalContentConfiguration =
-				_configurationProvider.getSystemConfiguration(
-					JournalContentConfiguration.class);
+		String menuStyle = getMenuStyle();
 
-			if (!journalContentConfiguration.singleMenu()) {
-				return false;
-			}
-		}
-		catch (ConfigurationException ce) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ce, ce);
-			}
-
+		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
 			return false;
 		}
 
 		JournalContentDisplayContext journalContentDisplayContext =
 			getJournalContentDisplayContext(
-				portletRequest, null, _ddmStructureClassNameId);
+				portletRequest, null, ddmStructureClassNameId);
 
 		if (journalContentDisplayContext.isShowEditTemplateIcon()) {
 			return true;
@@ -116,13 +101,7 @@ public class EditTemplatePortletConfigurationIcon
 
 	@Reference(unbind = "-")
 	protected void setPortal(Portal portal) {
-		_ddmStructureClassNameId = portal.getClassNameId(DDMStructure.class);
+		ddmStructureClassNameId = portal.getClassNameId(DDMStructure.class);
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditTemplatePortletConfigurationIcon.class);
-
-	private ConfigurationProvider _configurationProvider;
-	private long _ddmStructureClassNameId;
 
 }

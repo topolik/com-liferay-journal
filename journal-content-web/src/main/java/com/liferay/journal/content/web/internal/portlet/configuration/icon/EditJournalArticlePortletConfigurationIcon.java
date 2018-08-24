@@ -16,13 +16,9 @@ package com.liferay.journal.content.web.internal.portlet.configuration.icon;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.constants.JournalContentPortletKeys;
-import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -87,26 +83,15 @@ public class EditJournalArticlePortletConfigurationIcon
 			return false;
 		}
 
-		try {
-			JournalContentConfiguration journalContentConfiguration =
-				_configurationProvider.getSystemConfiguration(
-					JournalContentConfiguration.class);
+		String menuStyle = getMenuStyle();
 
-			if (!journalContentConfiguration.singleMenu()) {
-				return false;
-			}
-		}
-		catch (ConfigurationException ce) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ce, ce);
-			}
-
+		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
 			return false;
 		}
 
 		JournalContentDisplayContext journalContentDisplayContext =
 			getJournalContentDisplayContext(
-				portletRequest, null, _ddmStructureClassNameId);
+				portletRequest, null, ddmStructureClassNameId);
 
 		if (journalContentDisplayContext.isShowEditArticleIcon()) {
 			return true;
@@ -133,17 +118,11 @@ public class EditJournalArticlePortletConfigurationIcon
 
 	@Reference(unbind = "-")
 	protected void setPortal(Portal portal) {
-		_ddmStructureClassNameId = portal.getClassNameId(DDMStructure.class);
+		ddmStructureClassNameId = portal.getClassNameId(DDMStructure.class);
 	}
 
 	private static final boolean _STAGING_LIVE_GROUP_LOCKING_ENABLED =
 		GetterUtil.getBoolean(
 			PropsUtil.get(PropsKeys.STAGING_LIVE_GROUP_LOCKING_ENABLED));
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditJournalArticlePortletConfigurationIcon.class);
-
-	private ConfigurationProvider _configurationProvider;
-	private long _ddmStructureClassNameId;
 
 }
