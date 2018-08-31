@@ -103,12 +103,12 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 
 	public abstract double getSingleMenuContentWeight();
 
-	public abstract double getSingleMenuWidgetWeight();
+	public abstract double getSingleMenuApplicationWeight();
 
 	@Override
 	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuWidget()) {
-			return getSingleMenuWidgetWeight();
+		if (_journalContentConfigurationUtil.isSingleMenuApplication()) {
+			return getSingleMenuApplicationWeight();
 		}
 		else if (_journalContentConfigurationUtil.isSingleMenuContent()) {
 			return getSingleMenuContentWeight();

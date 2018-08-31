@@ -62,7 +62,7 @@ public class DisplayHeaderPortletConfigurationIcon
 	}
 
 	@Override
-	public double getSingleMenuWidgetWeight() {
+	public double getSingleMenuApplicationWeight() {
 		return 0.9;
 	}
 

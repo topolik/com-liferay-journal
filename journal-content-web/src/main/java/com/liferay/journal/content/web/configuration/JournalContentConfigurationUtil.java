@@ -67,10 +67,10 @@ public class JournalContentConfigurationUtil {
 		}
 	}
 
-	public boolean isSingleMenuWidget() {
+	public boolean isSingleMenuApplication() {
 		String menuStyle = getMenuStyle();
 
-		if ("single-menu-widget".equals(menuStyle)) {
+		if ("single-menu-application".equals(menuStyle)) {
 			return true;
 		}
 		else {

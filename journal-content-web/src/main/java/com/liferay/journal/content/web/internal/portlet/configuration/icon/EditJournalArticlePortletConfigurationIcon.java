@@ -75,7 +75,7 @@ public class EditJournalArticlePortletConfigurationIcon
 		return 20;
 	}
 
-	public double getSingleMenuWidgetWeight() {
+	public double getSingleMenuApplicationWeight() {
 		return 0.5;
 	}
 
