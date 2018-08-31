@@ -44,7 +44,8 @@ public interface JournalContentConfiguration {
 		},
 		optionValues = {
 			"separate-menus", "single-menu-content", "single-menu-application"
-		}, required = false
+		},
+		required = false
 	)
 	public String menuStyle();
 
