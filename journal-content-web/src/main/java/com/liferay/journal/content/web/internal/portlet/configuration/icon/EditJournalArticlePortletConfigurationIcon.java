@@ -90,7 +90,7 @@ public class EditJournalArticlePortletConfigurationIcon
 			return false;
 		}
 
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
+		if (_journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
