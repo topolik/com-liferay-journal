@@ -14,15 +14,13 @@
 
 package com.liferay.journal.content.web.internal.portlet.configuration.icon;
 
-import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
+import com.liferay.journal.content.web.configuration.JournalContentConfigurationUtil;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.module.configuration.ConfigurationException;
-import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.configuration.icon.BaseJSPPortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -42,29 +40,8 @@ import javax.portlet.PortletResponse;
 public abstract class BaseJournalArticlePortletConfigurationIcon
 	extends BaseJSPPortletConfigurationIcon {
 
-	public String getMenuStyle() {
-		try {
-			JournalContentConfiguration journalContentConfiguration =
-				_configurationProvider.getSystemConfiguration(
-					JournalContentConfiguration.class);
-
-			String menuStyle = journalContentConfiguration.menuStyle();
-
-			return menuStyle;
-		}
-		catch (ConfigurationException ce) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ce, ce);
-			}
-
-			return null;
-		}
-	}
-
 	public boolean isShow(PortletRequest portletRequest) {
-		String menuStyle = getMenuStyle();
-
-		if ("separate-menus".equals(menuStyle)) {
+		if (_journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -122,7 +99,7 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 		return null;
 	}
 
-	protected ConfigurationProvider _configurationProvider;
+	protected JournalContentConfigurationUtil _journalContentConfigurationUtil;
 	protected long ddmStructureClassNameId;
 
 	private static final Log _log = LogFactoryUtil.getLog(

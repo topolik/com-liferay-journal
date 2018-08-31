@@ -16,13 +16,13 @@ package com.liferay.journal.content.web.internal.portlet.configuration.icon;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.constants.JournalContentPortletKeys;
+import com.liferay.journal.content.web.configuration.JournalContentConfigurationUtil;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -59,9 +59,7 @@ public class JournalPermissionsPortletConfigurationIcon
 
 	@Override
 	public double getWeight() {
-		String menuStyle = getMenuStyle();
-
-		if ("single-menu-content".equals(menuStyle)) {
+		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
 			return 18.0;
 		}
 
@@ -70,9 +68,7 @@ public class JournalPermissionsPortletConfigurationIcon
 
 	@Override
 	public boolean isShow(PortletRequest portletRequest) {
-		String menuStyle = getMenuStyle();
-
-		if ("separate-menus".equals(menuStyle)) {
+		if (_journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -117,10 +113,10 @@ public class JournalPermissionsPortletConfigurationIcon
 	}
 
 	@Reference(unbind = "-")
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
+	protected void setJournalContentConfigurationUtil(
+		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_configurationProvider = configurationProvider;
+		_journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	@Reference(unbind = "-")

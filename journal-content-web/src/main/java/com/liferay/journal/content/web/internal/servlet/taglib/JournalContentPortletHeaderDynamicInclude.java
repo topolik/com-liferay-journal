@@ -15,14 +15,12 @@
 package com.liferay.journal.content.web.internal.servlet.taglib;
 
 import com.liferay.journal.constants.JournalContentPortletKeys;
-import com.liferay.journal.content.web.configuration.JournalContentConfiguration;
+import com.liferay.journal.content.web.configuration.JournalContentConfigurationUtil;
 import com.liferay.journal.content.web.internal.constants.JournalContentWebKeys;
 import com.liferay.journal.content.web.internal.display.context.JournalContentDisplayContext;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.module.configuration.ConfigurationException;
-import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
 
@@ -50,22 +48,7 @@ public class JournalContentPortletHeaderDynamicInclude
 			String key)
 		throws IOException {
 
-		try {
-			JournalContentConfiguration journalContentConfiguration =
-				_configurationProvider.getSystemConfiguration(
-					JournalContentConfiguration.class);
-
-			String menuStyle = journalContentConfiguration.menuStyle();
-
-			if (!"separate-menus".equals(menuStyle)) {
-				return;
-			}
-		}
-		catch (ConfigurationException ce) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ce, ce);
-			}
-
+		if (!_journalContentConfigurationUtil.isSeparateMenus()) {
 			return;
 		}
 
@@ -108,10 +91,10 @@ public class JournalContentPortletHeaderDynamicInclude
 	}
 
 	@Reference(unbind = "-")
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
+	protected void setJournalContentConfigurationUtil(
+		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_configurationProvider = configurationProvider;
+		_journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	private static final String _JSP_PATH =
@@ -120,7 +103,7 @@ public class JournalContentPortletHeaderDynamicInclude
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentPortletHeaderDynamicInclude.class);
 
-	private ConfigurationProvider _configurationProvider;
+	private JournalContentConfigurationUtil _journalContentConfigurationUtil;
 
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.journal.content.web)"
