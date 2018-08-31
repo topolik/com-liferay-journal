@@ -13,19 +13,22 @@
  */
 
 package com.liferay.journal.content.web.configuration;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Daniel Sanz
  */
-@Component(immediate=true)
+@Component(immediate = true)
 @Deprecated
 public class JournalContentConfigurationUtil {
+
 	public String getMenuStyle() {
 		try {
 			JournalContentConfiguration journalContentConfiguration =
@@ -56,17 +59,6 @@ public class JournalContentConfigurationUtil {
 		}
 	}
 
-	public boolean isSingleMenuContent() {
-		String menuStyle = getMenuStyle();
-
-		if ("single-menu-content".equals(menuStyle)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	public boolean isSingleMenuApplication() {
 		String menuStyle = getMenuStyle();
 
@@ -78,10 +70,16 @@ public class JournalContentConfigurationUtil {
 		}
 	}
 
-	private ConfigurationProvider _configurationProvider;
+	public boolean isSingleMenuContent() {
+		String menuStyle = getMenuStyle();
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalContentConfigurationUtil.class);
+		if ("single-menu-content".equals(menuStyle)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	@Reference(unbind = "-")
 	protected void setConfigurationProvider(
@@ -89,4 +87,10 @@ public class JournalContentConfigurationUtil {
 
 		_configurationProvider = configurationProvider;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalContentConfigurationUtil.class);
+
+	private ConfigurationProvider _configurationProvider;
+
 }

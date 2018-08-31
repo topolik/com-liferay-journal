@@ -70,13 +70,13 @@ public class DisplaySeparatorPortletConfigurationIcon
 	}
 
 	@Override
-	public double getSingleMenuContentWeight() {
-		return 21;
+	public double getSingleMenuApplicationWeight() {
+		return 0.8;
 	}
 
 	@Override
-	public double getSingleMenuApplicationWeight() {
-		return 0.8;
+	public double getSingleMenuContentWeight() {
+		return 21;
 	}
 
 	@Override

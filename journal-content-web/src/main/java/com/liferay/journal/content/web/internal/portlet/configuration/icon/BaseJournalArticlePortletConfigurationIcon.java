@@ -40,6 +40,25 @@ import javax.portlet.PortletResponse;
 public abstract class BaseJournalArticlePortletConfigurationIcon
 	extends BaseJSPPortletConfigurationIcon {
 
+	public abstract double getSeparateMenusWeight();
+
+	public abstract double getSingleMenuApplicationWeight();
+
+	public abstract double getSingleMenuContentWeight();
+
+	@Override
+	public double getWeight() {
+		if (_journalContentConfigurationUtil.isSingleMenuApplication()) {
+			return getSingleMenuApplicationWeight();
+		}
+		else if (_journalContentConfigurationUtil.isSingleMenuContent()) {
+			return getSingleMenuContentWeight();
+		}
+		else {
+			return getSeparateMenusWeight();
+		}
+	}
+
 	public boolean isShow(PortletRequest portletRequest) {
 		if (_journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
@@ -97,25 +116,6 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 		}
 
 		return null;
-	}
-
-	public abstract double getSeparateMenusWeight();
-
-	public abstract double getSingleMenuContentWeight();
-
-	public abstract double getSingleMenuApplicationWeight();
-
-	@Override
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuApplication()) {
-			return getSingleMenuApplicationWeight();
-		}
-		else if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return getSingleMenuContentWeight();
-		}
-		else {
-			return getSeparateMenusWeight();
-		}
 	}
 
 	protected JournalContentConfigurationUtil _journalContentConfigurationUtil;

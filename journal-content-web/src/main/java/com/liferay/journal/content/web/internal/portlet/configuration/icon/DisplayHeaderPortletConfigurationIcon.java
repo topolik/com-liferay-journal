@@ -57,13 +57,13 @@ public class DisplayHeaderPortletConfigurationIcon
 	}
 
 	@Override
-	public double getSingleMenuContentWeight() {
-		return 17;
+	public double getSingleMenuApplicationWeight() {
+		return 0.9;
 	}
 
 	@Override
-	public double getSingleMenuApplicationWeight() {
-		return 0.9;
+	public double getSingleMenuContentWeight() {
+		return 17;
 	}
 
 	@Override

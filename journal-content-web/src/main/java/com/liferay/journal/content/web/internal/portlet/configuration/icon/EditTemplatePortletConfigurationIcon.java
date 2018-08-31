@@ -55,13 +55,13 @@ public class EditTemplatePortletConfigurationIcon
 	}
 
 	@Override
-	public double getSingleMenuContentWeight() {
-		return 19;
+	public double getSingleMenuApplicationWeight() {
+		return 0.2;
 	}
 
 	@Override
-	public double getSingleMenuApplicationWeight() {
-		return 0.2;
+	public double getSingleMenuContentWeight() {
+		return 19;
 	}
 
 	@Override

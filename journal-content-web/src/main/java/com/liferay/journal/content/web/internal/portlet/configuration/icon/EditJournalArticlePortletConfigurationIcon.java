@@ -71,12 +71,12 @@ public class EditJournalArticlePortletConfigurationIcon
 		return 0.5;
 	}
 
-	public double getSingleMenuContentWeight() {
-		return 20;
-	}
-
 	public double getSingleMenuApplicationWeight() {
 		return 0.5;
+	}
+
+	public double getSingleMenuContentWeight() {
+		return 20;
 	}
 
 	@Override
