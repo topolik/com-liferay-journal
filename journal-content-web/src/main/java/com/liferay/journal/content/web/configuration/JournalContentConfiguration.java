@@ -20,6 +20,8 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 
 /**
  * @author     Daniel Couso
+ * @author     Brian I. Kim
+ *
  * @deprecated As of Wilberforce (7.0.x), with no direct replacement
  */
 @Deprecated
@@ -32,9 +34,18 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 public interface JournalContentConfiguration {
 
 	@Meta.AD(
-		deflt = "true", description = "journal-content-single-menu-help",
-		name = "journal-content-single-menu", required = false
+		deflt = "single-menu-widget",
+		description = "journal-content-display-menu-configuration-help",
+		name = "journal-content-display-menu-configuration",
+		optionLabels = {
+			"journal-content-separate-menu",
+			"journal-content-single-menu-content-actions",
+			"journal-content-single-menu-widget-actions"
+		},
+		optionValues = {
+			"separate-menus", "single-menu-content", "single-menu-widget"
+		}, required = false
 	)
-	public boolean singleMenu();
+	public String menuStyle();
 
 }
