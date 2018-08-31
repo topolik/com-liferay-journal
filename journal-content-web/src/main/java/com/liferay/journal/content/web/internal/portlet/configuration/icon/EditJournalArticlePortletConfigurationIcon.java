@@ -71,7 +71,7 @@ public class EditJournalArticlePortletConfigurationIcon
 	public double getWeight() {
 		String menuStyle = getMenuStyle();
 
-		if (menuStyle.equals("single-menu-content")) {
+		if ("single-menu-content".equals(menuStyle)) {
 			return 20.0;
 		}
 
@@ -91,7 +91,7 @@ public class EditJournalArticlePortletConfigurationIcon
 
 		String menuStyle = getMenuStyle();
 
-		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
+		if ("separate-menus".equals(menuStyle)) {
 			return false;
 		}
 

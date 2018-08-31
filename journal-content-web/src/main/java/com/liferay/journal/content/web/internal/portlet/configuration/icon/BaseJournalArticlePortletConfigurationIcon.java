@@ -64,7 +64,7 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 	public boolean isShow(PortletRequest portletRequest) {
 		String menuStyle = getMenuStyle();
 
-		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
+		if ("separate-menus".equals(menuStyle)) {
 			return false;
 		}
 

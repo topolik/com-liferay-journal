@@ -57,7 +57,7 @@ public class JournalContentPortletHeaderDynamicInclude
 
 			String menuStyle = journalContentConfiguration.menuStyle();
 
-			if (!menuStyle.equals("separate-menus")) {
+			if (!"separate-menus".equals(menuStyle)) {
 				return;
 			}
 		}

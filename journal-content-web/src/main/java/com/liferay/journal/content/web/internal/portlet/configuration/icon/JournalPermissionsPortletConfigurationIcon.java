@@ -61,7 +61,7 @@ public class JournalPermissionsPortletConfigurationIcon
 	public double getWeight() {
 		String menuStyle = getMenuStyle();
 
-		if (menuStyle.equals("single-menu-content")) {
+		if ("single-menu-content".equals(menuStyle)) {
 			return 18.0;
 		}
 
@@ -72,7 +72,7 @@ public class JournalPermissionsPortletConfigurationIcon
 	public boolean isShow(PortletRequest portletRequest) {
 		String menuStyle = getMenuStyle();
 
-		if ((menuStyle == null) || menuStyle.equals("separate-menus")) {
+		if ("separate-menus".equals(menuStyle)) {
 			return false;
 		}
 

@@ -54,7 +54,7 @@ public class DisplayHeaderPortletConfigurationIcon
 	public double getWeight() {
 		String menuStyle = getMenuStyle();
 
-		if (menuStyle.equals("single-menu-content")) {
+		if ("single-menu-content".equals(menuStyle)) {
 			return 17.0;
 		}
 
