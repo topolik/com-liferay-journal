@@ -38,9 +38,9 @@ public interface JournalContentConfiguration {
 		description = "journal-content-display-menu-configuration-help",
 		name = "journal-content-display-menu-configuration",
 		optionLabels = {
-			"journal-content-separate-menu",
-			"journal-content-single-menu-content-actions",
-			"journal-content-single-menu-widget-actions"
+			"journal-content-separate-menus",
+			"journal-content-single-menu-content-actions-first",
+			"journal-content-single-menu-application-actions-first"
 		},
 		optionValues = {
 			"separate-menus", "single-menu-content", "single-menu-widget"
