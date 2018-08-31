@@ -64,11 +64,18 @@ public class DisplaySeparatorPortletConfigurationIcon
 		return LanguageUtil.get(resourceBundle, "web-content");
 	}
 
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return 21.0;
-		}
+	@Override
+	public double getSeparateMenusWeight() {
+		return 0.8;
+	}
 
+	@Override
+	public double getSingleMenuContentWeight() {
+		return 21;
+	}
+
+	@Override
+	public double getSingleMenuWidgetWeight() {
 		return 0.8;
 	}
 

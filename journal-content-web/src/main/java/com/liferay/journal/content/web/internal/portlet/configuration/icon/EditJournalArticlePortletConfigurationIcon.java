@@ -67,12 +67,15 @@ public class EditJournalArticlePortletConfigurationIcon
 		return LanguageUtil.get(resourceBundle, "edit-web-content");
 	}
 
-	@Override
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return 20.0;
-		}
+	public double getSeparateMenusWeight() {
+		return 0.5;
+	}
 
+	public double getSingleMenuContentWeight() {
+		return 20;
+	}
+
+	public double getSingleMenuWidgetWeight() {
 		return 0.5;
 	}
 

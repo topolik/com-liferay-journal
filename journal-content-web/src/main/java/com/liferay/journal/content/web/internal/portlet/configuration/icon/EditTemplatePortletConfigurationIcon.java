@@ -50,11 +50,17 @@ public class EditTemplatePortletConfigurationIcon
 	}
 
 	@Override
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return 19.0;
-		}
+	public double getSeparateMenusWeight() {
+		return 0.2;
+	}
 
+	@Override
+	public double getSingleMenuContentWeight() {
+		return 19;
+	}
+
+	@Override
+	public double getSingleMenuWidgetWeight() {
 		return 0.2;
 	}
 

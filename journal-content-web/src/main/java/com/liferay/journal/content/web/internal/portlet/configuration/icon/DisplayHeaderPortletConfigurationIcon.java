@@ -51,11 +51,18 @@ public class DisplayHeaderPortletConfigurationIcon
 		return null;
 	}
 
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return 17.0;
-		}
+	@Override
+	public double getSeparateMenusWeight() {
+		return 0.9;
+	}
 
+	@Override
+	public double getSingleMenuContentWeight() {
+		return 17;
+	}
+
+	@Override
+	public double getSingleMenuWidgetWeight() {
 		return 0.9;
 	}
 

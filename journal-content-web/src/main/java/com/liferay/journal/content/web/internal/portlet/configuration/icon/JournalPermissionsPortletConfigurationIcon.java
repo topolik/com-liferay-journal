@@ -58,11 +58,17 @@ public class JournalPermissionsPortletConfigurationIcon
 	}
 
 	@Override
-	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuContent()) {
-			return 18.0;
-		}
+	public double getSeparateMenusWeight() {
+		return 0.1;
+	}
 
+	@Override
+	public double getSingleMenuContentWeight() {
+		return 18;
+	}
+
+	@Override
+	public double getSingleMenuWidgetWeight() {
 		return 0.1;
 	}
 

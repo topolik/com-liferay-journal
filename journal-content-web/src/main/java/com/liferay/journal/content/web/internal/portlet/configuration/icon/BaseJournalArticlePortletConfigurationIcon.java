@@ -99,6 +99,25 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 		return null;
 	}
 
+	public abstract double getSeparateMenusWeight();
+
+	public abstract double getSingleMenuContentWeight();
+
+	public abstract double getSingleMenuWidgetWeight();
+
+	@Override
+	public double getWeight() {
+		if (_journalContentConfigurationUtil.isSingleMenuWidget()) {
+			return getSingleMenuWidgetWeight();
+		}
+		else if (_journalContentConfigurationUtil.isSingleMenuContent()) {
+			return getSingleMenuContentWeight();
+		}
+		else {
+			return getSeparateMenusWeight();
+		}
+	}
+
 	protected JournalContentConfigurationUtil _journalContentConfigurationUtil;
 	protected long ddmStructureClassNameId;
 
