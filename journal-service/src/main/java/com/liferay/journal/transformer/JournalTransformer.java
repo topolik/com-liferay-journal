@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.templateparser.TransformerListener;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -263,12 +264,14 @@ public class JournalTransformer {
 			UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
 			try {
+				Locale locale = LocaleUtil.fromLanguageId(languageId);
+
 				if (document != null) {
 					Element rootElement = document.getRootElement();
 
 					List<TemplateNode> templateNodes = getTemplateNodes(
 						themeDisplay, rootElement,
-						Long.valueOf(tokens.get("ddm_structure_id")));
+						Long.valueOf(tokens.get("ddm_structure_id")), locale);
 
 					if (templateNodes != null) {
 						for (TemplateNode templateNode : templateNodes) {
@@ -309,10 +312,7 @@ public class JournalTransformer {
 				String templatesPath = getTemplatesPath(
 					companyId, articleGroupId, classNameId);
 
-				Locale locale = LocaleUtil.fromLanguageId(languageId);
-
 				template.put("locale", locale);
-
 				template.put(
 					"permissionChecker",
 					PermissionThreadLocal.getPermissionChecker());
@@ -493,6 +493,20 @@ public class JournalTransformer {
 			ThemeDisplay themeDisplay, Element element, long ddmStructureId)
 		throws Exception {
 
+		Locale locale = LocaleThreadLocal.getSiteDefaultLocale();
+
+		if ((themeDisplay != null) && (themeDisplay.getLocale() != null)) {
+			locale = themeDisplay.getLocale();
+		}
+
+		return getTemplateNodes(themeDisplay, element, ddmStructureId, locale);
+	}
+
+	protected List<TemplateNode> getTemplateNodes(
+			ThemeDisplay themeDisplay, Element element, long ddmStructureId,
+			Locale locale)
+		throws Exception {
+
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			ddmStructureId);
 
@@ -544,7 +558,8 @@ public class JournalTransformer {
 			if (dynamicElementElement.element("dynamic-element") != null) {
 				templateNode.appendChildren(
 					getTemplateNodes(
-						themeDisplay, dynamicElementElement, ddmStructureId));
+						themeDisplay, dynamicElementElement, ddmStructureId,
+						locale));
 			}
 			else if ((dynamicContentElement != null) &&
 					 (dynamicContentElement.element("option") != null)) {
@@ -572,8 +587,7 @@ public class JournalTransformer {
 
 					LocalizedValue localizedLabel = entry.getValue();
 
-					String optionLabel = localizedLabel.getString(
-						themeDisplay.getLocale());
+					String optionLabel = localizedLabel.getString(locale);
 
 					templateNode.appendOptionMap(optionValue, optionLabel);
 				}
