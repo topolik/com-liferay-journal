@@ -84,8 +84,11 @@ public class JournalArticleExportImportContentProcessor
 			boolean escapeContent)
 		throws Exception {
 
-		content = replaceExportJournalArticleReferences(
-			portletDataContext, stagedModel, content, exportReferencedContent);
+		if (Validator.isXml(content)) {
+			content = replaceExportJournalArticleReferences(
+				portletDataContext, stagedModel, content,
+				exportReferencedContent);
+		}
 
 		content = super.replaceExportContentReferences(
 			portletDataContext, stagedModel, content, exportReferencedContent,
@@ -106,7 +109,10 @@ public class JournalArticleExportImportContentProcessor
 		content = super.replaceImportContentReferences(
 			portletDataContext, stagedModel, content);
 
-		content = replaceImportImageFileEntryIds(portletDataContext, content);
+		if (Validator.isXml(content)) {
+			content = replaceImportImageFileEntryIds(
+				portletDataContext, content);
+		}
 
 		return content;
 	}
@@ -302,18 +308,7 @@ public class JournalArticleExportImportContentProcessor
 			return content;
 		}
 
-		Document document = null;
-
-		try {
-			document = SAXReaderUtil.read(content);
-		}
-		catch (DocumentException de) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Invalid content:\n" + content);
-			}
-
-			return content;
-		}
+		Document document = SAXReaderUtil.read(content);
 
 		XPath xPath = SAXReaderUtil.createXPath(
 			"//dynamic-element[@type='ddm-journal-article']");
