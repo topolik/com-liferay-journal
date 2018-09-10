@@ -34,16 +34,21 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 public interface JournalContentConfiguration {
 
 	@Meta.AD(
+		deflt = "true", description = "journal-content-single-menu-help",
+		name = "journal-content-single-menu", required = false
+	)
+	public boolean singleMenu();
+			
+	@Meta.AD(
 		deflt = "single-menu-application",
 		description = "journal-content-display-menu-configuration-help",
 		name = "journal-content-display-menu-configuration",
 		optionLabels = {
-			"journal-content-separate-menus",
 			"journal-content-single-menu-content-actions-first",
 			"journal-content-single-menu-application-actions-first"
 		},
 		optionValues = {
-			"separate-menus", "single-menu-content", "single-menu-application"
+			"single-menu-content", "single-menu-application"
 		},
 		required = false
 	)

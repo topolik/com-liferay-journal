@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Reference;
  *
  * @deprecated As of Wilberforce (7.0.x), with no direct replacement
  */
-@Component(immediate = true)
+@Component(immediate = true, service = JournalContentConfigurationUtil.class)
 @Deprecated
 public class JournalContentConfigurationUtil {
 
@@ -51,13 +51,30 @@ public class JournalContentConfigurationUtil {
 	}
 
 	public boolean isSeparateMenus() {
-		String menuStyle = getMenuStyle();
-
-		if ("separate-menus".equals(menuStyle)) {
+		if (!isSingleMenu()) {
 			return true;
 		}
 		else {
 			return false;
+		}
+	}
+
+	public boolean isSingleMenu() {
+		try {
+			JournalContentConfiguration journalContentConfiguration =
+				_configurationProvider.getSystemConfiguration(
+					JournalContentConfiguration.class);
+
+			boolean menuStyle = journalContentConfiguration.singleMenu();
+
+			return menuStyle;
+		}
+		catch (ConfigurationException ce) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ce, ce);
+			}
+
+			return true;
 		}
 	}
 
