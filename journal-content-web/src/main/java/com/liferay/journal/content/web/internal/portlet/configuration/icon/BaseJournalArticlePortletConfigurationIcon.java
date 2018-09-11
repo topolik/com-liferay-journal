@@ -48,10 +48,10 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 
 	@Override
 	public double getWeight() {
-		if (_journalContentConfigurationUtil.isSingleMenuApplication()) {
+		if (journalContentConfigurationUtil.isSingleMenuApplication()) {
 			return getSingleMenuApplicationWeight();
 		}
-		else if (_journalContentConfigurationUtil.isSingleMenuContent()) {
+		else if (journalContentConfigurationUtil.isSingleMenuContent()) {
 			return getSingleMenuContentWeight();
 		}
 		else {
@@ -60,7 +60,7 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 	}
 
 	public boolean isShow(PortletRequest portletRequest) {
-		if (_journalContentConfigurationUtil.isSeparateMenus()) {
+		if (journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -118,8 +118,8 @@ public abstract class BaseJournalArticlePortletConfigurationIcon
 		return null;
 	}
 
-	protected JournalContentConfigurationUtil _journalContentConfigurationUtil;
 	protected long ddmStructureClassNameId;
+	protected JournalContentConfigurationUtil journalContentConfigurationUtil;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseJournalArticlePortletConfigurationIcon.class);

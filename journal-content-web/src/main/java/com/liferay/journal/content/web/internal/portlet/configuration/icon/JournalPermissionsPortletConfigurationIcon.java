@@ -74,7 +74,7 @@ public class JournalPermissionsPortletConfigurationIcon
 
 	@Override
 	public boolean isShow(PortletRequest portletRequest) {
-		if (_journalContentConfigurationUtil.isSeparateMenus()) {
+		if (journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -122,7 +122,7 @@ public class JournalPermissionsPortletConfigurationIcon
 	protected void setJournalContentConfigurationUtil(
 		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_journalContentConfigurationUtil = journalContentConfigurationUtil;
+		this.journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	@Reference(unbind = "-")

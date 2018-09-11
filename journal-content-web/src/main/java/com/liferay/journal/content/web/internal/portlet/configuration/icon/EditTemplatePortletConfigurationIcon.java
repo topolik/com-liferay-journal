@@ -66,7 +66,7 @@ public class EditTemplatePortletConfigurationIcon
 
 	@Override
 	public boolean isShow(PortletRequest portletRequest) {
-		if (_journalContentConfigurationUtil.isSeparateMenus()) {
+		if (journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -104,7 +104,7 @@ public class EditTemplatePortletConfigurationIcon
 	protected void setJournalContentConfigurationUtil(
 		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_journalContentConfigurationUtil = journalContentConfigurationUtil;
+		this.journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	@Reference(unbind = "-")

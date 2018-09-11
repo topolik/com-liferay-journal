@@ -90,7 +90,7 @@ public class EditJournalArticlePortletConfigurationIcon
 			return false;
 		}
 
-		if (_journalContentConfigurationUtil.isSeparateMenus()) {
+		if (journalContentConfigurationUtil.isSeparateMenus()) {
 			return false;
 		}
 
@@ -118,7 +118,7 @@ public class EditJournalArticlePortletConfigurationIcon
 	protected void setJournalContentConfigurationUtil(
 		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_journalContentConfigurationUtil = journalContentConfigurationUtil;
+		this.journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	@Reference(unbind = "-")

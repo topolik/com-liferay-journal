@@ -79,7 +79,7 @@ public class DisplayHeaderPortletConfigurationIcon
 	protected void setJournalContentConfigurationUtil(
 		JournalContentConfigurationUtil journalContentConfigurationUtil) {
 
-		_journalContentConfigurationUtil = journalContentConfigurationUtil;
+		this.journalContentConfigurationUtil = journalContentConfigurationUtil;
 	}
 
 	@Reference(unbind = "-")

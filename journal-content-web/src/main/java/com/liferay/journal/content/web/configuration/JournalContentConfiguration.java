@@ -38,7 +38,7 @@ public interface JournalContentConfiguration {
 		name = "journal-content-single-menu", required = false
 	)
 	public boolean singleMenu();
-			
+
 	@Meta.AD(
 		deflt = "single-menu-application",
 		description = "journal-content-display-menu-configuration-help",
@@ -47,9 +47,7 @@ public interface JournalContentConfiguration {
 			"journal-content-single-menu-content-actions-first",
 			"journal-content-single-menu-application-actions-first"
 		},
-		optionValues = {
-			"single-menu-content", "single-menu-application"
-		},
+		optionValues = {"single-menu-content", "single-menu-application"},
 		required = false
 	)
 	public String menuStyle();
