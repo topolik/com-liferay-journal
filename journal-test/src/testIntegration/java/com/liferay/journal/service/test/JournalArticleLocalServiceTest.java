@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -106,8 +107,10 @@ public class JournalArticleLocalServiceTest {
 				String.valueOf(newArticle.getResourcePrimKey()));
 
 		Assert.assertEquals(
-			newResourcePermissions.toString(), oldResourcePermissions.size(),
-			newResourcePermissions.size());
+			StringBundler.concat(
+				"Old resource permissions: ", oldResourcePermissions,
+				", new resource permissions: ", newResourcePermissions),
+			oldResourcePermissions.size(), newResourcePermissions.size());
 
 		for (int i = 0; i < oldResourcePermissions.size(); i++) {
 			ResourcePermission oldResourcePermission =
