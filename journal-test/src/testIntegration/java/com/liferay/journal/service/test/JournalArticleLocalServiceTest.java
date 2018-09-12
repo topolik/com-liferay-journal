@@ -106,11 +106,16 @@ public class JournalArticleLocalServiceTest {
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(newArticle.getResourcePrimKey()));
 
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("Old resource permissions: ");
+		sb.append(oldResourcePermissions);
+		sb.append("new resource permissions: ");
+		sb.append(newResourcePermissions);
+
 		Assert.assertEquals(
-			StringBundler.concat(
-				"Old resource permissions: ", oldResourcePermissions,
-				", new resource permissions: ", newResourcePermissions),
-			oldResourcePermissions.size(), newResourcePermissions.size());
+			sb.toString(), oldResourcePermissions.size(),
+			newResourcePermissions.size());
 
 		for (int i = 0; i < oldResourcePermissions.size(); i++) {
 			ResourcePermission oldResourcePermission =
