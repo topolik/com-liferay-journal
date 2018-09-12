@@ -895,8 +895,8 @@ public class JournalArticleLocalServiceImpl
 		// Article
 
 		User user = userLocalService.getUser(userId);
-		oldArticleId = StringUtil.toUpperCase(oldArticleId.trim());
-		newArticleId = StringUtil.toUpperCase(newArticleId.trim());
+		oldArticleId = StringUtil.toUpperCase(StringUtil.trim(oldArticleId));
+		newArticleId = StringUtil.toUpperCase(StringUtil.trim(newArticleId));
 
 		JournalArticle oldArticle = journalArticlePersistence.findByG_A_V(
 			groupId, oldArticleId, version);
