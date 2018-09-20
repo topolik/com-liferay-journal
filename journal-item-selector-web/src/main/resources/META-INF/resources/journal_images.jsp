@@ -40,6 +40,7 @@ JournalItemSelectorViewDisplayContext journalItemSelectorViewDisplayContext = (J
 	new Liferay.ItemSelectorRepositoryEntryBrowser(
 		{
 			closeCaption: '<%= journalItemSelectorViewDisplayContext.getTitle(locale) %>',
+			maxFileSize: '<%= PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) %> ',
 			on: {
 				selectedItem: function(event) {
 					Liferay.Util.getOpener().Liferay.fire('<%= journalItemSelectorViewDisplayContext.getItemSelectedEventName() %>', event);
