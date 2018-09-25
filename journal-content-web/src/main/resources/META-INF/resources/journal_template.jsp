@@ -25,7 +25,8 @@ List<DDMTemplate> ddmTemplates = journalContentDisplayContext.getDDMTemplates();
 String refererPortletName = ParamUtil.getString(request, "refererPortletName");
 %>
 
-<p><liferay-ui:message key="please-select-one-option" /></p>
+<span class="control-label"><liferay-ui:message key="template" /></span>
+<p class="control-label"><liferay-ui:message key="please-select-one-option" /></p>
 
 <aui:input checked="<%= journalContentDisplayContext.isDefaultTemplate() %>" id='<%= refererPortletName + "ddmTemplateTypeDefault" %>' label='<%= LanguageUtil.format(request, "use-default-template-x", defaultDDMTemplate.getName(locale), false) %>' name='<%= refererPortletName + "ddmTemplateType" %>' type="radio" useNamespace="<%= false %>" value="default" />
 
