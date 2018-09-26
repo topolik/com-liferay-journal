@@ -25,29 +25,33 @@ List<DDMTemplate> ddmTemplates = journalContentDisplayContext.getDDMTemplates();
 String refererPortletName = ParamUtil.getString(request, "refererPortletName");
 %>
 
-<span class="control-label"><liferay-ui:message key="template" /></span>
-<p class="control-label"><liferay-ui:message key="please-select-one-option" /></p>
+<div class="col-md-12">
+	<p class="text-muted"><liferay-ui:message key="template" /></p>
+	<p class="control-label"><liferay-ui:message key="please-select-one-option" /></p>
 
-<aui:input checked="<%= journalContentDisplayContext.isDefaultTemplate() %>" id='<%= refererPortletName + "ddmTemplateTypeDefault" %>' label='<%= LanguageUtil.format(request, "use-default-template-x", defaultDDMTemplate.getName(locale), false) %>' name='<%= refererPortletName + "ddmTemplateType" %>' type="radio" useNamespace="<%= false %>" value="default" />
+	<aui:input checked="<%= journalContentDisplayContext.isDefaultTemplate() %>" id='<%= refererPortletName + "ddmTemplateTypeDefault" %>' label='<%= LanguageUtil.format(request, "use-default-template-x", defaultDDMTemplate.getName(locale), false) %>' name='<%= refererPortletName + "ddmTemplateType" %>' type="radio" useNamespace="<%= false %>" value="default" />
 
-<aui:input checked="<%= !journalContentDisplayContext.isDefaultTemplate() %>" id='<%= refererPortletName + "ddmTemplateTypeCustom" %>' label="use-a-specific-template" name='<%= refererPortletName + "ddmTemplateType" %>' type="radio" useNamespace="<%= false %>" value="custom" />
+	<aui:input checked="<%= !journalContentDisplayContext.isDefaultTemplate() %>" id='<%= refererPortletName + "ddmTemplateTypeCustom" %>' label="use-a-specific-template" name='<%= refererPortletName + "ddmTemplateType" %>' type="radio" useNamespace="<%= false %>" value="custom" />
+</div>
 
-<div id="<%= refererPortletName + "customDDMTemplateContainer" %>">
-	<div class="template-preview-content">
-		<c:choose>
-			<c:when test="<%= journalContentDisplayContext.isDefaultTemplate() %>">
-				<p class="text-default">
-					<liferay-ui:message key="none" />
-				</p>
-			</c:when>
-			<c:otherwise>
-				<liferay-util:include page="/journal_template_resources.jsp" servletContext="<%= application %>" />
-			</c:otherwise>
-		</c:choose>
-	</div>
+<div class="col-md-3">
+	<div id="<%= refererPortletName + "customDDMTemplateContainer" %>">
+		<div class="template-preview-content">
+			<c:choose>
+				<c:when test="<%= journalContentDisplayContext.isDefaultTemplate() %>">
+					<p class="text-default">
+						<liferay-ui:message key="none" />
+					</p>
+				</c:when>
+				<c:otherwise>
+					<liferay-util:include page="/journal_template_resources.jsp" servletContext="<%= application %>" />
+				</c:otherwise>
+			</c:choose>
+		</div>
 
-	<div class="button-holder">
-		<aui:button id='<%= refererPortletName + "selectDDMTemplateButton" %>' useNamespace="<%= false %>" value="select" />
+		<div class="button-holder">
+			<aui:button id='<%= refererPortletName + "selectDDMTemplateButton" %>' useNamespace="<%= false %>" value="select" />
+		</div>
 	</div>
 </div>
 

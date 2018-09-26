@@ -42,9 +42,7 @@ JournalArticle article = journalContentDisplayContext.getArticle();
 
 <c:if test="<%= article != null %>">
 	<div class="row template-preview">
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<liferay-util:include page="/journal_template.jsp" servletContext="<%= application %>" />
-		</div>
+		<liferay-util:include page="/journal_template.jsp" servletContext="<%= application %>" />
 	</div>
 
 	<div class="configuration-options-container row">
