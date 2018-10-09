@@ -644,6 +644,7 @@ public class JournalPortlet extends MVCPortlet {
 
 		String ddmTemplateKey = ParamUtil.getString(
 			uploadPortletRequest, "ddmTemplateKey");
+
 		String layoutUuid = ParamUtil.getString(
 			uploadPortletRequest, "layoutUuid");
 
@@ -682,6 +683,7 @@ public class JournalPortlet extends MVCPortlet {
 			uploadPortletRequest, "expirationDateMinute");
 		int expirationDateAmPm = ParamUtil.getInteger(
 			uploadPortletRequest, "expirationDateAmPm");
+
 		boolean neverExpire = ParamUtil.getBoolean(
 			uploadPortletRequest, "neverExpire");
 
@@ -855,6 +857,7 @@ public class JournalPortlet extends MVCPortlet {
 			actionRequest, "targetPortletId");
 		String contentField = ParamUtil.getString(
 			actionRequest, "contentField");
+
 		String feedType = ParamUtil.getString(
 			actionRequest, "feedType", RSSUtil.FEED_TYPE_DEFAULT);
 

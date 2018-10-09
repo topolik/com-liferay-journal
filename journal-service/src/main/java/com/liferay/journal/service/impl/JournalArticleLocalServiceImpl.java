@@ -6029,6 +6029,7 @@ public class JournalArticleLocalServiceImpl
 		// Article
 
 		User user = userLocalService.getUser(userId);
+
 		Date now = new Date();
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
