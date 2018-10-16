@@ -70,7 +70,7 @@ JournalArticle article = journalContentDisplayContext.getArticle();
 					/>
 				</aui:field-wrapper>
 
-				<aui:input name="preferences--enableViewCountIncrement--" type="toggle-switch" value="<%= journalContentDisplayContext.isEnableViewCountIncrement() %>" />
+				<aui:input label="view-count-increment" name="preferences--enableViewCountIncrement--" type="toggle-switch" value="<%= journalContentDisplayContext.isEnableViewCountIncrement() %>" />
 			</aui:fieldset>
 		</div>
 	</div>
