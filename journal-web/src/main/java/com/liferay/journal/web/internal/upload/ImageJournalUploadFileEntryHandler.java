@@ -15,6 +15,8 @@
 package com.liferay.journal.web.internal.upload;
 
 import com.liferay.document.library.kernel.util.DLValidator;
+import com.liferay.journal.service.permission.JournalArticlePermission;
+import com.liferay.journal.service.permission.JournalFolderPermission;
 import com.liferay.journal.service.permission.JournalPermission;
 import com.liferay.portal.kernel.exception.ImageTypeException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -58,9 +60,26 @@ public class ImageJournalUploadFileEntryHandler
 			(ThemeDisplay)uploadPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		_checkPermission(
-			themeDisplay.getScopeGroupId(),
-			themeDisplay.getPermissionChecker());
+		long resourcePrimKey = ParamUtil.getLong(
+			uploadPortletRequest, "resourcePrimKey");
+
+		long journalFolderId = ParamUtil.getLong(
+			uploadPortletRequest, "journalFolderId");
+
+		if (resourcePrimKey != 0) {
+			JournalArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		}
+		else if (journalFolderId != 0) {
+			JournalFolderPermission.check(
+				getPermissionChecker(), themeDisplay.getScopeGroupId(),
+				journalFolderId, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			_checkPermission(
+				themeDisplay.getScopeGroupId(),
+				themeDisplay.getPermissionChecker());
+		}
 
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
 		long size = uploadPortletRequest.getSize(_PARAMETER_NAME);

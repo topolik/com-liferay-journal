@@ -20,4 +20,22 @@ import com.liferay.item.selector.BaseItemSelectorCriterion;
  * @author Eduardo Garcia
  */
 public class JournalItemSelectorCriterion extends BaseItemSelectorCriterion {
+
+	public JournalItemSelectorCriterion(
+			long resourcePrimKey, long journalFolderId) {
+
+			_resourcePrimKey = resourcePrimKey;
+			_journalFolderId = journalFolderId;
+	}
+
+	public long getJournalFolderId() {
+		return _journalFolderId;
+	}
+
+	public void setJournalFolderId(long journalFolderId) {
+		_journalFolderId = journalFolderId;
+	}
+
+	private long _journalFolderId;
+
 }

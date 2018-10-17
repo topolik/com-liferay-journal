@@ -19,6 +19,8 @@
 <%
 JournalArticle article = journalDisplayContext.getArticle();
 
+JournalFolder folder = journalDisplayContext.getFolder();
+
 long groupId = BeanParamUtil.getLong(article, request, "groupId", scopeGroupId);
 
 long classNameId = ParamUtil.getLong(request, "classNameId");
@@ -107,11 +109,12 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 
 	<aui:input ignoreRequestValue="<%= changeStructure %>" label="summary" name="description" wrapperCssClass="article-content-description" />
 
-		<%
-		JournalItemSelectorHelper journalItemSelectorHelper = new JournalItemSelectorHelper(renderRequest, renderResponse);
-		PortletURL documentLibrarySelectorURL = journalItemSelectorHelper.getDocumentLibrarySelectorURL();
-		PortletURL imageSelectorURL = journalItemSelectorHelper.getImageSelectorURL();
-		%>
+	<%
+	JournalItemSelectorHelper journalItemSelectorHelper = new JournalItemSelectorHelper(article, folder, renderRequest, renderResponse);
+
+	PortletURL documentLibrarySelectorURL = journalItemSelectorHelper.getDocumentLibrarySelectorURL();
+	PortletURL imageSelectorURL = journalItemSelectorHelper.getImageSelectorURL();
+	%>
 
 	<liferay-ddm:html
 		checkRequired="<%= classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT %>"
