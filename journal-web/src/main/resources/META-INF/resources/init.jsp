@@ -106,6 +106,7 @@ page import="com.liferay.journal.web.internal.dao.search.JournalResultRowSplitte
 page import="com.liferay.journal.web.internal.display.context.JournalDisplayContext" %><%@
 page import="com.liferay.journal.web.internal.display.context.JournalMoveEntriesDisplayContext" %><%@
 page import="com.liferay.journal.web.internal.display.context.util.JournalWebRequestHelper" %><%@
+page import="com.liferay.journal.web.internal.item.selector.JournalItemSelectorHelper" %><%@
 page import="com.liferay.journal.web.internal.portlet.JournalPortlet" %><%@
 page import="com.liferay.journal.web.internal.portlet.action.ActionUtil" %><%@
 page import="com.liferay.journal.web.internal.search.FeedSearch" %><%@
