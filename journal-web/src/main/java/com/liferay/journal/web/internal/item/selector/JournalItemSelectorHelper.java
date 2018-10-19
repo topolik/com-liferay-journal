@@ -24,11 +24,12 @@ import com.liferay.journal.constants.JournalWebKeys;
 import com.liferay.journal.item.selector.criterion.JournalItemSelectorCriterion;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFolder;
-import com.liferay.portal.kernel.portlet.LiferayRenderRequest;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayRenderResponse;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
-import com.liferay.portlet.LiferayPortletUtil;
+import com.liferay.portlet.PortletRequestImpl;
+import com.liferay.portlet.PortletResponseImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,15 +70,15 @@ public class JournalItemSelectorHelper {
 		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			fileItemSelectorCriterionDesiredItemSelectorReturnTypes);
 
-		LiferayRenderRequest liferayRenderRequest =
-			(LiferayRenderRequest)LiferayPortletUtil.getLiferayPortletRequest(
+		LiferayPortletRequest liferayRenderRequest =
+			(LiferayPortletRequest)PortletRequestImpl.getPortletRequestImpl(
 				_renderRequest);
 
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(liferayRenderRequest);
 
 		LiferayRenderResponse liferayRenderResponse =
-			(LiferayRenderResponse)LiferayPortletUtil.getLiferayPortletResponse(
+			(LiferayRenderResponse)PortletResponseImpl.getPortletResponseImpl(
 				_renderResponse);
 
 		return _itemSelector.getItemSelectorURL(
@@ -116,15 +117,15 @@ public class JournalItemSelectorHelper {
 		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			itemSelectorCriterionDesiredItemSelectorReturnTypes);
 
-		LiferayRenderRequest liferayRenderRequest =
-			(LiferayRenderRequest)LiferayPortletUtil.getLiferayPortletRequest(
+		LiferayPortletRequest liferayRenderRequest =
+			(LiferayPortletRequest)PortletRequestImpl.getPortletRequestImpl(
 				_renderRequest);
 
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(liferayRenderRequest);
 
 		LiferayRenderResponse liferayRenderResponse =
-			(LiferayRenderResponse)LiferayPortletUtil.getLiferayPortletResponse(
+			(LiferayRenderResponse)PortletResponseImpl.getPortletResponseImpl(
 				_renderResponse);
 
 		return _itemSelector.getItemSelectorURL(

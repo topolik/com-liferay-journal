@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.security.permission.ResourcePermissionCheckerUt
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
@@ -63,17 +64,18 @@ public class ImageJournalUploadFileEntryHandler
 		long resourcePrimKey = ParamUtil.getLong(
 			uploadPortletRequest, "resourcePrimKey");
 
-		long journalFolderId = ParamUtil.getLong(
-			uploadPortletRequest, "journalFolderId");
+		long folderId = ParamUtil.getLong(uploadPortletRequest, "folderId");
 
 		if (resourcePrimKey != 0) {
 			JournalArticlePermission.check(
-				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+				themeDisplay.getPermissionChecker(), resourcePrimKey,
+				ActionKeys.UPDATE);
 		}
-		else if (journalFolderId != 0) {
+		else if (folderId != 0) {
 			JournalFolderPermission.check(
-				getPermissionChecker(), themeDisplay.getScopeGroupId(),
-				journalFolderId, ActionKeys.ADD_ARTICLE);
+				themeDisplay.getPermissionChecker(),
+				themeDisplay.getScopeGroupId(), folderId,
+				ActionKeys.ADD_ARTICLE);
 		}
 		else {
 			_checkPermission(

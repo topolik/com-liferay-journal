@@ -19,8 +19,6 @@
 <%
 JournalArticle article = journalDisplayContext.getArticle();
 
-JournalFolder folder = journalDisplayContext.getFolder();
-
 long groupId = BeanParamUtil.getLong(article, request, "groupId", scopeGroupId);
 
 long classNameId = ParamUtil.getLong(request, "classNameId");
@@ -110,10 +108,7 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 	<aui:input ignoreRequestValue="<%= changeStructure %>" label="summary" name="description" wrapperCssClass="article-content-description" />
 
 	<%
-	JournalItemSelectorHelper journalItemSelectorHelper = new JournalItemSelectorHelper(article, folder, renderRequest, renderResponse);
-
-	PortletURL documentLibrarySelectorURL = journalItemSelectorHelper.getDocumentLibrarySelectorURL();
-	PortletURL imageSelectorURL = journalItemSelectorHelper.getImageSelectorURL();
+	JournalItemSelectorHelper journalItemSelectorHelper = new JournalItemSelectorHelper(article, journalDisplayContext.getFolder(), renderRequest, renderResponse);
 	%>
 
 	<liferay-ddm:html
@@ -121,9 +116,9 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 		classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
 		classPK="<%= ddmStructure.getStructureId() %>"
 		ddmFormValues="<%= journalDisplayContext.getDDMFormValues(ddmStructure) %>"
-		documentLibrarySelectorURL="<%= documentLibrarySelectorURL.toString() %>"
+		documentLibrarySelectorURL="<%= String.valueOf(journalItemSelectorHelper.getDocumentLibrarySelectorURL()) %>"
 		ignoreRequestValue="<%= changeStructure %>"
-		imageSelectorURL="<%= imageSelectorURL.toString() %>"
+		imageSelectorURL="<%= String.valueOf(journalItemSelectorHelper.getImageSelectorURL()) %>"
 		requestedLocale="<%= LocaleUtil.fromLanguageId(defaultLanguageId) %>"
 	/>
 
