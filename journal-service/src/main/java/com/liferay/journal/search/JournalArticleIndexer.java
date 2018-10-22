@@ -222,7 +222,7 @@ public class JournalArticleIndexer
 		boolean showNonindexable = GetterUtil.getBoolean(
 			searchContext.getAttribute("showNonindexable"));
 
-		boolean filterExpired = GetterUtil.getBoolean(
+		boolean filterExpired = GetterUtil.getLong(
 			searchContext.getAttribute("filterExpired"));
 
 		if (latest && !relatedClassName && !showNonindexable) {
