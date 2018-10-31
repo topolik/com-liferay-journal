@@ -93,14 +93,14 @@ public class ExportArticleUtil {
 			return;
 		}
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long groupId = ParamUtil.getLong(portletRequest, "groupId");
 		String articleId = ParamUtil.getString(portletRequest, "articleId");
-
 		String languageId = LanguageUtil.getLanguageId(portletRequest);
 		PortletRequestModel portletRequestModel = new PortletRequestModel(
 			portletRequest, portletResponse);
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 		HttpServletRequest request = _portal.getHttpServletRequest(
 			portletRequest);
 		HttpServletResponse response = _portal.getHttpServletResponse(
