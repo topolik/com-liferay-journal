@@ -18,6 +18,7 @@
 
 <%
 JournalItemSelectorViewDisplayContext journalItemSelectorViewDisplayContext = (JournalItemSelectorViewDisplayContext)request.getAttribute(JournalItemSelectorView.JOURNAL_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT);
+String[] imageExtensions = PrefsPropsUtil.getStringArray(PropsKeys.JOURNAL_IMAGE_EXTENSIONS, StringPool.COMMA);
 %>
 
 <div class="container-fluid-1280 lfr-item-viewer" id="itemSelectorUploadContainer">
@@ -48,7 +49,8 @@ JournalItemSelectorViewDisplayContext journalItemSelectorViewDisplayContext = (J
 			},
 			rootNode: '#itemSelectorUploadContainer',
 			uploadItemReturnType: '<%= HtmlUtil.escapeAttribute(FileEntryItemSelectorReturnType.class.getName()) %>',
-			uploadItemURL: '<%= journalItemSelectorViewDisplayContext.getUploadURL(liferayPortletResponse) %>'
+			uploadItemURL: '<%= journalItemSelectorViewDisplayContext.getUploadURL(liferayPortletResponse) %>',
+			validExtensions: '<%= ArrayUtil.isEmpty(imageExtensions) ? "*" : StringUtil.merge(imageExtensions) %>'
 		}
 	);
 </aui:script>
