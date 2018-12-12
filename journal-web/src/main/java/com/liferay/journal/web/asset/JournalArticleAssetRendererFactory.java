@@ -28,6 +28,7 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleResource;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.service.JournalArticleResourceLocalService;
+import com.liferay.journal.service.JournalArticleService;
 import com.liferay.journal.service.permission.JournalArticlePermission;
 import com.liferay.journal.service.permission.JournalPermission;
 import com.liferay.journal.util.JournalContent;
@@ -301,6 +302,13 @@ public class JournalArticleAssetRendererFactory
 	}
 
 	@Reference(unbind = "-")
+	protected void setJournalArticleService(
+		JournalArticleService journalArticleService) {
+
+		_journalArticleService = journalArticleService;
+	}
+
+	@Reference(unbind = "-")
 	protected void setJournalContent(JournalContent journalContent) {
 		_journalContent = journalContent;
 	}
@@ -315,6 +323,7 @@ public class JournalArticleAssetRendererFactory
 	private JournalArticleLocalService _journalArticleLocalService;
 	private JournalArticleResourceLocalService
 		_journalArticleResourceLocalService;
+	private JournalArticleService _journalArticleService;
 	private JournalContent _journalContent;
 	private JournalConverter _journalConverter;
 
