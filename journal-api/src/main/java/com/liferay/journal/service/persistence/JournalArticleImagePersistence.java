@@ -21,6 +21,11 @@ import com.liferay.journal.model.JournalArticleImage;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the journal article image service.
  *
@@ -40,6 +45,9 @@ public interface JournalArticleImagePersistence extends BasePersistence<JournalA
 	 *
 	 * Never modify or reference this interface directly. Always use {@link JournalArticleImageUtil} to access the journal article image persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, JournalArticleImage> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the journal article images where groupId = &#63;.
@@ -594,10 +602,6 @@ public interface JournalArticleImagePersistence extends BasePersistence<JournalA
 	* @return the journal article image, or <code>null</code> if a journal article image with the primary key could not be found
 	*/
 	public JournalArticleImage fetchByPrimaryKey(long articleImageId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, JournalArticleImage> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the journal article images.
