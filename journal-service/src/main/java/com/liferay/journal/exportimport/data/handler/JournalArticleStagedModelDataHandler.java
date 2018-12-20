@@ -994,7 +994,7 @@ public class JournalArticleStagedModelDataHandler
 
 		while (group != null) {
 			JournalArticle article = fetchExistingArticle(
-				articleUuid, articleResourceUuid, groupId, articleId,
+				articleUuid, articleResourceUuid, group.getGroupId(), articleId,
 				newArticleId, version, preloaded);
 
 			if (article != null) {
