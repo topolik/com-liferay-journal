@@ -543,10 +543,9 @@ public class JournalArticleResourcePersistenceImpl extends BasePersistenceImpl<J
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1375,10 +1374,9 @@ public class JournalArticleResourcePersistenceImpl extends BasePersistenceImpl<J
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1904,10 +1902,9 @@ public class JournalArticleResourcePersistenceImpl extends BasePersistenceImpl<J
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

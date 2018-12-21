@@ -544,10 +544,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1096,10 +1095,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1656,10 +1654,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		qPos.add(privateLayout);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2231,10 +2228,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2830,10 +2826,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		qPos.add(layoutId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3451,10 +3446,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4120,10 +4114,9 @@ public class JournalContentSearchPersistenceImpl extends BasePersistenceImpl<Jou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalContentSearch);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalContentSearch)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

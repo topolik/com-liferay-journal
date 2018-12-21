@@ -514,10 +514,9 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleImage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleImage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1026,10 +1025,9 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		qPos.add(tempImage);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleImage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleImage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1630,10 +1628,9 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		qPos.add(version);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(journalArticleImage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					journalArticleImage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
