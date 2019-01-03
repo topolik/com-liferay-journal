@@ -17,7 +17,7 @@ package com.liferay.journal.configuration;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 public class JournalServiceConfigurationValues {
 

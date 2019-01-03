@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 public class JournalServiceConfigurationUtil {
 

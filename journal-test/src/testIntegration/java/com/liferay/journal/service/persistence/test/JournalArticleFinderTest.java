@@ -70,7 +70,7 @@ import org.osgi.framework.ServiceReference;
 
 /**
  * @author Zsolt Berentey
- * @author Laszlo Csontos
+ * @author László Csontos
  */
 @RunWith(Arquillian.class)
 @Sync

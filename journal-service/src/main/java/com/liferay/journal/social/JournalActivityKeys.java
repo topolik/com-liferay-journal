@@ -15,7 +15,7 @@
 package com.liferay.journal.social;
 
 /**
- * @author Roberto Diaz
+ * @author Roberto Díaz
  */
 public class JournalActivityKeys {
 

@@ -30,7 +30,7 @@ import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 public class JournalItemSelectorViewDisplayContext {
 
