@@ -119,7 +119,7 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 		documentLibrarySelectorURL="<%= String.valueOf(journalItemSelectorHelper.getDocumentLibrarySelectorURL()) %>"
 		ignoreRequestValue="<%= changeStructure %>"
 		imageSelectorURL="<%= String.valueOf(journalItemSelectorHelper.getImageSelectorURL()) %>"
-		requestedLocale="<%= LocaleUtil.fromLanguageId(defaultLanguageId) %>"
+		requestedLocale="<%= locale %>"
 	/>
 
 	<aui:input label="searchable" name="indexable" type="toggle-switch" value="<%= (article != null) ? article.isIndexable() : true %>" />
