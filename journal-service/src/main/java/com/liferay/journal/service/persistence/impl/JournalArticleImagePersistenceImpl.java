@@ -77,37 +77,12 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-			new String[] { Long.class.getName() },
-			JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByGroupId;
+	private FinderPath _finderPathWithoutPaginationFindByGroupId;
+	private FinderPath _finderPathCountByGroupId;
 
 	/**
 	 * Returns all the journal article images where groupId = &#63;.
@@ -594,26 +569,9 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "journalArticleImage.groupId = ?";
-	private final FinderPath _finderPathWithPaginationFindByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByTempImage",
-			new String[] {
-				Boolean.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByTempImage",
-			new String[] { Boolean.class.getName() },
-			JournalArticleImageModelImpl.TEMPIMAGE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByTempImage",
-			new String[] { Boolean.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByTempImage;
+	private FinderPath _finderPathWithoutPaginationFindByTempImage;
+	private FinderPath _finderPathCountByTempImage;
 
 	/**
 	 * Returns all the journal article images where tempImage = &#63;.
@@ -1103,35 +1061,9 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	}
 
 	private static final String _FINDER_COLUMN_TEMPIMAGE_TEMPIMAGE_2 = "journalArticleImage.tempImage = ?";
-	private final FinderPath _finderPathWithPaginationFindByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_A_V",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_A_V",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
-			},
-			JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.ARTICLEID_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.VERSION_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_V",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
-			});
+	private FinderPath _finderPathWithPaginationFindByG_A_V;
+	private FinderPath _finderPathWithoutPaginationFindByG_A_V;
+	private FinderPath _finderPathCountByG_A_V;
 
 	/**
 	 * Returns all the journal article images where groupId = &#63; and articleId = &#63; and version = &#63;.
@@ -1734,29 +1666,8 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_2 = "journalArticleImage.articleId = ? AND ";
 	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_3 = "(journalArticleImage.articleId IS NULL OR journalArticleImage.articleId = '') AND ";
 	private static final String _FINDER_COLUMN_G_A_V_VERSION_2 = "journalArticleImage.version = ?";
-	private final FinderPath _finderPathFetchByG_A_V_E_E_L = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
-			JournalArticleImageImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByG_A_V_E_E_L",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName(), String.class.getName(),
-				String.class.getName(), String.class.getName()
-			},
-			JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.ARTICLEID_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.VERSION_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.ELINSTANCEID_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.ELNAME_COLUMN_BITMASK |
-			JournalArticleImageModelImpl.LANGUAGEID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByG_A_V_E_E_L = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_V_E_E_L",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName(), String.class.getName(),
-				String.class.getName(), String.class.getName()
-			});
+	private FinderPath _finderPathFetchByG_A_V_E_E_L;
+	private FinderPath _finderPathCountByG_A_V_E_E_L;
 
 	/**
 	 * Returns the journal article image where groupId = &#63; and articleId = &#63; and version = &#63; and elInstanceId = &#63; and elName = &#63; and languageId = &#63; or throws a {@link NoSuchArticleImageException} if it could not be found.
@@ -2947,6 +2858,125 @@ public class JournalArticleImagePersistenceImpl extends BasePersistenceImpl<Jour
 	 * Initializes the journal article image persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+				new String[] { Long.class.getName() },
+				JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByGroupId = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+				new String[] { Long.class.getName() });
+
+		_finderPathWithPaginationFindByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByTempImage",
+				new String[] {
+					Boolean.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByTempImage",
+				new String[] { Boolean.class.getName() },
+				JournalArticleImageModelImpl.TEMPIMAGE_COLUMN_BITMASK);
+
+		_finderPathCountByTempImage = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByTempImage",
+				new String[] { Boolean.class.getName() });
+
+		_finderPathWithPaginationFindByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_A_V",
+				new String[] {
+					Long.class.getName(), String.class.getName(),
+					Double.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_A_V",
+				new String[] {
+					Long.class.getName(), String.class.getName(),
+					Double.class.getName()
+				},
+				JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.ARTICLEID_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_A_V = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_V",
+				new String[] {
+					Long.class.getName(), String.class.getName(),
+					Double.class.getName()
+				});
+
+		_finderPathFetchByG_A_V_E_E_L = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED,
+				JournalArticleImageImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByG_A_V_E_E_L",
+				new String[] {
+					Long.class.getName(), String.class.getName(),
+					Double.class.getName(), String.class.getName(),
+					String.class.getName(), String.class.getName()
+				},
+				JournalArticleImageModelImpl.GROUPID_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.ARTICLEID_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.VERSION_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.ELINSTANCEID_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.ELNAME_COLUMN_BITMASK |
+				JournalArticleImageModelImpl.LANGUAGEID_COLUMN_BITMASK);
+
+		_finderPathCountByG_A_V_E_E_L = new FinderPath(JournalArticleImageModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleImageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByG_A_V_E_E_L",
+				new String[] {
+					Long.class.getName(), String.class.getName(),
+					Double.class.getName(), String.class.getName(),
+					String.class.getName(), String.class.getName()
+				});
 	}
 
 	public void destroy() {
